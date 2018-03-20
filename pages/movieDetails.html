@@ -5,10 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../models/Movie.js"></script>
     <script type="text/javascript" src="../views/movieDetails.js"></script>
     <title>Document</title>
 </head>
 <body>
-    
+    <div id="container"></div>
+    <div id="editContainer" style="display: none">
+        Title:</br>
+        <input type="text"></br>
+        Publisher:</br>
+        <input type="text"></br>
+        Release Date:</br>
+        <input type="text"></br>
+        Image:</br>
+        <input type="text"></br>
+        Genre:</br>
+        <input type="text"></br>
+        Description:</br>
+        <textarea style="resize: none"></textarea></br>
+        <button id="approve">OK</button>
+        <button id="cancel">CANCEL</button>
+    </div>
 </body>
 </html>
