@@ -1,4 +1,5 @@
 /*global $*/
+
 function GetMovie(){
     this.id = null;
     this.title = '';
@@ -9,21 +10,21 @@ function GetMovie(){
     this.description = '';
 }
 
-GetMovie.prototype.getMovieDetails = function(){
+GetMovie.prototype.getMovieDetails = () => {
     //this is the GetMovie object instance
-    var that = this;
-    return $.getJSON('https://ancient-caverns-16784.herokuapp.com/movies/' + this.id, function(movieDetails) {
-        that.description = movieDetails.description;
-        that.genre = movieDetails.Genre;
-        that.poster = movieDetails.Poster;
-        that.country = movieDetails.Country;
-        that.year = movieDetails.Year;
-        that.title = movieDetails.Title;
-        that.id = movieDetails._id;
+    // var that = this no more;
+    return $.getJSON('https://ancient-caverns-16784.herokuapp.com/movies/' + this.id, (movieDetails) => {
+        this.description = movieDetails.Plot;
+        this.genre = movieDetails.Genre;
+        this.poster = movieDetails.Poster;
+        this.country = movieDetails.Country;
+        this.year = movieDetails.Year;
+        this.title = movieDetails.Title;
+        this.id = movieDetails._id;
         });
 };
 
-GetMovie.prototype.updateMovie = function(formInputs){
+GetMovie.prototype.updateMovie = (formInputs) => {
     return $.ajax({
             url: 'https://ancient-caverns-16784.herokuapp.com/movies/' + this.id,
             dataType: 'json',

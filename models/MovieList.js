@@ -1,30 +1,37 @@
 /*global $, displayAllMovies*/
+
 $(onHtmlLoaded);
-let baseUrl = "https://ancient-caverns-16784.herokuapp.com";
+let baseUrl = 'https://ancient-caverns-16784.herokuapp.com';
+
+//First, we request the movie list from the server
 function onHtmlLoaded(){
     getMoviesList();
 }
 
+//After the movie list yields a response, we pass it to displayAllMovies in home.js
 function getMoviesList(){
-    $.getJSON(baseUrl + "/movies?take=10&skip=0").then(displayAllMovies);
+    $.getJSON(baseUrl + '/movies?take=10&skip=0').then(displayAllMovies);
 }
 
-function MovieListView(obj) {
-    this.title = obj.Title || "";
-    // this.description = obj.description || "";
-    this.imageUrl = obj.Poster || "";
-    this.id = obj._id || null;
-    this.year = obj.Year || null;
-    this.runtime = obj.Runtime || null;
-    this.genre = obj.Genre || "";
-    this.lang = obj.Language || "";
-    this.country = obj.Country || "";
-    this.rating = obj.imdbRating || null;
-    this.votes = obj.imdbVotes || null;
-    this.imdbId = obj.imdbID || null;
-    this.type = obj.type || "";
+//This class is for creating movie instances from the movie list that we ajax get above
+class MovieListView {
+    constructor(obj) {
+        this.id = obj._id || null;
+        this.title = obj.Title || "";
+        this.year = obj.Year || null;
+        this.runtime = obj.Runtime || null;
+        this.genre = obj.Genre || "";
+        this.lang = obj.Language || "";
+        this.country = obj.Country || "";
+        this.imageUrl = obj.Poster || "";
+        this.rating = obj.imdbRating || null;
+        this.votes = obj.imdbVotes || null;
+        this.imdbId = obj.imdbID || null;
+        this.type = obj.Type || "";
+    }
 }
 
+//This function is a simple ajax call to delete a movie from the API
 function deleteMovie(id){
     $.ajax({
         url: 'https://ancient-caverns-16784.herokuapp.com/' + id,
@@ -33,6 +40,7 @@ function deleteMovie(id){
     });
 }
 
+//This function is a ajax call to post a new movie to the API
 function postMovie(formInputs){
      return $.post({
             url: 'https://ancient-caverns-16784.herokuapp.com',
@@ -45,5 +53,5 @@ function postMovie(formInputs){
                 "imageUrl": formInputs[3].value,
                 "description": formInputs[5].value
             }
-        })
+        });
 }

@@ -1,10 +1,12 @@
 /*global $, GetMovie, location*/
+
 $(onHtmlLoaded);
+
 function onHtmlLoaded(){
     var editContainer = $('#editContainer');
     var container = $('#container');
     var movie = new GetMovie();
-    movie._id = getUrlParameter('movieId');
+    movie.id = getUrlParameter('movieId');
     movie.getMovieDetails().then(displayPage);
     
     function getUrlParameter(name) {
@@ -16,11 +18,13 @@ function onHtmlLoaded(){
     
     function displayPage(){
         var date = new Date(movie.year);
-        container.append('<img src="' + movie.Poster + '" alt="' + movie.Title + '"></img>' +
-                         '<h3>' + movie.title + '</h3><span>genre:' + movie.Genre + '</span>' +
-                         '<p>' + movie.description + '</p>' +
-                         '<span>Made in ' + movie.Country + ' on ' + date + '</span></br>' +
-                         '<button id="edit">Edit Article</button>');
+        container.append(
+            `<img src="${movie.poster}" alt="${movie.title}"></img>
+            <h3>${movie.title}</h3><span>genre:${movie.genre}</span>
+            <p>${movie.description}</p>
+            <span>Made in ${movie.country} on ${movie.date}</span></br>
+            <button id="edit">Edit Article</button>`
+        );
                          
         $('#edit').on('click', function(){
             editContainer.css('display', 'block');
