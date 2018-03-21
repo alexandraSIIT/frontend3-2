@@ -1,3 +1,4 @@
+/*global $*/
 function GetMovie(){
     this.id = null;
     this.title = '';
@@ -35,5 +36,5 @@ GetMovie.prototype.updateMovie = function(formInputs){
                 "poster": formInputs[3].value || this.poster,
                 "description": formInputs[5].value || this.description
             }
-        })
-}
+        });
+};

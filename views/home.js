@@ -13,24 +13,24 @@ function displayAllMovies(x){
                         '</li></br>');
     }
 
-    $('.del').on('click', function(){
+    $('.del').on('click', () => {
         deleteMovie($(this.closest('li')).data('idcode'));
         listElement.html('');
         getMoviesList();
     });
 
-    $('.add').on('click', function(){
+    $('.add').on('click', () => {
         createContainer.css('display', 'block');
     });
     
-    $('#cancel').on('click', function(){
+    $('#cancel').on('click', () => {
         createContainer.css('display', 'none');
         deleteFormContents();
     });
     
-    $('#approve').on('click', function(){
+    $('#approve').on('click', () => {
         var formInputs = $('#createContainer').children('input, textarea');
-        postMovie(formInputs).then(function(){
+        postMovie(formInputs).then(() => {
             listElement.html('');
             getMoviesList();
         });
@@ -40,7 +40,7 @@ function displayAllMovies(x){
 function deleteFormContents() {
     $('#createContainer')
         .children('input, textarea')
-        .each(function(){
+        .each(() => {
             this.value = '';
         });
 }

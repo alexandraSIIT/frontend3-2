@@ -1,5 +1,5 @@
-/*global $*/
-$(onHtmlLoaded)
+/*global $, displayAllMovies*/
+$(onHtmlLoaded);
 let baseUrl = "https://ancient-caverns-16784.herokuapp.com";
 function onHtmlLoaded(){
     getMoviesList();
@@ -30,7 +30,7 @@ function deleteMovie(id){
         url: 'https://ancient-caverns-16784.herokuapp.com/' + id,
         method: 'DELETE',
         dataType: 'json'
-    })
+    });
 }
 
 function postMovie(formInputs){
