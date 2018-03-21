@@ -15,7 +15,7 @@ function displayAllMovies(list){
                 <h3><a target="_blank" href="https://ancient-caverns-16784.herokuapp.com/movies/?movieId=${movie.id}">${movie.title} (${movie.year})</a></h3>
                 <div>Type: ${movie.type}</div>
                 <div>${movie.runtime} - ${movie.genre}</div>
-                <div>Rating: ${movie.rating} - (${movie.votes} votes)</div>
+                <div>Rating: ${movie.rating} / 10 - (${movie.votes} votes)</div>
                 <button class="del">Delete Movie</button>
             </li></br>`
         );
