@@ -4,11 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../resources/css/style.css" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../views/home.js"></script>
-    <title>myIMDB</title>
+    <script type="text/javascript" src="../models/MovieList.js"></script>
+    <title>myIMDB Home</title>
 </head>
 <body>
-    <div id="container"></div>
+    <ul id="movieList">
+    </ul>
+    <button class="add">Add Movie</button>
+    <div id="createContainer" style="display: none">
+        Title:</br>
+        <input type="text"></br>
+        Publisher:</br>
+        <input type="text"></br>
+        Release Date:</br>
+        <input type="text"></br>
+        Image:</br>
+        <input type="text"></br>
+        Genre:</br>
+        <input type="text"></br>
+        Description:</br>
+        <textarea style="resize: none"></textarea></br>
+        <button id="approve">OK</button>
+        <button id="cancel">CANCEL</button>
+    </div>
 </body>
 </html>
