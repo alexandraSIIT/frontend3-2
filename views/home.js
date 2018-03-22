@@ -12,7 +12,7 @@ function displayAllMovies(list){
         listElement.append(
             `<li data-idcode="${movie.id}">
                 <img src="${movie.imageUrl}" alt="${movie.title}"></img></br>
-                <h3><a target="_blank" href="https://ancient-caverns-16784.herokuapp.com/movies/?movieId=${movie.id}">${movie.title} (${movie.year})</a></h3>
+                <h3><a target="_blank" href="/frontend3-2/pages/movieDetails.html?movieId=${movie.id}">${movie.title} (${movie.year})</a></h3>
                 <div>Type: ${movie.type}</div>
                 <div>${movie.runtime} - ${movie.genre}</div>
                 <div>Rating: ${movie.rating} / 10 - (${movie.votes} votes)</div>
