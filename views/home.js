@@ -25,6 +25,13 @@ function onClickLogOut(){
     logOutBtn.addClass('hide').removeClass('show');
     const authToken= getCookiesAsObject();
     logOutRequest(baseURL,authToken);
+    deleteToken();
+};
+
+// This function deletes the token from cookie
+    function deleteToken() {
+    document.cookie = "token" + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
 }
 
 // This function is called when clicking the submit button
@@ -62,6 +69,8 @@ function getCookiesAsObject() {
     const authToken = cookies.token;
     return authToken;
 } 
+
+
 
 //Function below renders the movie list "list" in a user friendly format
 //Then it attaches some event listeners for interface buttons
