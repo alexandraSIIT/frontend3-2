@@ -8,9 +8,14 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../views/home.js"></script>
     <script type="text/javascript" src="../models/MovieList.js"></script>
-    <title>myIMDB Home</title>
+    <title>Movie Roll - Home</title>
 </head>
 <body>
+    <header class="shadow-bottom">
+        <object class="logo" height="80" width="207" data="../resources/img/logo.svg" type="image/svg+xml"></object>
+        <input class="search-icon top-search" type="search" placeholder="Search">
+        <a href="#">Login</a><span> / </span><a href="#">Register</a>
+    </header>
     <ul id="movieList">
     </ul>
     <button class="add">Add Movie</button>
