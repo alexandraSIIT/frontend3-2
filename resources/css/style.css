@@ -104,3 +104,10 @@ button, input, .shadow-bottom {
     width: 60%;
     height: 40px;
 }
+
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}

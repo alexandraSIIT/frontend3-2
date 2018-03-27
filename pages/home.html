@@ -8,14 +8,35 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../views/home.js"></script>
     <script type="text/javascript" src="../models/MovieList.js"></script>
+    <script type="text/javascript" src="../models/Auth.js"></script>
     <title>Movie Roll - Home</title>
 </head>
 <body>
     <header class="shadow-bottom">
         <object class="logo" height="80" width="207" data="../resources/img/logo.svg" type="image/svg+xml"></object>
         <input class="search-icon top-search" type="search" placeholder="Search">
-        <a href="#">Login</a><span> / </span><a href="#">Register</a>
+        <a id="log-in" href="#">LogIn</a><span> / </span><a id="register" >Register</a>
+        <a id="log-out" class="hide">LogOut</a>
     </header>
+    
+    <div id="registerForm" class="hide">
+       <form class=" logInForm pull-left" name="myForm" >
+           <input class="textInput" type="text" name="FirstName" placeholder="First Name"/><i class="fas fa-check"></i>
+           <br>
+           <input class="textInput" type="text" name="LastName" placeholder="Last Name"/><i class="fas fa-check"></i>
+           <br>
+           <input class="textInput" type="text" name="EmailAdress" placeholder="Email adress"/><i class="fas fa-check"></i>
+           <br>
+           <input class="textInput" type="text" name="Username" placeholder="Username"/><i class="fas fa-check"></i>
+           <br>
+           <input class="textInput" type="text" name="Password" placeholder="Password"/><i class="fas fa-check"></i>
+           <br>
+           <input class="textInput" type="text" name="ConfirmPassword" placeholder="Confirm password"/><i class="fas fa-check"></i>
+           <br>
+           <button class="btn" type="submit"  id="register-submit">Submit</button>   
+       </form>
+    </div>
+    
     <ul id="movieList">
     </ul>
     <button class="add">Add Movie</button>
