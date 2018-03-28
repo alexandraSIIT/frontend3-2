@@ -17,14 +17,21 @@ function onHtmlLoaded(){
     }
     
     function displayPage(){
-        var date = new Date(movie.year);
-        container.append(
-            `<img src="${movie.poster}" alt="${movie.title}"></img>
+        // var date = new Date(movie.year);
+        console.log(movie);
+        container.append(`
+            <img src="${movie.poster}" alt="${movie.title}"></img>
             <h3>${movie.title}</h3><span>genre:${movie.genre}</span>
             <p>${movie.description}</p>
-            <span>Made in ${movie.country} on ${movie.date}</span></br>
-            <button id="edit">Edit Article</button>`
-        );
+            <span>${movie.country} (${movie.year})</span></br>
+            <p>Released: ${movie.released}</p>
+            <p>${movie.director}</p>
+            <p>${movie.writer}</p>
+            <p>${movie.actors}</p>
+            <p>${movie.language}</p>
+            <button id="edit">Edit Article</button>
+            
+        `);
                          
         $('#edit').on('click', function(){
             editContainer.css('display', 'block');
