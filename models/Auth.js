@@ -1,10 +1,10 @@
 // This function sends the username and passsword to the API which generates a specific token
-function Registering(baseURL,userName,password){
+function Registering(baseURL,username,password){
     return $.ajax({
         url: baseURL + "auth/register",
         method:'POST',
         dataType:"json",
-        data: { username: userName.val(),
+        data: { username: username.val(),
         	password: password.val()
         },
             success:function(response){ 

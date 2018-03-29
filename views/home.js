@@ -7,17 +7,22 @@ $(document).ready(function() {
     const registerForm = $('#registerForm');
     registerBtn.click(function registerFormAppear(){
        registerForm.addClass('show').removeClass('hide');
+       hidePassword();
     });
-    
-    const userName = $("[name=Username]");
+    const firstName = $("[name=FirstName]");
+    const lastName = $("[name=LastName]");
+    const emailAdress = $("[name=EmailAdress]");
+    const username = $("[name=Username]");
     const password = $("[name=Password]");
+    const confPassword = $("[name=ConfirmPassword]");
     const registerSubmitBtn = $('#register-submit');
-    
-    registerSubmitBtn.click(hideRegisterForm);
     registerSubmitBtn.click(registerSubmitClick);
-    
+    confPassword.click(hidePassword);
     const logOutBtn = $('#log-out');
     logOutBtn.click(onClickLogOut);
+
+
+
 // This function recalls the getCookiesAsObject for the const authToken to have the 
 // current token value saved in the cookies.
 // Also calls logOutRequest function
@@ -26,7 +31,7 @@ function onClickLogOut(){
     const authToken= getCookiesAsObject();
     logOutRequest(baseURL,authToken);
     deleteToken();
-};
+}
 
 // This function deletes the token from cookie
     function deleteToken() {
@@ -35,24 +40,128 @@ function onClickLogOut(){
 }
 
 // This function is called when clicking the submit button
-function registerSubmitClick(){
-    Registering(baseURL, userName, password).then(setCookie);
+function registerSubmitClick(event){
+    event.preventDefault();
+    if (validateName() && validateEmail() && validateUsername() && validatePassword() && confirmPassword() ){
+    Registering(baseURL, username, password).then(setCookie).then(getCookiesAsObject).then(usernameExists);
+    
+    logOutBtn.addClass('show').removeClass('hide');
+    registerForm.addClass('hide').removeClass('show');
+    
+    //Resetting the form's fields
+    $(".reset").click(function() {   
+    $(this).closest('form').find("input[type=text]").val("");
+    $(this).closest('form').find("input[type=password]").val("");
+});
+    } else{
+        event.preventDefault();
+}
 }
 
-// This function prevents the page from refreshing after submit button click.
-// Also it hides the register form.
-function hideRegisterForm(event){
-    event.preventDefault();
-    registerForm.addClass('hide').removeClass('show');
-    logOutBtn.addClass('show').removeClass('hide');
-    
+function usernameExists(authToken){
+    if (authToken===""){
+        $('#messageUsername').html("Username already existing");
+    }
 }
+
+//This function replaces the password's characters with dots
+function hidePassword(){
+    password.attr('type','password');
+    confPassword.attr('type','password');
+}
+
+function validateName(){
+    if (firstName.val() === ''){
+        $('#messages1').html('This field is required.');
+        onkeypress();
+        return false;
+    }    
+    if (lastName.val() === ''){
+        $('#messages2').html('This field is required.');
+        onkeypress();
+        return false;
+    } 
+    else return true;
+}
+
+function validateUsername(){
+     if (username.val() === ''){
+        $('#messages4').html('This field is required.');
+        onkeypress();
+        return false;
+    } else return true;
+}
+
+function validateEmail(){
+    const text = emailAdress.val();
+    const arpos = text.indexOf("@");
+    const dotpos = text.lastIndexOf(".");
+    const messageCont3 = $("#messages3");
+    if (text === "" || arpos < 1 || dotpos < arpos + 2 || dotpos + 2 > text.length){
+        messageCont3.html("Please enter a valid email adress!");
+        onkeypress();
+        return false;
+    }else return true;
+}
+
+function validatePassword(){
+    const passValue = password.val();
+    const upperCaseInPass = passValue.replace(/[^A-Z]/g, "").length;
+    const integerInPass = passValue.replace(/\D/g, '').length;
+    const messageCont5 = $("#messages5");
+    if (password.focusout() && passValue.length < "6" && upperCaseInPass < "1" && integerInPass < "1"){
+        messageCont5.html("The password must have at least 6 characters long, contain one digit and one uppercase letter");
+        onkeypress();
+        return false;
+    }    
+    return true;
+}
+
+function confirmPassword(){
+    messageCont6 = $("#messages6");
+    if (confPassword.val() !== password.val()){
+        messageCont6.html("The passwords does not match. Please renter the password!");
+        onkeypress();
+        return false;
+    }else return true;
+}
+
+function onkeypress(){
+  emailAdress.keypress(function(){
+    $('#messages3').html('');
+  });
+
+  password.keypress(function(){
+    $('#messages5').html('');
+  });
+
+  confPassword.keypress(function(){
+    $('#messages6').html('');
+  });
+
+  username.keypress(function(){
+    $('#messages4').html('');
+  });
+  
+   firstName.keypress(function(){
+    $('#messages1').html('');
+  });
+  
+   lastName.keypress(function(){
+    $('#messages2').html('');
+  });
+  
+};
 });
+
+
+
 
 // This function sets the token's value as a cookie "token=tokenValue"
 function setCookie(response){
     const accessToken = response.accessToken;
     document.cookie = "token=" + accessToken;
+    return document.cookie;
 }
 
 // This function takes the token that was previously saved in cookies
@@ -69,8 +178,6 @@ function getCookiesAsObject() {
     const authToken = cookies.token;
     return authToken;
 } 
-
-
 
 //Function below renders the movie list "list" in a user friendly format
 //Then it attaches some event listeners for interface buttons
