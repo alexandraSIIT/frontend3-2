@@ -7,12 +7,9 @@ $(document).ready(function() {
     const registerBtn = $('#register');
     const registerForm = $('#registerForm');
     registerBtn.click(function registerFormAppear(){
-<<<<<<< HEAD
       registerForm.addClass('show').removeClass('hide');
-=======
        registerForm.addClass('show').removeClass('hide');
        
->>>>>>> ccc01d845cd9e33a0c55cdb98a5f05b0bf572aca
     });
     const firstName = $("[name=FirstName]");
     const lastName = $("[name=LastName]");
@@ -24,12 +21,10 @@ $(document).ready(function() {
     registerSubmitBtn.click(registerSubmitClick);
     const logOutBtn = $('#log-out');
     logOutBtn.click(onClickLogOut);
-<<<<<<< HEAD
     // This function recalls the getCookiesAsObject for the const authToken to have the 
     // current token value saved in the cookies.
     // Also calls logOutRequest function
-    function onClickLogOut(){
-=======
+
     const showPassword = $('#check');
     const registerLogIn = $('#register-logIn');
     
@@ -46,7 +41,6 @@ $(document).ready(function() {
 // current token value saved in the cookies.
 // Also calls logOutRequest function
 function onClickLogOut(){
->>>>>>> ccc01d845cd9e33a0c55cdb98a5f05b0bf572aca
     logOutBtn.addClass('hide').removeClass('show');
     registerLogIn.addClass('show').removeClass('hide');
     const authToken= getCookiesAsObject();
@@ -165,7 +159,10 @@ function onkeypress(){
   });
   
 };
+
+
 });
+
 
 
 
@@ -191,15 +188,12 @@ function getCookiesAsObject() {
     const authToken = cookies.token;
     return authToken;
 } 
-
-<<<<<<< HEAD
-
+ 
 
 
 
 
-=======
->>>>>>> ccc01d845cd9e33a0c55cdb98a5f05b0bf572aca
+
 //Function below renders the movie list "list" in a user friendly format
 //Then it attaches some event listeners for interface buttons
 function displayAllMovies(list){
@@ -273,4 +267,3 @@ function onClickLogIn(){
 function LogInSubmitClick(){
     LoggingIn(baseURL, userName, password).then(getCookieAsObject);
 }
-
