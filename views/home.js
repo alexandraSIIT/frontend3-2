@@ -244,7 +244,7 @@ function onClickLogIn(){
     let auth = response.authenticated;
         let authenticatedToken = response.authToken;
         console.log(auth);
-}        
+}
 function LogInSubmitClick(){
     LoggingIn(baseURL, userName, password).then(getCookieAsObject);
 }
