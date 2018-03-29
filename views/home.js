@@ -233,3 +233,18 @@ function deleteFormContents() {
             this.value = '';
         });
 }
+
+//This function calls getCookiesAsObject for the
+//const authToken in order to login
+
+const logInBtn = $('#log-in');
+    logInBtn.click(onClickLogIn);
+    
+function onClickLogIn(){
+    let auth = response.authenticated;
+        let authenticatedToken = response.authToken;
+        console.log(auth);
+        
+function LogInSubmitClick(){
+    LoggingIn(baseURL, userName, password).then(getCookieAsObject);
+}
