@@ -1,4 +1,4 @@
-/*global $, displayAllMovies, getTokenFromCookie*/
+/*global $, displayAllMovies, getTokenFromCookie,getCookiesAsObject*/
 
 
 $(onHtmlLoaded);

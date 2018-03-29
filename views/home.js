@@ -26,7 +26,15 @@ $(document).ready(function() {
     logOutBtn.addClass('hide').removeClass('show');
     const authToken= getCookiesAsObject();
     logOutRequest(baseURL,authToken);
-    }
+    deleteToken();
+};
+
+// This function deletes the token from cookie
+    function deleteToken() {
+    document.cookie = "token" + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
+}
+
 
 // This function is called when clicking the submit button
 function registerSubmitClick(){
@@ -67,6 +75,8 @@ function getCookiesAsObject() {
 
 
 
+
+
 //Function below renders the movie list "list" in a user friendly format
 //Then it attaches some event listeners for interface buttons
 function displayAllMovies(list){
@@ -97,7 +107,7 @@ function displayAllMovies(list){
         });
     });
 
-    $('.add').on('click', () => {
+    $('#add').on('click', () => {
         createContainer.css('display', 'block');
     });
     
@@ -106,12 +116,14 @@ function displayAllMovies(list){
         deleteFormContents();
     });
     
-    $('#approve').on('click', () => {
+    $('#approve').unbind('click').bind('click', () => {
         var formInputs = $('#createContainer');
+        
         postMovie(formInputs).then(() => {
             listElement.html('');
             getMoviesList();
-        });
+        })
+     
     });
 }
 
@@ -124,4 +136,18 @@ function deleteFormContents() {
         });
 }
 
+// This function calls getCookiesAsObject for the
+// const authToken in order to login
+
+const logInBtn = $('#log-in');
+    logInBtn.click(onClickLogIn);
+    
+function onClickLogIn(){
+    let auth = response.authenticated;
+        let authenticatedToken = response.authToken;
+        console.log(auth);
+}
+function LogInSubmitClick(){
+    LoggingIn(baseURL, userName, password).then(getCookieAsObject);
+}
 

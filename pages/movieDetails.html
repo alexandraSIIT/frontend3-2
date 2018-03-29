@@ -4,12 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../resources/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="../resources/css/movieDetails.css" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../models/Movie.js"></script>
     <script type="text/javascript" src="../views/movieDetails.js"></script>
     <title>Document</title>
 </head>
 <body>
+    <header class="shadow-bottom">
+        <object class="logo" height="80" width="207" data="../resources/img/logo.svg" type="image/svg+xml"></object>
+        <input class="search-icon top-search" type="search" placeholder="Search">
+        <a id="log-in" href="#">LogIn</a><span> / </span><a id="register" >Register</a>
+        <a id="log-out" class="hide">LogOut</a>
+    </header>
+    
     <div id="container"></div>
     <div id="editContainer" style="display: none">
         Title:</br>
