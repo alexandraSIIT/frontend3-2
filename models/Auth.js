@@ -44,12 +44,5 @@ function loggingIn() {
       success: function(response) {
         console.log('response', response);
       }
-<<<<<<< HEAD
     });
 }
-=======
-});
-}
-
-
->>>>>>> ccc01d845cd9e33a0c55cdb98a5f05b0bf572aca
