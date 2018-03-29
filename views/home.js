@@ -7,7 +7,7 @@ $(document).ready(function() {
     const registerForm = $('#registerForm');
     registerBtn.click(function registerFormAppear(){
        registerForm.addClass('show').removeClass('hide');
-       hidePassword();
+       
     });
     const firstName = $("[name=FirstName]");
     const lastName = $("[name=LastName]");
@@ -17,17 +17,26 @@ $(document).ready(function() {
     const confPassword = $("[name=ConfirmPassword]");
     const registerSubmitBtn = $('#register-submit');
     registerSubmitBtn.click(registerSubmitClick);
-    confPassword.click(hidePassword);
     const logOutBtn = $('#log-out');
     logOutBtn.click(onClickLogOut);
-
-
-
+    const showPassword = $('#check');
+    const registerLogIn = $('#register-logIn');
+    
+    //This function makes the password visible when checking the "show password checkbox"
+    $('#check').on("change", function (e){ 
+    if(this.checked){
+        password.attr('type','text');
+    }
+    else{
+        password.attr('type', 'password');
+    }
+});   
 // This function recalls the getCookiesAsObject for the const authToken to have the 
 // current token value saved in the cookies.
 // Also calls logOutRequest function
 function onClickLogOut(){
     logOutBtn.addClass('hide').removeClass('show');
+    registerLogIn.addClass('show').removeClass('hide');
     const authToken= getCookiesAsObject();
     logOutRequest(baseURL,authToken);
     deleteToken();
@@ -43,10 +52,12 @@ function onClickLogOut(){
 function registerSubmitClick(event){
     event.preventDefault();
     if (validateName() && validateEmail() && validateUsername() && validatePassword() && confirmPassword() ){
-    Registering(baseURL, username, password).then(setCookie).then(getCookiesAsObject).then(usernameExists);
+    Registering(baseURL, username, password).then(setCookie);
     
     logOutBtn.addClass('show').removeClass('hide');
+    registerLogIn.addClass('hide').removeClass('show');
     registerForm.addClass('hide').removeClass('show');
+    
     
     //Resetting the form's fields
     $(".reset").click(function() {   
@@ -56,18 +67,6 @@ function registerSubmitClick(event){
     } else{
         event.preventDefault();
 }
-}
-
-function usernameExists(authToken){
-    if (authToken===""){
-        $('#messageUsername').html("Username already existing");
-    }
-}
-
-//This function replaces the password's characters with dots
-function hidePassword(){
-    password.attr('type','password');
-    confPassword.attr('type','password');
 }
 
 function validateName(){
@@ -126,6 +125,7 @@ function confirmPassword(){
     }else return true;
 }
 
+//This function hides the warning when the user starts typing in the field.
 function onkeypress(){
   emailAdress.keypress(function(){
     $('#messages3').html('');
@@ -244,7 +244,7 @@ function onClickLogIn(){
     let auth = response.authenticated;
         let authenticatedToken = response.authToken;
         console.log(auth);
-        
+}        
 function LogInSubmitClick(){
     LoggingIn(baseURL, userName, password).then(getCookieAsObject);
 }

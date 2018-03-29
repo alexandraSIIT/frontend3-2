@@ -8,7 +8,10 @@ function Registering(baseURL,username,password){
         	password: password.val()
         },
             success:function(response){ 
-                console.log(response);
+                console.log(response.message);
+            }, 
+            error:function(response){
+                console.log(response.message);
             }
    
     });
@@ -42,3 +45,4 @@ function loggingIn() {
         console.log('response', response);
       }
 });
+}
