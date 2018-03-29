@@ -1,5 +1,6 @@
 /*global $, displayAllMovies, getTokenFromCookie*/
 
+
 $(onHtmlLoaded);
 let baseUrl = 'https://ancient-caverns-16784.herokuapp.com';
 
@@ -40,19 +41,19 @@ function deleteMovie(id){
     return $.ajax({
             url: 'https://ancient-caverns-16784.herokuapp.com/movies/' + id,
             headers: {
-                'X-Auth-Token': '9a5hmYnbox2C90ZonAnqbBMxWbAjULKr'
+                'X-Auth-Token': getCookiesAsObject()
             },
             method: 'DELETE'
     });
 }
 
 // This function is a ajax call to post a new movie to the API
-function postMovie(formInputs){
+function postMovie(formInputs) {
      return $.ajax({
             url: 'https://ancient-caverns-16784.herokuapp.com/movies',
             type: 'POST',
             headers: {
-                'X-Auth-Token': '9a5hmYnbox2C90ZonAnqbBMxWbAjULKr',
+                'X-Auth-Token': getCookiesAsObject(),
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             data: $('.form-add-movie').serialize(),
@@ -65,5 +66,5 @@ function postMovie(formInputs){
             failed: function (response) {
                 console.log(response);
             }
-        });
+     })
 }
