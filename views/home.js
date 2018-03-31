@@ -1,5 +1,6 @@
 /*global $, MovieListView, deleteMovie, getMoviesList, postMovie*/
 
+
 $(document).ready(function() {
     const baseURL = "https://ancient-caverns-16784.herokuapp.com/";
     const authToken = getCookiesAsObject();
@@ -7,6 +8,7 @@ $(document).ready(function() {
     const registerBtn = $('#register');
     const registerForm = $('#registerForm');
     registerBtn.click(function registerFormAppear(){
+      registerForm.addClass('show').removeClass('hide');
        registerForm.addClass('show').removeClass('hide');
     });
     const firstName = $("[name=FirstName]");
@@ -25,8 +27,12 @@ $(document).ready(function() {
     
     const logOutBtn = $('#log-out');
     logOutBtn.click(onClickLogOut);
-    logOutBtn.click(resetForm);
     
+    // This function recalls the getCookiesAsObject for the const authToken to have the 
+    // current token value saved in the cookies.
+    // Also calls logOutRequest function
+
+    const showPassword = $('#check');
     const registerLogIn = $('#register-logIn');
     
     //This function makes the password visible when checking the "show password checkbox"
@@ -58,10 +64,11 @@ function onClickLogOut(){
 
 }
 
+
 // This function is called when clicking the submit button
 function registerSubmitClick(event){
     event.preventDefault();
-    if (validateName() && validateEmail() && validateUsername() && validatePassword() && confirmPassword() ){
+    if (validateName() && validateEmail() && validateUsername(allowedChr) && validatePassword(allowedChr) && confirmPassword() ){
     Registering(baseURL, username, password).then(function(response){
         logOutBtn.addClass('show').removeClass('hide');
         registerLogIn.addClass('hide').removeClass('show');
@@ -95,7 +102,7 @@ function validateName(){
     else return true;
 }
 
-function validateUsername(){
+function validateUsername(allowedChr){
      if (username.val() === '' || !allowedChr.test(username.val().length)){
         $('#messages4').html('This field is required. Only digits and letters are allowed.');
         onkeypress();
@@ -115,11 +122,11 @@ function validateEmail(){
     }else return true;
 }
 
-function validatePassword(){
+function validatePassword(allowedChr){
     const passValue = password.val();
     const messageCont5 = $("#messages5");
-    if(!allowedChr.test(passValue) && password.length<6){
-        messageCont5.html("The password must be at least 6 characters long, contain only digits and letters");
+    if(!allowedChr.test(passValue) || (passValue.length === 0)){
+        messageCont5.html("The password is required and must contain only digits and letters");
         onkeypress();
         return false;
     }  
@@ -161,9 +168,27 @@ function onkeypress(){
     $('#messages4').html('');
     $('#messageUsername').html('');
   });
+
+   firstName.keypress(function(){
+    $('#messages1').html('');
+  });
   
-}
+   lastName.keypress(function(){
+    $('#messages2').html('');
+  });
+  
+};
+
+
 });
+
+
+// This function sets the token's value as a cookie "token=tokenValue"
+function setCookie(response){
+    const accessToken = response.accessToken;
+    document.cookie = "token=" + accessToken;
+
+};
 
 // This function takes the token that was previously saved in cookies
 function getCookiesAsObject() {
@@ -179,6 +204,11 @@ function getCookiesAsObject() {
     const authToken = cookies.token;
     return authToken;
 } 
+ 
+
+
+
+
 
 
 
@@ -198,19 +228,21 @@ function displayAllMovies(list){
                 <div>Type: ${movie.type}</div>
                 <div>${movie.runtime} - ${movie.genre}</div>
                 <div>Rating: ${movie.rating} / 10 - (${movie.votes} votes)</div>
-                <button class="del hide">Delete Movie</button>
+                <button class="del" id="${movie.id}">Delete Movie</button>
             </li></br>`
         );
     }
     
     //Below are the event listeners for the delete, add, cancel and approve buttons
-    $('.del').on('click', () => {
-        deleteMovie($(this.closest('li')).data('idcode'));
-        listElement.html('');
-        getMoviesList();
+    
+    $('.del').on('click', (event) => {
+        deleteMovie($(event.currentTarget).attr('id')).then(() => {
+            listElement.html('');
+            getMoviesList();
+        });
     });
 
-    $('.add').on('click', () => {
+    $('#add').on('click', () => {
         createContainer.css('display', 'block');
     });
     
@@ -219,12 +251,14 @@ function displayAllMovies(list){
         deleteFormContents();
     });
     
-    $('#approve').on('click', () => {
-        var formInputs = $('#createContainer').children('input, textarea');
+    $('#approve').unbind('click').bind('click', () => {
+        var formInputs = $('#createContainer');
+        
         postMovie(formInputs).then(() => {
             listElement.html('');
             getMoviesList();
-        });
+        })
+     
     });
 }
 
@@ -237,8 +271,8 @@ function deleteFormContents() {
         });
 }
 
-//This function calls getCookiesAsObject for the
-//const authToken in order to login
+// This function calls getCookiesAsObject for the
+// const authToken in order to login
 
 const logInBtn = $('#log-in');
     logInBtn.click(onClickLogIn);

@@ -74,20 +74,32 @@
     
     <ul id="movieList">
     </ul>
-    <button class="add hide">Add Movie</button>
+    <button class="add" id="add">Add Movie</button>
     <div id="createContainer" style="display: none">
-        Title:</br>
-        <input type="text"></br>
-        Publisher:</br>
-        <input type="text"></br>
-        Release Date:</br>
-        <input type="text"></br>
-        Image:</br>
-        <input type="text"></br>
-        Genre:</br>
-        <input type="text"></br>
-        Description:</br>
-        <textarea style="resize: none"></textarea></br>
+        <form method='POST' class='form-add-movie'>
+            <label for='Title'>Title</label>
+            <input type='text' name='Title'>
+            <label for='Year'>Year</label>
+            <input type='number' name='Year'>
+            <label for='Runtime'>Runtime</label>
+            <input type='text' name='Runtime'>
+            <label for='Genre'>Genre</label>
+            <input type='text' name='Genre'>
+            <label for='Language'>Language</label>
+            <input type='text' name='Language'>
+            <label for='Country'>Country</label>
+            <input type='text' name='Country'>
+            <label for='Poster'>Poster</label>
+            <input type='text' name='Poster'>
+            <label for='imdbRating'>imdbRating</label>
+            <input type='number' name='imdbRating'>
+            <label for='imdbVotes'>imdbVotes</label>
+            <input type='number' name='imdbVotes'>
+            <label for='imdbID'>imdbID</label>
+            <input type='text' name='imdbID'>
+            <label for='Type'>Type</label>
+            <input type='text' name='Type'>
+        </form>
         <button id="approve">OK</button>
         <button id="cancel">CANCEL</button>
     </div>

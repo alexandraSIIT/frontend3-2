@@ -33,7 +33,7 @@ function logOutRequest(baseURL, authToken){
     });
 }
 
-//This function logs in the user when cliked
+// This function logs in the user when cliked
 function loggingIn() {
     $.ajax({
       url: baseURL + "auth/login",
@@ -41,11 +41,9 @@ function loggingIn() {
       dataType:"json",
       data: { username: userName.val(),
         	password: password.val()
-},
+        },
       success: function(response) {
         console.log('response', response);
       }
-});
+    });
 }
-
-
