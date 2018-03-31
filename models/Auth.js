@@ -8,10 +8,11 @@ function Registering(baseURL,username,password){
         	password: password.val()
         },
             success:function(response){ 
-                console.log(response.message);
+                console.log(response);
             }, 
             error:function(response){
-                console.log(response.message);
+                console.log(response);
+               console.log(response.responseJSON.message);
             }
    
     });

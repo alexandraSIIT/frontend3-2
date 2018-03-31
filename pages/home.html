@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../resources/css/style.css" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../views/home.js"></script>
+    <script type="text/javascript" src="../views/movieDetails.js"></script>
     <script type="text/javascript" src="../models/MovieList.js"></script>
     <script type="text/javascript" src="../models/Auth.js"></script>
     <title>Movie Roll - Home</title>
@@ -37,9 +38,10 @@
     </div>
     
     <div id="registerForm" class="hide">
-       <form class=" logInForm pull-left reset" name="myForm" >
+       <form class=" logInForm pull-left" name="myForm" >
            <h3>Register</h3>
            <span id="messageUsername"></span>
+           <br>
            <input class="textInput" type="text" name="FirstName" placeholder="First Name"/>
            <br>
            <span id="messages1" class="message"></span>
@@ -72,7 +74,7 @@
     
     <ul id="movieList">
     </ul>
-    <button class="add">Add Movie</button>
+    <button class="add hide">Add Movie</button>
     <div id="createContainer" style="display: none">
         Title:</br>
         <input type="text"></br>
