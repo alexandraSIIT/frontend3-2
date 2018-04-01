@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../resources/css/style.css" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../views/home.js"></script>
+    <script type="text/javascript" src="../views/movieDetails.js"></script>
     <script type="text/javascript" src="../models/MovieList.js"></script>
     <script type="text/javascript" src="../models/Auth.js"></script>
     <title>Movie Roll - Home</title>
@@ -14,7 +15,14 @@
 <body>
     <header class="shadow-bottom">
         <object class="logo" height="80" width="207" data="../resources/img/logo.svg" type="image/svg+xml"></object>
-        <input class="search-icon top-search" type="search" placeholder="Search">
+        <!-- Search Field -->
+        <input class="search-icon top-search" id="search" type="search" placeholder="Search">
+        <select>
+            <option>Movie Title</option>
+            <option>Genre</option>
+            <option>Year</option>
+            <option>Language</option>
+        </select>
         <div id="register-logIn" class="show"><a id="log-in" href="#">LogIn</a><span> / </span><a id="register" href="#">Register</a></div> 
         <a id="log-out" class="hide">LogOut</a>
     </header>
@@ -37,9 +45,10 @@
     </div>
     
     <div id="registerForm" class="hide">
-       <form class=" logInForm pull-left reset" name="myForm" >
+       <form class=" logInForm pull-left" name="myForm" >
            <h3>Register</h3>
            <span id="messageUsername"></span>
+           <br>
            <input class="textInput" type="text" name="FirstName" placeholder="First Name"/>
            <br>
            <span id="messages1" class="message"></span>
@@ -72,20 +81,32 @@
     
     <ul id="movieList">
     </ul>
-    <button class="add">Add Movie</button>
+    <button class="add" id="add">Add Movie</button>
     <div id="createContainer" style="display: none">
-        Title:</br>
-        <input type="text"></br>
-        Publisher:</br>
-        <input type="text"></br>
-        Release Date:</br>
-        <input type="text"></br>
-        Image:</br>
-        <input type="text"></br>
-        Genre:</br>
-        <input type="text"></br>
-        Description:</br>
-        <textarea style="resize: none"></textarea></br>
+        <form method='POST' class='form-add-movie'>
+            <label for='Title'>Title</label>
+            <input type='text' name='Title'>
+            <label for='Year'>Year</label>
+            <input type='number' name='Year'>
+            <label for='Runtime'>Runtime</label>
+            <input type='text' name='Runtime'>
+            <label for='Genre'>Genre</label>
+            <input type='text' name='Genre'>
+            <label for='Language'>Language</label>
+            <input type='text' name='Language'>
+            <label for='Country'>Country</label>
+            <input type='text' name='Country'>
+            <label for='Poster'>Poster</label>
+            <input type='text' name='Poster'>
+            <label for='imdbRating'>imdbRating</label>
+            <input type='number' name='imdbRating'>
+            <label for='imdbVotes'>imdbVotes</label>
+            <input type='number' name='imdbVotes'>
+            <label for='imdbID'>imdbID</label>
+            <input type='text' name='imdbID'>
+            <label for='Type'>Type</label>
+            <input type='text' name='Type'>
+        </form>
         <button id="approve">OK</button>
         <button id="cancel">CANCEL</button>
     </div>

@@ -1,7 +1,6 @@
 /*global $, GetMovie, location*/
 
 $(onHtmlLoaded);
-
 function onHtmlLoaded(){
     var editContainer = $('#editContainer');
     var container = $('#container');
@@ -29,9 +28,7 @@ function onHtmlLoaded(){
             <p>Director: ${movie.director}</p>
             <p>Actors: ${movie.actors}</p>
             <p>${movie.language}</p>
-            
-            <button id="edit">Edit Article</button>
-            
+            <button id="edit hide">Edit Article</button>
         `);
                          
         $('#edit').on('click', function(){
