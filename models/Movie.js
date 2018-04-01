@@ -22,13 +22,10 @@ GetMovie.prototype.getMovieDetails = function() {
         this.year = movieDetails.Year;
         this.title = movieDetails.Title;
         this.id = movieDetails._id;
-        this.released = movieDetails.Released;
         this.runtime = movieDetails.Runtime;
         this.director = movieDetails.Director;
-        this.writer = movieDetails.Writer;
         this.actors = movieDetails.Actors;
         this.language = movieDetails.Language;
-        this.awards = movieDetails.Awards;
         this.ratings = movieDetails.Ratings;
         this.imdbRating = movieDetails.imdbRating;
     });

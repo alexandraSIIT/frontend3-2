@@ -20,15 +20,16 @@ function onHtmlLoaded(){
         // var date = new Date(movie.year);
         console.log(movie);
         container.append(`
+            <h1>${movie.title}</h1><span>${movie.imdbRating}</span></br>
+            <p>genre:${movie.runtime}</p>
+            <p>genre:${movie.genre}</p>
             <img src="${movie.poster}" alt="${movie.title}"></img>
-            <h3>${movie.title}</h3><span>genre:${movie.genre}</span>
             <p>${movie.description}</p>
             <span>${movie.country} (${movie.year})</span></br>
-            <p>Released: ${movie.released}</p>
-            <p>${movie.director}</p>
-            <p>${movie.writer}</p>
-            <p>${movie.actors}</p>
+            <p>Director: ${movie.director}</p>
+            <p>Actors: ${movie.actors}</p>
             <p>${movie.language}</p>
+            
             <button id="edit">Edit Article</button>
             
         `);
