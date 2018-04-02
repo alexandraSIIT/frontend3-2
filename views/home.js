@@ -1,4 +1,4 @@
-/*global $, MovieListView, deleteMovie, getMoviesList, postMovie*/
+/*global $, MovieListView, deleteMovie, getMoviesList, postMovie, response, LoggingIn, baseURL, userName, password, getCookieAsObject*/
 
 $(document).ready(function() {
     const baseURL = "https://ancient-caverns-16784.herokuapp.com/";
@@ -140,4 +140,5 @@ function onClickLogIn(){
         
 function LogInSubmitClick(){
     LoggingIn(baseURL, userName, password).then(getCookieAsObject);
+}
 }
