@@ -1,15 +1,19 @@
 /*global $, MovieListView, deleteMovie, getMoviesList, postMovie*/
+$(onHtmlLoaded);
 
-
-$(document).ready(function() {
+function onHtmlLoaded(){
     const baseURL = "https://ancient-caverns-16784.herokuapp.com/";
-    const authToken = getCookiesAsObject();
+    
+    const logOutBtn = $('#log-out');
+    const registerLogIn = $('#register-logIn');
+    SyncHtmlPages(registerLogIn,logOutBtn);
+    
     const allowedChr = /^[a-zA-Z0-9]+$/;
     const registerBtn = $('#register');
     const registerForm = $('#registerForm');
     registerBtn.click(function registerFormAppear(){
-      registerForm.addClass('show').removeClass('hide');
        registerForm.addClass('show').removeClass('hide');
+       exitForm();
     });
     const firstName = $("[name=FirstName]");
     const lastName = $("[name=LastName]");
@@ -24,38 +28,41 @@ $(document).ready(function() {
     
     const registerSubmitBtn = $('#register-submit');
     registerSubmitBtn.click(registerSubmitClick);
-    
-    const logOutBtn = $('#log-out');
+
     logOutBtn.click(onClickLogOut);
-    
-    // This function recalls the getCookiesAsObject for the const authToken to have the 
-    // current token value saved in the cookies.
-    // Also calls logOutRequest function
 
     const showPassword = $('#check');
-    const registerLogIn = $('#register-logIn');
     
     //This function makes the password visible when checking the "show password checkbox"
-    $('#check').on("change", function (e){ 
-    if(this.checked){
-        password.attr('type','text');
-    }
-    else{
-        password.attr('type', 'password');
-    }
-});   
+    $('#check').on("change", function (){ 
+        if(this.checked){
+            password.attr('type','text');
+            confPassword.attr('type','text');
+        }
+        else{
+            password.attr('type', 'password');
+            confPassword.attr('type','password');
+        }
+    });   
 
 // This function recalls the getCookiesAsObject for the const authToken to have the 
 // current token value saved in the cookies.
 // Also calls logOutRequest function
 function onClickLogOut(){
+    const authToken = getCookiesAsObject();
     logOutBtn.addClass('hide').removeClass('show');
     registerLogIn.addClass('show').removeClass('hide');
-    const authToken= getCookiesAsObject();
     logOutRequest(baseURL,authToken);
     deleteToken();
     resetForm();
     
+}
+
+function exitForm(){
+    const xBtn = $('#x');
+    xBtn.click(function(){
+        registerForm.addClass('hide').removeClass('show');
+    })
 }
 
 // This function deletes the token from cookie
@@ -82,7 +89,6 @@ function registerSubmitClick(event){
         
       }
 }
-
 
 function resetForm(){
     $(".logInForm").trigger("reset");
@@ -176,19 +182,23 @@ function onkeypress(){
    lastName.keypress(function(){
     $('#messages2').html('');
   });
-  
 };
 
-
-});
-
-
-// This function sets the token's value as a cookie "token=tokenValue"
-function setCookie(response){
-    const accessToken = response.accessToken;
-    document.cookie = "token=" + accessToken;
-
 };
+
+// This function checks for the token in cookie. Therefore it syncronizes both HTML
+// pages so that when the registration has been done at home page it is applied on
+// details page too.
+function SyncHtmlPages(registerLogIn,logOutBtn){
+        const authToken = getCookiesAsObject();
+        if(!authToken){
+            registerLogIn.addClass('show').removeClass('hide');
+            logOutBtn.addClass('hide').removeClass('show');
+        } else {
+            logOutBtn.addClass('show').removeClass('hide');
+            registerLogIn.addClass('hide').removeClass('show');
+        }   
+    }
 
 // This function takes the token that was previously saved in cookies
 function getCookiesAsObject() {
@@ -201,15 +211,13 @@ function getCookiesAsObject() {
         const value = cookie[1];
         cookies[key] = value;
     });
-    const authToken = cookies.token;
-    return authToken;
+    if (!cookies.token){
+        return false;
+    }else {
+        const authToken = cookies.token;
+        return authToken;
+        }
 } 
- 
-
-
-
-
-
 
 
 //Function below renders the movie list "list" in a user friendly format
@@ -224,7 +232,7 @@ function displayAllMovies(list){
         listElement.append(
             `<li data-idcode="${movie.id}">
                 <img class="poster-small" src="${movie.imageUrl}" alt="${movie.title}"></img></br>
-                <h3><a target="_blank" href="/frontend3-2/pages/movieDetails.html?movieId=${movie.id}">${movie.title} (${movie.year})</a></h3>
+                <h3><a target="_self" href="/frontend3-2/pages/movieDetails.html?movieId=${movie.id}">${movie.title} (${movie.year})</a></h3>
                 <div>Type: ${movie.type}</div>
                 <div>${movie.runtime} - ${movie.genre}</div>
                 <div>Rating: ${movie.rating} / 10 - (${movie.votes} votes)</div>
