@@ -12,7 +12,7 @@ function GetMovie(){
 
 GetMovie.prototype.getMovieDetails = function() {
     //this is the GetMovie object instance
-    // var that = this no more;
+    // var that = this;
     console.log(this);
     return $.getJSON('https://ancient-caverns-16784.herokuapp.com/movies/' + this.id, (movieDetails) => {
         this.description = movieDetails.Plot;
@@ -37,7 +37,7 @@ GetMovie.prototype.getMovieDetails = function() {
 GetMovie.prototype.updateMovie = (formInputs) => {
     return $.ajax({
             url: 'https://ancient-caverns-16784.herokuapp.com/movies/' + this.id,
-            dataType: 'json',
+            
             method: 'PUT',
             data: {
                 "title": formInputs[0].value || this.title,

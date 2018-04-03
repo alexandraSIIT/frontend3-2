@@ -111,3 +111,7 @@ button, input, .shadow-bottom {
 .show{
     display: block;
 }
+
+.labels-edit{
+    display: block;
+}
