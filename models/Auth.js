@@ -8,10 +8,11 @@ function Registering(baseURL,username,password){
         	password: password.val()
         },
             success:function(response){ 
-                console.log(response.message);
+                console.log(response);
             }, 
             error:function(response){
-                console.log(response.message);
+                console.log(response);
+               console.log(response.responseJSON.message);
             }
    
     });
@@ -32,6 +33,10 @@ function logOutRequest(baseURL, authToken){
     });
 }
 
+
+//This function logs in the user when cliked
+function loggingIn(baseURL,userName,password) {
+
 // This function logs in the user when cliked
 function loggingIn() {
     $.ajax({
@@ -44,5 +49,8 @@ function loggingIn() {
       success: function(response) {
         console.log('response', response);
       }
-    });
+
+});
 }
+}
+

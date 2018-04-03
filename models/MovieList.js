@@ -68,3 +68,12 @@ function postMovie(formInputs) {
             }
      })
 }
+
+// Search: This function is an AJAX call to bring the desired movie
+function searchMovie(baseURL, userOption, valueToSearch) {
+    return $.get(baseUrl+ "/movies" + userOption + valueToSearch)
+    .then((e) => {
+        console.log(e);
+    });
+  
+}

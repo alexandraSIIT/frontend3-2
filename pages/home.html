@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../resources/css/style.css" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../views/home.js"></script>
+    <script type="text/javascript" src="../views/movieDetails.js"></script>
     <script type="text/javascript" src="../models/MovieList.js"></script>
     <script type="text/javascript" src="../models/Auth.js"></script>
     <title>Movie Roll - Home</title>
@@ -14,7 +15,14 @@
 <body>
     <header class="shadow-bottom">
         <object class="logo" height="80" width="207" data="../resources/img/logo.svg" type="image/svg+xml"></object>
-        <input class="search-icon top-search" type="search" placeholder="Search">
+        <!-- Search Field -->
+        <input class="search-icon top-search" id="search" type="search" placeholder="Search">
+        <select>
+            <option>Movie Title</option>
+            <option>Genre</option>
+            <option>Year</option>
+            <option>Language</option>
+        </select>
         <div id="register-logIn" class="show"><a id="log-in" href="#">LogIn</a><span> / </span><a id="register" href="#">Register</a></div> 
         <a id="log-out" class="hide">LogOut</a>
     </header>
@@ -37,9 +45,10 @@
     </div>
     
     <div id="registerForm" class="hide">
-       <form class=" logInForm pull-left reset" name="myForm" >
+       <form class=" logInForm pull-left" name="myForm" >
            <h3>Register</h3>
            <span id="messageUsername"></span>
+           <br>
            <input class="textInput" type="text" name="FirstName" placeholder="First Name"/>
            <br>
            <span id="messages1" class="message"></span>
