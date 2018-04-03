@@ -1,6 +1,6 @@
 /*global $, GetMovie, location*/
 
-$(onHtmlLoaded);
+
 function onHtmlLoaded(){
     var editContainer = $('#editContainer');
     var container = $('#container');
