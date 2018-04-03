@@ -13,11 +13,14 @@
 <body>
     <header class="shadow-bottom">
         <object class="logo" height="80" width="207" data="../resources/img/logo.svg" type="image/svg+xml"></object>
-        <input class="search-icon top-search" type="search" placeholder="Search">
-        <a href="#">Login</a><span> / </span><a href="#">Register</a>
+        <div class="top-search">
+            <div class="top-search-inputwrapper">
+                <input class="search-icon search-bar-top" type="search" placeholder="Search">
+            </div>
+            <button class="top-advanced-button">Advanced Search</button>
+        </div>
+        <a href="#" class="login-button">Login / Register</a>
     </header>
-    <ul id="movieList">
-    </ul>
     <button class="add">Add Movie</button>
     <div id="createContainer" style="display: none">
         Title:</br>
@@ -35,5 +38,7 @@
         <button id="approve">OK</button>
         <button id="cancel">CANCEL</button>
     </div>
+    <ul id="movieList">
+    </ul>
 </body>
 </html>

@@ -10,14 +10,16 @@ function displayAllMovies(list){
     for (let i=0; i<results.length; i++){
         let movie = new MovieListView(results[i]);
         listElement.append(
-            `<li data-idcode="${movie.id}">
+            `<li class="movie-list-item clearfix" data-idcode="${movie.id}">
                 <img class="poster-small" src="${movie.imageUrl}" alt="${movie.title}"></img></br>
-                <h3><a target="_blank" href="/frontend3-2/pages/movieDetails.html?movieId=${movie.id}">${movie.title} (${movie.year})</a></h3>
-                <div>Type: ${movie.type}</div>
-                <div>${movie.runtime} - ${movie.genre}</div>
-                <div>Rating: ${movie.rating} / 10 - (${movie.votes} votes)</div>
-                <button class="del">Delete Movie</button>
-            </li></br>`
+                <div class="movie-info">
+                    <h3><a target="_blank" href="/frontend3-2/pages/movieDetails.html?movieId=${movie.id}">${movie.title} (${movie.year})</a></h3>
+                    <div>Type: ${movie.type}</div>
+                    <div>${movie.runtime} - ${movie.genre}</div>
+                    <div>Rating: ${movie.rating} / 10 - (${movie.votes} votes)</div>
+                    <button class="del">Delete Movie</button>
+                </div>
+            </li>`
         );
     }
     

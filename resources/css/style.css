@@ -10,11 +10,9 @@ html {
 
 body {
     min-width: 320px;
-    color: white;
-    background: #454545;
-    background: -moz-radial-gradient(center top, ellipse cover, #454545 0%, #000000 100%) fixed no-repeat;
-    background: -webkit-radial-gradient(center top, ellipse cover, #454545 0%,#000000 100%) fixed no-repeat;
-    background: radial-gradient(ellipse at center top, #454545 0%,#000000 100%) fixed no-repeat;
+    color: #C1BFB1;
+    background: no-repeat fixed url(https://www.youtube.com/s/tv/html5/f4ebe109/img/default_bg.png);
+    background-size: cover;
 }
 
 a {
@@ -23,7 +21,7 @@ a {
 }
 
 a:hover {
-    color: red;
+    color: #8f7202;
 }
 
 li {
@@ -51,7 +49,7 @@ input:focus {
 }
 
 button:hover {
-    background-color: red;   
+    background-color: #8f7202;
     outline: 2px solid white;
 }
 
@@ -96,11 +94,59 @@ button, input, .shadow-bottom {
 
 .poster-small {
     width: 120px;
+    height: 176px;
+    float: left;
 }
 
 /*Specific Styles*/
 
 .top-search {
+    position: absolute;
     width: 60%;
+    top: 20px;
+    left: 20%;
     height: 40px;
+}
+
+.top-search-inputwrapper {
+    position: absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right: 160px;
+}
+
+.search-bar-top {
+    width: 100%;
+    height: 100%;
+}
+
+.top-advanced-button {
+    height: 100%;
+    position: absolute;
+    width: 150px;
+    right: 0;
+    display:block;
+}
+
+.login-button {
+     float: right;
+}
+
+.movie-info {
+    float:left;
+}
+
+.clearfix:after {
+    content:" ";
+    display:block;
+    clear:both;
+}
+
+.movie-list-item {
+    width: 800px;
+    margin: 0 auto;
+    /*outline: 1px solid red;*/
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
 }
