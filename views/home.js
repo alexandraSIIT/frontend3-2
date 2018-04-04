@@ -1,7 +1,7 @@
-/*global $, MovieListView, deleteMovie, getMoviesList, postMovie*/
-$(onHtmlLoaded);
+/*global $, MovieListView, deleteMovie, getMoviesList, postMovie, searchMovie, response, LoggingIn, baseURL, userName, password, getCookieAsObject*/
 
-function onHtmlLoaded(){
+
+$(document).ready(function(){
     const baseURL = "https://ancient-caverns-16784.herokuapp.com/";
     
     const logOutBtn = $('#log-out');
@@ -44,6 +44,42 @@ function onHtmlLoaded(){
             confPassword.attr('type','password');
         }
     });   
+      
+    // Search Event - Results are displayed in the console
+    
+    const valueInput = $('#search');
+    const userOption = $('option');
+
+    $('#search').on('keypress', (e) => {
+        let key = e.which || e.keyCode;
+        if (key === 13) { 
+            e.preventDefault();
+            console.log(valueInput.val());
+            
+            let valueToSearch = valueInput.val();
+
+            userChoice();
+            searchMovie(baseURL, user, valueToSearch)
+            .catch(console.log);
+        }
+    });
+    
+    let user;
+    function userChoice() {
+        if (userOption[0].selected === true) {
+            user = "?Title=";
+        }
+        else if (userOption[1].selected === true) {
+            user = "?Genre=";
+            }
+        else if (userOption[2].selected === true) {
+            user = "?Year=";
+            }
+        else if (userOption[3].selected === true) {
+            user = "?Language=";
+            }
+        return user;
+    }
 
 // This function recalls the getCookiesAsObject for the const authToken to have the 
 // current token value saved in the cookies.
@@ -54,8 +90,6 @@ function onClickLogOut(){
     registerLogIn.addClass('show').removeClass('hide');
     logOutRequest(baseURL,authToken);
     deleteToken();
-    resetForm();
-    
 }
 
 function exitForm(){
@@ -82,7 +116,8 @@ function registerSubmitClick(event){
         registerForm.addClass('hide').removeClass('show');
         const accessToken = response.accessToken; 
         document.cookie = "token=" + accessToken; //setting the token as a cookie
-        }).catch(function(e){
+        resetForm();
+    }).catch(function(e){
             $('#messageUsername').html("This username already exists. Please enter another username.");
         });
        
@@ -184,7 +219,7 @@ function onkeypress(){
   });
 };
 
-};
+});
 
 // This function checks for the token in cookie. Therefore it syncronizes both HTML
 // pages so that when the registration has been done at home page it is applied on
@@ -218,8 +253,6 @@ function getCookiesAsObject() {
         return authToken;
         }
 } 
-
-
 //Function below renders the movie list "list" in a user friendly format
 //Then it attaches some event listeners for interface buttons
 function displayAllMovies(list){

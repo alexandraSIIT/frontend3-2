@@ -33,6 +33,10 @@ function logOutRequest(baseURL, authToken){
     });
 }
 
+
+//This function logs in the user when cliked
+function loggingIn(baseURL,userName,password) {
+
 // This function logs in the user when cliked
 function loggingIn() {
     $.ajax({
@@ -45,5 +49,8 @@ function loggingIn() {
       success: function(response) {
         console.log('response', response);
       }
-    });
+
+});
 }
+}
+
