@@ -8,37 +8,112 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../views/home.js"></script>
     <script type="text/javascript" src="../models/MovieList.js"></script>
+    <script type="text/javascript" src="../models/Auth.js"></script>
     <title>Movie Roll - Home</title>
 </head>
 <body>
     <header class="shadow-bottom">
         <object class="logo" height="80" width="207" data="../resources/img/logo.svg" type="image/svg+xml"></object>
-        <div class="top-search">
-            <div class="top-search-inputwrapper">
-                <input class="search-icon search-bar-top" type="search" placeholder="Search">
+        <!-- Search Field -->
+        <div class="top-search-inputwrapper">
+            <div class="search-wrapper">
+                <input class="search-icon top-search" id="search" type="search" placeholder="Search">
             </div>
-            <button class="top-advanced-button">Advanced Search</button>
+            <select class="search-select">
+                <option>Movie Title</option>
+                <option>Genre</option>
+                <option>Year</option>
+                <option>Language</option>
+            </select>
         </div>
-        <a href="#" class="login-button">Login / Register</a>
+        <div id="register-logIn" class="login-button show"><a id="log-in" href="#">LogIn</a><span> / </span><a id="register" href="#">Register</a></div> 
+        <a id="log-out" class="hide">LogOut</a>
     </header>
+    
+    <!--Will link the LogIn button to the LogIn form-->
+      
+    <div class="hide" id="log-in">
+ 
+    <p>Username:
+    <input type="text" size="15" name="username" id="username" />
+ 
+    <br />
+    Password:
+    <input type="password" size="15" name="password" id="password" />
+ 
+    <br />
+    <input type="submit" class="button" id="logIn-submit" name="login" value="Login" />
+ 
+    </p>
+    </div>
+    
+    <div id="registerForm" class="hide">
+       <form class=" logInForm pull-left" name="myForm" >
+           <h3>Register</h3>
+           <span id="messageUsername"></span>
+           <br>
+           <input class="textInput" type="text" name="FirstName" placeholder="First Name"/>
+           <br>
+           <span id="messages1" class="message"></span>
+           <br>
+           <input class="textInput" type="text" name="LastName" placeholder="Last Name"/>
+           <br>
+           <span id="messages2" class="message"></span>
+           <br>
+           <input class="textInput" type="text" name="EmailAdress" placeholder="Email adress"/>
+           <br>
+           <span id="messages3" class="message"></span>
+           <br>
+           <input class="textInput" type="text" name="Username" placeholder="Username"/>
+           <br>
+           <span id="messages4" class="message"></span>
+           <br>
+           <input class="textInput" type="password" name="Password" placeholder="Password"/>
+           
+           <input type="checkbox" id="check" />Show Password
+           <br>
+           <span id="messages5" class="message"></span>
+           <br>
+           <input class="textInput" type="password" name="ConfirmPassword" placeholder="Confirm password"/>
+           <br>
+           <span id="messages6" class="message"></span>
+           <br>
+           <button class="btn" type="submit"  id="register-submit">Submit</button>   
+       </form>
+    </div>
+    
     <button class="add">Add Movie</button>
     <div id="createContainer" style="display: none">
-        Title:</br>
-        <input type="text"></br>
-        Publisher:</br>
-        <input type="text"></br>
-        Release Date:</br>
-        <input type="text"></br>
-        Image:</br>
-        <input type="text"></br>
-        Genre:</br>
-        <input type="text"></br>
-        Description:</br>
-        <textarea style="resize: none"></textarea></br>
+        <form method='POST' class='form-add-movie'>
+            <label for='Title'>Title</label>
+            <input type='text' name='Title'>
+            <label for='Year'>Year</label>
+            <input type='number' name='Year'>
+            <label for='Runtime'>Runtime</label>
+            <input type='text' name='Runtime'>
+            <label for='Genre'>Genre</label>
+            <input type='text' name='Genre'>
+            <label for='Language'>Language</label>
+            <input type='text' name='Language'>
+            <label for='Country'>Country</label>
+            <input type='text' name='Country'>
+            <label for='Poster'>Poster</label>
+            <input type='text' name='Poster'>
+            <label for='imdbRating'>imdbRating</label>
+            <input type='number' name='imdbRating'>
+            <label for='imdbVotes'>imdbVotes</label>
+            <input type='number' name='imdbVotes'>
+            <label for='imdbID'>imdbID</label>
+            <input type='text' name='imdbID'>
+            <label for='Type'>Type</label>
+            <input type='text' name='Type'>
+        </form>
         <button id="approve">OK</button>
         <button id="cancel">CANCEL</button>
     </div>
-    <ul id="movieList">
-    </ul>
+    <div class="movieList-wrapper">
+        <ul id="movieList">
+        </ul>
+    </div>
 </body>
 </html>

@@ -1,8 +1,10 @@
 /*this will be the css file with rulles common to all pages*/
 /*Global Whitespace Reset*/
 *{margin:0; padding:0;}
-
+/**{outline:1px solid red;}*/
 /*Base Styles*/
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 html {
     box-sizing: border-box;    
@@ -13,6 +15,7 @@ body {
     color: #C1BFB1;
     background: no-repeat fixed url(https://www.youtube.com/s/tv/html5/f4ebe109/img/default_bg.png);
     background-size: cover;
+    font-family: 'Montserrat', sans-serif;
 }
 
 a {
@@ -31,9 +34,10 @@ li {
 header {
     padding: 10px;
     height: 60px;
+    position: relative;
 }
 
-button, input {
+button, input, select {
     background-color: darkgray;
     border-width: 0;
     color: white;
@@ -92,61 +96,86 @@ button, input, .shadow-bottom {
     font-size: 24px;
 }
 
-.poster-small {
-    width: 120px;
-    height: 176px;
-    float: left;
-}
-
-/*Specific Styles*/
-
-.top-search {
-    position: absolute;
-    width: 60%;
-    top: 20px;
-    left: 20%;
-    height: 40px;
-}
-
 .top-search-inputwrapper {
     position: absolute;
-    top:0;
-    bottom:0;
-    left:0;
-    right: 160px;
+    top:20px;
+    bottom:20px;
+    left:250px;
+    right: 250px;
 }
 
-.search-bar-top {
-    width: 100%;
+.search-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 115px;
+}
+
+.top-search {
     height: 100%;
+    width: 100%;
 }
 
-.top-advanced-button {
+.search-select {
     height: 100%;
     position: absolute;
-    width: 150px;
     right: 0;
-    display:block;
+    padding: 0 10px;
 }
 
 .login-button {
-     float: right;
+     position: absolute;
+     top: 20px;
+     right: 20px;
 }
 
-.movie-info {
-    float:left;
+.add {
+    position: absolute;
+    right: 20px;
+    margin-top: 20px;
 }
 
-.clearfix:after {
-    content:" ";
-    display:block;
-    clear:both;
+.movieList-wrapper {
+    margin: 65px auto;
+    width: 66%;
 }
 
 .movie-list-item {
-    width: 800px;
-    margin: 0 auto;
-    /*outline: 1px solid red;*/
-    padding: 5px;
+    padding: 10px;
+    background-color: #1b1b1b;
     background-color: rgba(0, 0, 0, 0.5);
+    position: relative;
+    min-height: 176px;
+    margin: 2px;
+}
+
+.poster-small {
+    width: 120px;
+    height: 176px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.movie-info {
+    position: absolute;
+    top: 10px;
+    left: 142px;
+    right: 10px;
+    bottom: 10px;
+}
+
+.del {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
 }

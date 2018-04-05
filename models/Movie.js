@@ -1,4 +1,4 @@
-/*global $*/
+ /*global $*/
 
 function GetMovie(){
     this.id = null;
@@ -22,6 +22,12 @@ GetMovie.prototype.getMovieDetails = function() {
         this.year = movieDetails.Year;
         this.title = movieDetails.Title;
         this.id = movieDetails._id;
+        this.runtime = movieDetails.Runtime;
+        this.director = movieDetails.Director;
+        this.actors = movieDetails.Actors;
+        this.language = movieDetails.Language;
+        this.ratings = movieDetails.Ratings;
+        this.imdbRating = movieDetails.imdbRating;
     });
 };
 
