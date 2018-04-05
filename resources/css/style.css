@@ -111,3 +111,10 @@ button, input, .shadow-bottom {
 .show{
     display: block;
 }
+
+#log-in {
+    color: white;
+    z-index: 5;
+    height: 10%;
+}
+
