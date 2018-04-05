@@ -98,12 +98,20 @@ button, input, .shadow-bottom {
     width: 120px;
 }
 
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
+
 /*Specific Styles*/
 
 .top-search {
     width: 60%;
     height: 40px;
 }
+
 
 .hide{
     display: none;
@@ -117,4 +125,5 @@ button, input, .shadow-bottom {
     z-index: 5;
     height: 10%;
 }
+
 

@@ -1,5 +1,73 @@
+h1, 
+h2, 
+h4,
+li {
+    display: inline;
+}
+
+h2,
+h4 {
+    font-weight: lighter;
+    
+}
+
+h1 {
+    font-size: 1.85em;
+}
+
+
+h2 {
+    font-size: 1.3em;
+    margin-left: 3.5%;
+}
+
+ul {
+    list-style-type: none;
+    font-size: 1.2em;
+    margin: 2px 0 6px;
+    padding: 0;
+}
+
+li {
+    margin: 0 -2px;
+    padding: 0;
+}
+
 #container {
     margin: 2% auto;
-    max-width: 900px;
+    max-width: 660px;
     text-align: center;
+}
+
+#star {
+    color: yellow;
+}
+
+.separator::after {
+    content: "|";
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+.poster {
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#description {
+    margin-bottom: 10px;
+    /*color: #F1F10C;*/
+}
+
+.left {
+    text-align: left;
+}
+
+.crew {
+    font-weight: bolder; 
+    color: yellow;
+}
+
+.stars {
+    color: yellow;
 }
