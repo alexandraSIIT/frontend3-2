@@ -25,11 +25,10 @@ $(document).ready(function(){
                 <li class="separator">${movie.genre}</li>
                 <li>${movie.country} (${movie.year})</li>
             </ul>
-            <img src="${movie.poster}" alt="${movie.title}"></img>
-            <p>${movie.description}</p>
-            <p>Director: ${movie.director}</p>
-            <p>Actors: ${movie.actors}</p>
-            <p>${movie.language}</p>
+            <img src="${movie.poster}" alt="${movie.title}" class="poster"></img>
+            <p id="description" class="left">${movie.description}</p>
+            <p class="left"><span class="crew">Director: </span><span class="stars">${movie.director}</span></p>
+            <p class="left"><span class="crew">Actors: </span><span class="stars">${movie.actors}</span></p>
             <button id="edit hide">Edit Article</button>
         `);
                          
