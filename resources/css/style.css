@@ -98,6 +98,13 @@ button, input, .shadow-bottom {
     width: 120px;
 }
 
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
+
 /*Specific Styles*/
 
 .top-search {
@@ -105,9 +112,3 @@ button, input, .shadow-bottom {
     height: 40px;
 }
 
-.hide{
-    display: none;
-}
-.show{
-    display: block;
-}

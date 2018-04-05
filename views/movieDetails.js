@@ -1,7 +1,7 @@
 /*global $, GetMovie, location*/
 
 
-function onHtmlLoaded(){
+$(document).ready(function(){
     var editContainer = $('#editContainer');
     var container = $('#container');
     var movie = new GetMovie();
@@ -51,7 +51,7 @@ function onHtmlLoaded(){
             });
         });
     }
-}
+});
 
 function deleteFormContents() {
     $('#editContainer')

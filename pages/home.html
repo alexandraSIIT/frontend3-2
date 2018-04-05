@@ -5,19 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../resources/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="../resources/css/register-logIn.css" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../views/home.js"></script>
     <script type="text/javascript" src="../views/movieDetails.js"></script>
     <script type="text/javascript" src="../models/MovieList.js"></script>
+    <script type="text/javascript" src="../models/Movie.js"></script>
     <script type="text/javascript" src="../models/Auth.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+
+
     <title>Movie Roll - Home</title>
 </head>
 <body>
     <header class="shadow-bottom">
         <object class="logo" height="80" width="207" data="../resources/img/logo.svg" type="image/svg+xml"></object>
         <!-- Search Field -->
-
-            <input class="search-icon top-search" id="search" type="search" placeholder="Search">
+        <input class="search-icon top-search" id="search" type="search" placeholder="Search">
 
         <select>
             <option>Movie Title</option>
@@ -25,7 +29,8 @@
             <option>Year</option>
             <option>Language</option>
         </select>
-        <div id="register-logIn" class="show"><a id="log-in" href="#">LogIn</a><span> / </span><a id="register" href="#">Register</a></div> 
+        <div id="register-logIn" class="show"><a id="log-in" href="#">LogIn</a><span> / </span><a id="register" href="#registerForm">Register</a></div> 
+
         <a id="log-out" class="hide">LogOut</a>
     </header>
     
@@ -47,35 +52,39 @@
     </div>
     
     <div id="registerForm" class="hide">
-       <form class=" logInForm pull-left" name="myForm" >
+        <button id="x"><i class="fas fa-times"></i></button>
+       <form class=" logInForm pull-left shadow" name="myForm" >
            <h3>Register</h3>
-           <span id="messageUsername"></span>
            <br>
-           <input class="textInput" type="text" name="FirstName" placeholder="First Name"/>
+           <div id="messageUsername"></div>
+           <br>
+           <input class="textInput shadow" type="text" name="FirstName" placeholder="First Name"/>
            <br>
            <span id="messages1" class="message"></span>
            <br>
-           <input class="textInput" type="text" name="LastName" placeholder="Last Name"/>
+           <input class="textInput shadow" type="text" name="LastName" placeholder="Last Name"/>
            <br>
            <span id="messages2" class="message"></span>
            <br>
-           <input class="textInput" type="text" name="EmailAdress" placeholder="Email adress"/>
+           <input class="textInput shadow" type="text" name="EmailAdress" placeholder="Email adress"/>
            <br>
            <span id="messages3" class="message"></span>
            <br>
-           <input class="textInput" type="text" name="Username" placeholder="Username"/>
+           <input class="textInput shadow" type="text" name="Username" placeholder="Username"/>
            <br>
            <span id="messages4" class="message"></span>
            <br>
-           <input class="textInput" type="password" name="Password" placeholder="Password"/>
-           
-           <input type="checkbox" id="check" />Show Password
+           <input class="textInput shadow" type="password" name="Password" placeholder="Password"/>
            <br>
            <span id="messages5" class="message"></span>
            <br>
-           <input class="textInput" type="password" name="ConfirmPassword" placeholder="Confirm password"/>
+           <input type="checkbox" id="check" /> Show Password
+           <br>
+           <input class="textInput shadow" type="password" name="ConfirmPassword" placeholder="Confirm password"/>
            <br>
            <span id="messages6" class="message"></span>
+           <br>
+           <p>All fields are required.</p>
            <br>
            <button class="btn" type="submit"  id="register-submit">Submit</button>   
        </form>
