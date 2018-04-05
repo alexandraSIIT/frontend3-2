@@ -1,4 +1,4 @@
-/*global $, MovieListView, deleteMovie, getMoviesList, postMovie, searchMovie, response, LoggingIn, baseURL, userName, password, getCookieAsObject*/
+/*global $, MovieListView, deleteMovie, getMoviesList, postMovie, searchMovie, response, LoggingIn, baseURL, userName, passWord, getCookieAsObject*/
 
 
 $(document).ready(function(){
@@ -15,6 +15,31 @@ $(document).ready(function(){
        registerForm.addClass('show').removeClass('hide');
        exitForm();
     });
+    const logInBtn = $('#log-in');
+    logInBtn.click(LogInForm);
+    
+    const logInSubmit = $('#logIn-submit');
+    logInSubmit.click(LogInSubmitClick);
+    
+    
+    const loginForm = $('#login');
+ function LogInSubmitClick(event){
+    event.preventDefault();
+    if (validateUsername(allowedChr) && validatePassword(allowedChr)){
+    loggingIn(baseURL, username, password).then(function(response){
+        logOutBtn.addClass('show').removeClass('hide');
+        registerLogIn.addClass('hide').removeClass('show');
+        loginForm.addClass('hide').removeClass('show');
+        const accessToken = response.accessToken; 
+        document.cookie = "token=" + accessToken; //setting the token as a cookie
+        }).catch(function(e){
+            $('#messageUsername').html("This User does not exist! Please use the Register form first.");
+        });
+       
+        
+      }
+}
+    
     const firstName = $("[name=FirstName]");
     const lastName = $("[name=LastName]");
     const emailAdress = $("[name=EmailAdress]");
@@ -365,14 +390,17 @@ function deleteFormContents() {
 // This function calls getCookiesAsObject for the
 // const authToken in order to login
 
-const logInBtn = $('#log-in');
-    logInBtn.click(onClickLogIn);
+function LogInForm() {
+    const login = $('#login');
+    login.addClass('show').removeClass('hide');
+}
     
 function onClickLogIn(){
     let auth = response.authenticated;
     let authenticatedToken = response.authToken;
     console.log(auth);
 }
-function LogInSubmitClick(){
-    LoggingIn(baseURL, userName, password).then(getCookieAsObject);
-}
+
+
+
+

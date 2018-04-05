@@ -176,6 +176,12 @@ button, input, .shadow-bottom {
     display: none;
 }
 
-.show {
+.show{
     display: block;
+}
+
+#log-in {
+    color: white;
+    z-index: 5;
+    height: 10%;
 }
