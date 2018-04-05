@@ -1,7 +1,7 @@
 /*global $, GetMovie, location*/
 
-$(onHtmlLoaded);
-function onHtmlLoaded(){
+
+$(document).ready(function(){
     var editContainer = $('#editContainer');
     var container = $('#container');
     var movie = new GetMovie();
@@ -19,15 +19,16 @@ function onHtmlLoaded(){
         // var date = new Date(movie.year);
         console.log(movie);
         container.append(`
-            <h1>${movie.title}</h1><span>${movie.imdbRating}</span></br>
-            <p>genre:${movie.runtime}</p>
-            <p>genre:${movie.genre}</p>
-            <img src="${movie.poster}" alt="${movie.title}"></img>
-            <p>${movie.description}</p>
-            <span>${movie.country} (${movie.year})</span></br>
-            <p>Director: ${movie.director}</p>
-            <p>Actors: ${movie.actors}</p>
-            <p>${movie.language}</p>
+            <h1>${movie.title}</h1><h2><span id="star">&bigstar;</span>${movie.imdbRating}/10</h2></br>
+            <ul>
+                <li class="separator">${movie.runtime}</li>
+                <li class="separator">${movie.genre}</li>
+                <li>${movie.country} (${movie.year})</li>
+            </ul>
+            <img src="${movie.poster}" alt="${movie.title}" class="poster"></img>
+            <p id="description" class="left">${movie.description}</p>
+            <p class="left"><span class="crew">Director: </span><span class="stars">${movie.director}</span></p>
+            <p class="left"><span class="crew">Actors: </span><span class="stars">${movie.actors}</span></p>
             <button id="edit hide">Edit Article</button>
         `);
                          
@@ -49,7 +50,7 @@ function onHtmlLoaded(){
             });
         });
     }
-}
+});
 
 function deleteFormContents() {
     $('#editContainer')
