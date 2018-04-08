@@ -34,8 +34,6 @@ function logOutRequest(baseURL, authToken){
 }
 
 
-//This function logs in the user when cliked
-function loggingIn(baseURL,userName,password) {
 
 // This function logs in the user when cliked
 function loggingIn() {
@@ -50,7 +48,7 @@ function loggingIn() {
         console.log('response', response);
       }
 
-});
+    });
 }
-}
+
 

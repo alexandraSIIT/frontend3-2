@@ -31,18 +31,22 @@ GetMovie.prototype.getMovieDetails = function() {
     });
 };
 
-GetMovie.prototype.updateMovie = (formInputs) => {
+GetMovie.prototype.updateMovie = function(formInputs) {
+    console.log(this);
     return $.ajax({
             url: 'https://ancient-caverns-16784.herokuapp.com/movies/' + this.id,
-            
             method: 'PUT',
+            headers: {
+                'X-Auth-Token': '40c8Oq4jvRVp7LLVp6G_SU2bcLh8rA_x',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
             data: {
-                "title": formInputs[0].value || this.title,
-                "year": formInputs[2].value || this.year,
-                "genre": formInputs[4].value || this.genre,
-                "country": formInputs[1].value || this.country,
-                "poster": formInputs[3].value || this.poster,
-                "description": formInputs[5].value || this.description
+                "Title": formInputs[0].value || this.title,
+                "Year": formInputs[2].value || this.year,
+                "Genre": formInputs[4].value || this.genre,
+                "Country": formInputs[1].value || this.country,
+                "Poster": formInputs[3].value || this.poster,
+                "Description": formInputs[5].value || this.description
             }
         });
 };
