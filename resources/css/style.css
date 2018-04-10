@@ -190,3 +190,27 @@ button, input, .shadow-bottom {
     z-index: 5;
     height: 10%;
 }
+
+.pagination {
+    margin: 10px auto;
+    width: 50%;
+    text-align: center;
+}
+
+.pagination a {
+    color: white;
+    padding: 8px 10px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 15px 5px;
+}
+
+.pagination a:hover {
+    border: 1px solid #4CAF50;
+    color: black;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
