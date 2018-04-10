@@ -35,13 +35,13 @@ function logOutRequest(baseURL, authToken){
 
 
 //This function logs in the user when cliked
-function loggingIn(baseURL, username, password) {
+function loggingIn(baseURL, userName, passWord) {
     return $.ajax({
       url: baseURL + "auth/login",
       method:'POST',
       dataType:"json",
-      data: { username: username.val(),
-        	password: password.val()
+      data: { username: userName.val(),
+        	password: passWord.val()
         },
       success: function(response) {
         console.log('response', response);

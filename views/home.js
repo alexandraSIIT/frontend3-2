@@ -1,4 +1,4 @@
-/*global $, MovieListView, deleteMovie, getMoviesList, postMovie, searchMovie, response, LoggingIn, baseURL, userName, passWord, getCookieAsObject*/
+/*global $, MovieListView, login deleteMovie, getMoviesList, postMovie, searchMovie, response, LoggingIn, baseURL, userName, passWord, getCookieAsObject*/
 
 
 $(document).ready(function(){
@@ -23,10 +23,13 @@ $(document).ready(function(){
     
     
     const loginForm = $('#login');
- function LogInSubmitClick(event){
+    
+    function LogInSubmitClick(event){
+    const userName = $("#LogInForm [ name=Username]");
+    const passWord = $("#LogInForm [ name=Password]");
     event.preventDefault();
     if (validateUsername(allowedChr) && validatePassword(allowedChr)){
-    loggingIn(baseURL, username, password).then(function(response){
+    loggingIn(baseURL, userName, passWord).then(function(response){
         logOutBtn.addClass('show').removeClass('hide');
         registerLogIn.addClass('hide').removeClass('show');
         loginForm.addClass('hide').removeClass('show');
@@ -39,7 +42,7 @@ $(document).ready(function(){
         
       }
 }
-    
+   
     const firstName = $("[name=FirstName]");
     const lastName = $("[name=LastName]");
     const emailAdress = $("[name=EmailAdress]");
@@ -121,6 +124,13 @@ function exitForm(){
     const xBtn = $('#x');
     xBtn.click(function(){
         registerForm.addClass('hide').removeClass('show');
+    })
+}
+
+function exitForm(){
+    const closeBtn = $('#close');
+    closeBtn.click(function(){
+        login.addClass('hide').removeClass('show');
     })
 }
 
@@ -348,7 +358,8 @@ function displayAllMovies(list){
             </li>`
         );
     }
-   
+    
+    $('#currentPage').html(list.pagination.currentPage);
     //Below are the event listeners for the delete, add, cancel and approve buttons
     
     $('.del').on('click', (event) => {
