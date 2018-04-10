@@ -348,7 +348,8 @@ function displayAllMovies(list){
             </li>`
         );
     }
-   
+    
+    $('#currentPage').html(list.pagination.currentPage);
     //Below are the event listeners for the delete, add, cancel and approve buttons
     
     $('.del').on('click', (event) => {
