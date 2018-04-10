@@ -4,8 +4,6 @@
 /**{outline:1px solid red;}*/
 /*Base Styles*/
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
-
 html {
     box-sizing: border-box;    
 }
@@ -88,20 +86,14 @@ button, input, .shadow-bottom {
     height: 50px;
 }
 
-.search-icon {
-    background: url(img/search.svg) darkgray 5px 10px no-repeat;
-    background-size: 30px 20px;
-    padding-left: 37px;
-    z-index: 1;
-    font-size: 24px;
-}
-
 .top-search-inputwrapper {
     position: absolute;
     top:20px;
     bottom:20px;
-    left:250px;
-    right: 250px;
+    left: 20%;
+    width: 60%;
+    display: block;
+    margin: 0 auto;
 }
 
 .search-wrapper {
@@ -110,6 +102,14 @@ button, input, .shadow-bottom {
     bottom: 0;
     left: 0;
     right: 115px;
+}
+
+.search-icon {
+    background: url(img/search.svg) darkgray 5px 10px no-repeat;
+    background-size: 30px 20px;
+    padding-left: 37px;
+    z-index: 1;
+    font-size: 24px;
 }
 
 .top-search {
@@ -132,13 +132,14 @@ button, input, .shadow-bottom {
 
 .add {
     position: absolute;
-    right: 20px;
+    right: 20%;
     margin-top: 20px;
+    margin-right: 10px;
 }
 
 .movieList-wrapper {
     margin: 65px auto;
-    width: 66%;
+    width: 60%;
 }
 
 .movie-list-item {
@@ -147,7 +148,7 @@ button, input, .shadow-bottom {
     background-color: rgba(0, 0, 0, 0.5);
     position: relative;
     min-height: 176px;
-    margin: 2px;
+    margin: 2px 0;
 }
 
 .poster-small {
@@ -188,4 +189,28 @@ button, input, .shadow-bottom {
     color: white;
     z-index: 5;
     height: 10%;
+}
+
+.pagination {
+    margin: 10px auto;
+    width: 50%;
+    text-align: center;
+}
+
+.pagination a {
+    color: white;
+    padding: 8px 10px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 15px 5px;
+}
+
+.pagination a:hover {
+    border: 1px solid #4CAF50;
+    color: black;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
 }
