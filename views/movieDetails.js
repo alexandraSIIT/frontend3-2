@@ -19,6 +19,7 @@ $(document).ready(function(){
         // var date = new Date(movie.year);
         $('#movie-title').text(`${movie.title} - Movie Roll`);
         container.append(`
+
             <h1>${movie.title}</h1><h2><span id="star">&bigstar;</span>${movie.imdbRating}/10</h2></br>
             <ul>
                 <li class="separator">${movie.runtime}</li>
@@ -29,7 +30,7 @@ $(document).ready(function(){
             <p id="description" class="left">${movie.description}</p>
             <p class="left"><span class="crew">Director: </span><span class="stars">${movie.director}</span></p>
             <p class="left"><span class="crew">Actors: </span><span class="stars">${movie.actors}</span></p>
-            <button id="edit hide">Edit Article</button>
+            <button id="edit">Edit Article</button>
         `);
                          
         $('#edit').on('click', function(){
