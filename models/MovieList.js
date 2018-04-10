@@ -76,5 +76,9 @@ function searchMovie(baseURL, userOption, valueToSearch) {
     .then((e) => {
         console.log(e);
     });
-  
+}
+
+function getNextMovies(link) {
+    return $.getJSON(link)
+    .then(displayNextMovies);
 }
