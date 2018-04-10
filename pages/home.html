@@ -19,7 +19,9 @@
 </head>
 <body>
     <header class="shadow-bottom">
-        <object class="logo" height="80" width="207" data="../resources/img/logo.svg" type="image/svg+xml"></object>
+        <a href="home.html">
+            <img class="logo" height="80" width="207" src="../resources/img/logo.svg"/>
+        </a>
         <!-- Search Field -->
         <div class="top-search-inputwrapper">
             <div class="search-wrapper">
@@ -95,28 +97,50 @@
     <button class="add">Add Movie</button>
     <div id="createContainer" style="display: none">
         <form method='POST' class='form-add-movie'>
+            <div class="labels-edit">
             <label for='Title'>Title</label>
             <input type='text' name='Title'>
+            </div>
+            <div class="labels-edit">
             <label for='Year'>Year</label>
             <input type='number' name='Year'>
+            </div>
+            <div class="labels-edit">
             <label for='Runtime'>Runtime</label>
             <input type='text' name='Runtime'>
+            </div>
+            <div class="labels-edit">
             <label for='Genre'>Genre</label>
             <input type='text' name='Genre'>
+            </div>
+            <div class="labels-edit">
             <label for='Language'>Language</label>
             <input type='text' name='Language'>
+            </div>
+            <div class="labels-edit">
             <label for='Country'>Country</label>
             <input type='text' name='Country'>
+            </div>
+            <div class="labels-edit">
             <label for='Poster'>Poster</label>
             <input type='text' name='Poster'>
+            </div>
+            <div class="labels-edit">
             <label for='imdbRating'>imdbRating</label>
             <input type='number' name='imdbRating'>
+            </div>
+            <div class="labels-edit">
             <label for='imdbVotes'>imdbVotes</label>
             <input type='number' name='imdbVotes'>
+            </div>
+            <div class="labels-edit">
             <label for='imdbID'>imdbID</label>
             <input type='text' name='imdbID'>
+            </div>
+            <div class="labels-edit">
             <label for='Type'>Type</label>
             <input type='text' name='Type'>
+            </div>
         </form>
         <button id="approve">OK</button>
         <button id="cancel">CANCEL</button>

@@ -17,7 +17,7 @@ $(document).ready(function(){
     
     function displayPage(){
         // var date = new Date(movie.year);
-        console.log(movie);
+        
         container.append(`
             <h1>${movie.title}</h1><h2><span id="star">&bigstar;</span>${movie.imdbRating}/10</h2></br>
             <ul>
@@ -41,8 +41,9 @@ $(document).ready(function(){
             deleteFormContents();
         });
         
-        $('#approve').on('click', function(){
+        $('#approve').unbind('click').bind('click', function(){
             var formInputs = $('#editContainer').children('input, textarea');
+            console.log(movie);
             movie.updateMovie(formInputs).then(function(){
                 container.html('');
                 movie.getMovieDetails().then(displayPage);
