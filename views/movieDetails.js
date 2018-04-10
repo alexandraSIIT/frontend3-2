@@ -28,7 +28,7 @@ $(document).ready(function(){
             <p>Director: ${movie.director}</p>
             <p>Actors: ${movie.actors}</p>
             <p>${movie.language}</p>
-            <button id="edit hide">Edit Article</button>
+            <button id="edit">Edit Article</button>
         `);
                          
         $('#edit').on('click', function(){
