@@ -108,6 +108,12 @@ $(document).ready(function(){
             }
         return user;
     }
+    
+    $('#nextPage').on('click', () => {
+    let number;
+    let link = "http://ancient-caverns-16784.herokuapp.com/movies?take=10&skip=" + number + "0";
+    getNextMovies(link);
+});
 
 // This function recalls the getCookiesAsObject for the const authToken to have the 
 // current token value saved in the cookies.
@@ -336,6 +342,59 @@ function displayAllMovies(list){
     let createContainer = $('#createContainer');
     let listElement = $('#movieList');
     let results = list.results;
+    //Goes through each inividual movie and appends it to the listElement
+    for (let i=0; i<results.length; i++){
+        let movie = new MovieListView(results[i]);
+        listElement.append(
+            `<li class="movie-list-item clearfix" data-idcode="${movie.id}">
+                <img class="poster-small" src="${movie.imageUrl}" alt="${movie.title}"></img></br>
+                <div class="movie-info">
+                    <h3><a target="_self" href="/frontend3-2/pages/movieDetails.html?movieId=${movie.id}">${movie.title} (${movie.year})</a></h3>
+                    <div>Type: ${movie.type}</div>
+                    <div>${movie.runtime} - ${movie.genre}</div>
+                    <div>Rating: ${movie.rating} / 10 - (${movie.votes} votes)</div>
+                    <button class="del" id="${movie.id}">Delete Movie</button>
+                </div>
+            </li>`
+        );
+    }
+    
+    $('#currentPage').html(list.pagination.currentPage);
+    //Below are the event listeners for the delete, add, cancel and approve buttons
+    
+    $('.del').on('click', (event) => {
+        deleteMovie($(event.currentTarget).attr('id')).then(() => {
+            listElement.html('');
+            getMoviesList();
+        });
+    });
+
+    $('#add').on('click', () => {
+        createContainer.css('display', 'block');
+    });
+    
+    $('#cancel').on('click', () => {
+        createContainer.css('display', 'none');
+        deleteFormContents();
+    });
+    
+    $('#approve').unbind('click').bind('click', () => {
+        var formInputs = $('#createContainer');
+        
+        postMovie(formInputs).then(() => {
+            listElement.html('');
+            getMoviesList();
+        })
+     
+    });
+}
+
+
+function displayNextMovies(list){
+    let createContainer = $('#createContainer');
+    let listElement = $('#movieList');
+    let results = list.results;
+    listElement.empty();
     //Goes through each inividual movie and appends it to the listElement
     for (let i=0; i<results.length; i++){
         let movie = new MovieListView(results[i]);
