@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="../resources/css/register-logIn.css" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../views/home.js"></script>
-    <script type="text/javascript" src="../views/movieDetails.js"></script>
     <script type="text/javascript" src="../models/MovieList.js"></script>
     <script type="text/javascript" src="../models/Movie.js"></script>
     <script type="text/javascript" src="../models/Auth.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
 
 
@@ -19,36 +19,42 @@
 </head>
 <body>
     <header class="shadow-bottom">
-        <object class="logo" height="80" width="207" data="../resources/img/logo.svg" type="image/svg+xml"></object>
+        <a href="home.html">
+            <img class="logo" height="80" width="207" src="../resources/img/logo.svg"/>
+        </a>
         <!-- Search Field -->
-        <input class="search-icon top-search" id="search" type="search" placeholder="Search">
-
-        <select>
-            <option>Movie Title</option>
-            <option>Genre</option>
-            <option>Year</option>
-            <option>Language</option>
-        </select>
-        <div id="register-logIn" class="show"><a id="log-in" href="#">LogIn</a><span> / </span><a id="register" href="#registerForm">Register</a></div> 
-
+        <div class="top-search-inputwrapper">
+            <div class="search-wrapper">
+                <input class="search-icon top-search" id="search" type="search" placeholder="Search">
+            </div>
+            <select class="search-select">
+                <option>Movie Title</option>
+                <option>Genre</option>
+                <option>Year</option>
+                <option>Language</option>
+            </select>
+        </div>
+        <div id="register-logIn" class="login-button show"><a id="log-in" href="#">LogIn</a><span> / </span><a id="register" href="#registerForm">Register</a></div> 
         <a id="log-out" class="hide">LogOut</a>
     </header>
     
     <!--Will link the LogIn button to the LogIn form-->
       
-    <div class="hide" id="log-in">
- 
-    <p>Username:
-    <input type="text" size="15" name="username" id="username" />
+    <div class="hide" id="login">
+    
+    <form id="LogInForm">
+     <span id="messageUsername"></span>
+    Username:
+    <input class="logIntextInput" type="text" size="15" name="Username" id="username" />
  
     <br />
     Password:
-    <input type="password" size="15" name="password" id="password" />
+    <input class="logIntextInput" type="password" size="15" name="Password" id="password" />
  
     <br />
-    <input type="submit" class="button" id="logIn-submit" name="login" value="Login" />
+    <input class="logInButton" type="submit" class="button" id="logIn-submit" name="login" value="Login" />
  
-    </p>
+    </form>
     </div>
     
     <div id="registerForm" class="hide">
@@ -90,36 +96,66 @@
        </form>
     </div>
     
-    <ul id="movieList">
-    </ul>
-    <button class="add" id="add">Add Movie</button>
+    <button class="add">Add Movie</button>
     <div id="createContainer" style="display: none">
         <form method='POST' class='form-add-movie'>
+            <div class="labels-edit">
             <label for='Title'>Title</label>
             <input type='text' name='Title'>
+            </div>
+            <div class="labels-edit">
             <label for='Year'>Year</label>
             <input type='number' name='Year'>
+            </div>
+            <div class="labels-edit">
             <label for='Runtime'>Runtime</label>
             <input type='text' name='Runtime'>
+            </div>
+            <div class="labels-edit">
             <label for='Genre'>Genre</label>
             <input type='text' name='Genre'>
+            </div>
+            <div class="labels-edit">
             <label for='Language'>Language</label>
             <input type='text' name='Language'>
+            </div>
+            <div class="labels-edit">
             <label for='Country'>Country</label>
             <input type='text' name='Country'>
+            </div>
+            <div class="labels-edit">
             <label for='Poster'>Poster</label>
             <input type='text' name='Poster'>
+            </div>
+            <div class="labels-edit">
             <label for='imdbRating'>imdbRating</label>
             <input type='number' name='imdbRating'>
+            </div>
+            <div class="labels-edit">
             <label for='imdbVotes'>imdbVotes</label>
             <input type='number' name='imdbVotes'>
+            </div>
+            <div class="labels-edit">
             <label for='imdbID'>imdbID</label>
             <input type='text' name='imdbID'>
+            </div>
+            <div class="labels-edit">
             <label for='Type'>Type</label>
             <input type='text' name='Type'>
+            </div>
         </form>
         <button id="approve">OK</button>
         <button id="cancel">CANCEL</button>
     </div>
+    <div class="movieList-wrapper">
+        <ul id="movieList">
+        </ul>
+        <div class="pagination">
+            <a href="#" id="prevPage">Prev</a>
+            <a href="#" id="currentPage"></a>
+            <a href="#" id="nextPage">Next</a>
+        </div>
+    </div>
+
 </body>
 </html>

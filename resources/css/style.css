@@ -1,7 +1,7 @@
 /*this will be the css file with rulles common to all pages*/
 /*Global Whitespace Reset*/
 *{margin:0; padding:0;}
-
+/**{outline:1px solid red;}*/
 /*Base Styles*/
 
 html {
@@ -10,11 +10,10 @@ html {
 
 body {
     min-width: 320px;
-    color: white;
-    background: #454545;
-    background: -moz-radial-gradient(center top, ellipse cover, #454545 0%, #000000 100%) fixed no-repeat;
-    background: -webkit-radial-gradient(center top, ellipse cover, #454545 0%,#000000 100%) fixed no-repeat;
-    background: radial-gradient(ellipse at center top, #454545 0%,#000000 100%) fixed no-repeat;
+    color: #C1BFB1;
+    background: no-repeat fixed url(https://www.youtube.com/s/tv/html5/f4ebe109/img/default_bg.png);
+    background-size: cover;
+    font-family: 'Montserrat', sans-serif;
 }
 
 a {
@@ -23,7 +22,7 @@ a {
 }
 
 a:hover {
-    color: red;
+    color: #8f7202;
 }
 
 li {
@@ -33,9 +32,10 @@ li {
 header {
     padding: 10px;
     height: 60px;
+    position: relative;
 }
 
-button, input {
+button, input, select {
     background-color: darkgray;
     border-width: 0;
     color: white;
@@ -51,7 +51,7 @@ input:focus {
 }
 
 button:hover {
-    background-color: red;   
+    background-color: #8f7202;
     outline: 2px solid white;
 }
 
@@ -86,6 +86,24 @@ button, input, .shadow-bottom {
     height: 50px;
 }
 
+.top-search-inputwrapper {
+    position: absolute;
+    top:20px;
+    bottom:20px;
+    left: 20%;
+    width: 60%;
+    display: block;
+    margin: 0 auto;
+}
+
+.search-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 115px;
+}
+
 .search-icon {
     background: url(img/search.svg) darkgray 5px 10px no-repeat;
     background-size: 30px 20px;
@@ -94,21 +112,105 @@ button, input, .shadow-bottom {
     font-size: 24px;
 }
 
-.poster-small {
-    width: 120px;
+.top-search {
+    height: 100%;
+    width: 100%;
 }
 
-.hide{
+.search-select {
+    height: 100%;
+    position: absolute;
+    right: 0;
+    padding: 0 10px;
+}
+
+.login-button {
+     position: absolute;
+     top: 20px;
+     right: 20px;
+}
+
+.add {
+    position: absolute;
+    right: 20%;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.movieList-wrapper {
+    margin: 65px auto;
+    width: 60%;
+}
+
+.movie-list-item {
+    padding: 10px;
+    background-color: #1b1b1b;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: relative;
+    min-height: 176px;
+    margin: 2px 0;
+}
+
+.poster-small {
+    width: 120px;
+    height: 176px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.movie-info {
+    position: absolute;
+    top: 10px;
+    left: 142px;
+    right: 10px;
+    bottom: 10px;
+}
+
+.del {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.hide {
     display: none;
 }
+
 .show{
     display: block;
 }
 
-/*Specific Styles*/
-
-.top-search {
-    width: 60%;
-    height: 40px;
+.labels-edit{
+    display: block;
 }
 
+#log-in {
+    color: white;
+    z-index: 5;
+    height: 10%;
+}
+
+.pagination {
+    margin: 10px auto;
+    width: 50%;
+    text-align: center;
+}
+
+.pagination a {
+    color: white;
+    padding: 8px 10px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 15px 5px;
+}
+
+.pagination a:hover {
+    border: 1px solid #4CAF50;
+    color: black;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}

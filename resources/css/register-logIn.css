@@ -44,6 +44,7 @@
    -webkit-box-shadow: inset 0 0 10px #1a0000;
    box-shadow:         inset 0 0 10px #1a0000;
 }
+
 #logInForm .btn{
     margin-left: 14%;
 }
@@ -70,4 +71,28 @@
         width: 65%;
     }
     
+}
+=======
+
+#LogInForm {
+    width: 80%;
+    height: 100%;
+    opacity: 0.5;
+    background-color: #272727;
+    padding: 5% 10%;
+    position: relative;
+}
+
+.logIntextInput {
+    background-color: #C1BFB2;
+    padding-left: 5%;
+    border-bottom:5px solid #8E7117; 
+    border-radius: 5px;
+}
+
+.logInButton {
+    background-color: #C1BFB2;
+    padding-left: 5%;
+    border-bottom:5px solid #8E7117; 
+    border-radius: 10px;
 }

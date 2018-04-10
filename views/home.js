@@ -1,9 +1,9 @@
-/*global $, MovieListView, deleteMovie, getMoviesList, postMovie, searchMovie, response, LoggingIn, baseURL, userName, password, getCookieAsObject*/
+/*global $, MovieListView, login deleteMovie, getMoviesList, postMovie, searchMovie, response, LoggingIn, baseURL, userName, passWord, getCookieAsObject*/
 
 
 $(document).ready(function(){
     const baseURL = "https://ancient-caverns-16784.herokuapp.com/";
-    
+    const allowedChr = /^[a-zA-Z0-9]+$/;
     const logOutBtn = $('#log-out');
     const registerLogIn = $('#register-logIn');
     SyncHtmlPages(registerLogIn,logOutBtn);
@@ -14,11 +14,33 @@ $(document).ready(function(){
        registerForm.addClass('show').removeClass('hide');
        exitForm();
     });
+    const logInBtn = $('#log-in');
+    logInBtn.click(LogInForm);
     
-    const editBtn = $('.edit');   
-    const deleteBtn = $('.del');   
-    const addBtn = $('.add'); 
+    const logInSubmit = $('#logIn-submit');
+    logInSubmit.click(LogInSubmitClick);
     
+    
+    const loginForm = $('#login');
+    
+    function LogInSubmitClick(event){
+    const username = $("#LogInForm [ name=Username]");
+    const password = $("#LogInForm [ name=Password]");
+    event.preventDefault();
+    if (validateUsername(allowedChr, username) && validatePassword(allowedChr,password)){
+    loggingIn(baseURL, username, password).then(function(response){
+        logOutBtn.addClass('show').removeClass('hide');
+        registerLogIn.addClass('hide').removeClass('show');
+        loginForm.addClass('hide').removeClass('show');
+        const accessToken = response.accessToken; 
+        document.cookie = "token=" + accessToken; //setting the token as a cookie
+        }).catch(function(e){
+            $('#messageUsername').html("This User does not exist! Please use the Register form first.");
+        });
+       
+        
+      }
+}
     const registerSubmitBtn = $('#register-submit');
     registerSubmitBtn.click(registerSubmitClick);
 
@@ -95,6 +117,13 @@ function exitForm(){
     })
 }
 
+function exitForm(){
+    const closeBtn = $('#close');
+    closeBtn.click(function(){
+        login.addClass('hide').removeClass('show');
+    })
+}
+
 // This function deletes the token from cookie
     function deleteToken() {
     document.cookie = "token" + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
@@ -105,7 +134,6 @@ function exitForm(){
 // This function is called when clicking the submit button
 function registerSubmitClick(event){
     event.preventDefault();
-    const allowedChr = /^[a-zA-Z0-9]+$/;
     const firstName = $("[name=FirstName]");
     const lastName = $("[name=LastName]");
     const emailAdress = $("[name=EmailAdress]");
@@ -315,18 +343,21 @@ function displayAllMovies(list){
     for (let i=0; i<results.length; i++){
         let movie = new MovieListView(results[i]);
         listElement.append(
-            `<li data-idcode="${movie.id}">
+            `<li class="movie-list-item clearfix" data-idcode="${movie.id}">
                 <img class="poster-small" src="${movie.imageUrl}" alt="${movie.title}"></img></br>
-                <h3><a target="_self" href="/frontend3-2/pages/movieDetails.html?movieId=${movie.id}">${movie.title} (${movie.year})</a></h3>
-                <div>Type: ${movie.type}</div>
-                <div>${movie.runtime} - ${movie.genre}</div>
-                <div>Rating: ${movie.rating} / 10 - (${movie.votes} votes)</div>
-                <button class="del" id="${movie.id}">Delete Movie</button>
-            </li></br>`
+                <div class="movie-info">
+                    <h3><a target="_self" href="/frontend3-2/pages/movieDetails.html?movieId=${movie.id}">${movie.title} (${movie.year})</a></h3>
+                    <div>Type: ${movie.type}</div>
+                    <div>${movie.runtime} - ${movie.genre}</div>
+                    <div>Rating: ${movie.rating} / 10 - (${movie.votes} votes)</div>
+                    <button class="del" id="${movie.id}">Delete Movie</button>
+                </div>
+            </li>`
         );
         
     }
-   
+    
+    $('#currentPage').html(list.pagination.currentPage);
     //Below are the event listeners for the delete, add, cancel and approve buttons
     
     $('.del').on('click', (event) => {
@@ -368,14 +399,17 @@ function deleteFormContents() {
 // This function calls getCookiesAsObject for the
 // const authToken in order to login
 
-const logInBtn = $('#log-in');
-    logInBtn.click(onClickLogIn);
+function LogInForm() {
+    const login = $('#login');
+    login.addClass('show').removeClass('hide');
+}
     
 function onClickLogIn(){
     let auth = response.authenticated;
     let authenticatedToken = response.authToken;
     console.log(auth);
 }
-function LogInSubmitClick(){
-    LoggingIn(baseURL, userName, password).then(getCookieAsObject);
-}
+
+
+
+
