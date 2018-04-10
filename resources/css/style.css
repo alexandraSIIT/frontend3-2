@@ -180,6 +180,10 @@ button, input, .shadow-bottom {
     display: block;
 }
 
+.labels-edit{
+    display: block;
+}
+
 #log-in {
     color: white;
     z-index: 5;
