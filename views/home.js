@@ -127,12 +127,6 @@ function exitForm(){
     })
 }
 
-function exitForm(){
-    const closeBtn = $('#close');
-    closeBtn.click(function(){
-        login.addClass('hide').removeClass('show');
-    })
-}
 
 // This function deletes the token from cookie
     function deleteToken() {
