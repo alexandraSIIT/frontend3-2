@@ -1,38 +1,55 @@
 /*Register form style*/
 
 #registerForm {
-    width: 80%;
-    height: 100%;
-    opacity: 0.5;
-    background-color: rgb(0, 0, 0);
-    padding: 5% 10%;
-    position: relative;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.95;
+    top: 0;
+    background-color: rgb(30, 30, 30);
+    position: fixed;
+    z-index: 1;
 }
+
 #x{
     position: absolute;
     top:2%;
     right: 2%;
-    min-width:12px;
+    /*background-color: rgba(0,0,0,0);*/
+    font-size: 24px;
 }
+
 .logInForm{
+    position: relative;
     background-color: #660000;
-    width: 16%;
-    height: 80%;
-    padding: 4% 10%;
+    width: 500px;
+    height: 430px;
     border:2px solid #ff4d4d;
-    border-radius:30px;
+    opacity: 1;
+    margin: 0 auto;
+    padding: 20px;
 }
+
 .logInForm h3{
-    color: #000000;
+    color: #cccccc;
     font-size: 40px;
-    border-bottom-color: #232429; 
+    border-bottom-color: #232429;
+    text-align: center;
 }
-.logInForm input{
-    background-color: #330000;
-    padding-left: 5%;
-    border-bottom:2px solid #ff4d4d; 
-    border-radius: 5px;
+
+.logInForm input:not([type=checkbox]){
+    border-bottom:2px solid #ff4d4d;
+    position: absolute;
+    left: 160px;
+    width: 65%;
+    padding-left: 5px;
+    border-width: 0;
+    color: white;
 }
+
+.logInForm input::placeholder {
+    color: #777777;
+}
+
 .message{
     color:#545559;
 }
