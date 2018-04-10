@@ -186,7 +186,6 @@ button, input, .shadow-bottom {
 }
 
 #log-in {
-    color: white;
     z-index: 5;
     height: 10%;
 }

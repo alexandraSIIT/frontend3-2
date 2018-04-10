@@ -12,11 +12,10 @@ $(document).ready(function(){
     const registerForm = $('#registerForm');
     registerBtn.click(function registerFormAppear(){
        registerForm.addClass('show').removeClass('hide');
-       exitForm();
+       exitFormBtn();
     });
     const logInBtn = $('#log-in');
     logInBtn.click(LogInForm);
-    
     const logInSubmit = $('#logIn-submit');
     logInSubmit.click(LogInSubmitClick);
     
@@ -110,7 +109,7 @@ function onClickLogOut(){
     editBtn.addClass('hide').removeClass('show');
 }
 
-function exitForm(){
+function exitFormBtn(){
     const xBtn = $('#x');
     xBtn.click(function(){
         registerForm.addClass('hide').removeClass('show');
