@@ -37,13 +37,16 @@
 }
 
 .logInForm input:not([type=checkbox]){
-    border-bottom:2px solid #ff4d4d;
     position: absolute;
     left: 160px;
     width: 65%;
     padding-left: 5px;
-    border-width: 0;
     color: white;
+}
+
+[type=checkbox]{
+    position: absolute;
+    left: 160px;
 }
 
 .logInForm input::placeholder {
