@@ -1,4 +1,4 @@
-/*global $, MovieListView, login deleteMovie, getMoviesList, postMovie, searchMovie, response, LoggingIn, baseURL, userName, passWord, getCookieAsObject*/
+/*global $, MovieListView, login deleteMovie, getMoviesList, postMovie, searchMovie, response, LoggingIn, baseURL, userName, passWord, getCookieAsObject, getNextMovies,getPrevMovies*/
 
 
 $(document).ready(function(){
@@ -73,8 +73,7 @@ $(document).ready(function(){
             let valueToSearch = valueInput.val();
 
             userChoice();
-            searchMovie(baseURL, user, valueToSearch)
-            .catch(console.log);
+            searchMovie(baseURL, user, valueToSearch);
         }
     });
     
@@ -94,12 +93,42 @@ $(document).ready(function(){
             }
         return user;
     }
+        
     
     $('#nextPage').on('click', () => {
-    let number = $('#currentPage').html;
-    let link = "http://ancient-caverns-16784.herokuapp.com/movies?take=10&skip=" + number + "0";
-    getNextMovies(link);
+        let currentPage = $('#currentPage').text(); 
+        let url = 'https://ancient-caverns-16784.herokuapp.com/movies?take=10&skip=' + currentPage + "0";
+        console.log(url);
+        getNextMovies(url);
 });
+
+    let pivotNumber;
+    let number;
+    
+    $('#prevPage').on('click', () => {
+        let url = 'https://ancient-caverns-16784.herokuapp.com/movies?take=10&skip=' + pivotNumber + number;
+        console.log(url);
+        let currentPage = $('#currentPage').text();
+        console.log(jQuery.type(currentPage));
+        let currentPageNumber = parseInt(currentPage);
+        console.log(jQuery.type(currentPageNumber));
+        
+        if (currentPageNumber === 1) {
+            pivotNumber = null;
+            number = "";
+        }
+        else if (currentPageNumber === 2) {
+            pivotNumber = 0;
+            number = "";
+            getPrevMovies(url);
+        }
+        else {
+            pivotNumber = currentPageNumber - 2;
+            number = 0;
+            getPrevMovies(url);
+        }
+        console.log(url);
+    });
 
 // This function recalls the getCookiesAsObject for the const authToken to have the 
 // current token value saved in the cookies.
@@ -122,13 +151,10 @@ function exitFormBtn(){
     })
 }
 
-
 // This function deletes the token from cookie
     function deleteToken() {
     document.cookie = "token" + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-
 }
-
 
 // This function is called when clicking the submit button
 function registerSubmitClick(event){
@@ -150,9 +176,7 @@ function registerSubmitClick(event){
     }).catch(function(e){
             $('#messageUsername').html("This username already exists. Please enter another username.");
         });
-       
-        
-      }
+    }
 }
 
 function resetForm(){
@@ -210,7 +234,8 @@ function confirmPassword(password,confPassword){
         messageCont6.html("The passwords does not match. Please enter it again.");
         onkeypress(confPassword);
         return false;
-    }else return true;
+    } else 
+    return true;
 }
 
 //This function hides the warning when the user starts typing in the field.
@@ -288,7 +313,7 @@ function displaySearchResult(list) {
     console.log(list);
     let createContainer = $('#createContainer');
     let listElement = $('#movieList');
-    listElement.empty();
+    listElement.children().remove();
     let results = list.results;
     console.log(list.results);
         for (let i=0; i<results.length; i++){
@@ -304,7 +329,7 @@ function displaySearchResult(list) {
             </li></br>`
         );
     }
-        $('.del').on('click', (event) => {
+    $('.del').on('click', (event) => {
         deleteMovie($(event.currentTarget).attr('id')).then(() => {
             listElement.html('');
             getMoviesList();
@@ -326,14 +351,14 @@ function displaySearchResult(list) {
         postMovie(formInputs).then(() => {
             listElement.html('');
             getMoviesList();
-        })
-     
+        });
     });
 }
 
 //Function below renders the movie list "list" in a user friendly format
 //Then it attaches some event listeners for interface buttons
 function displayAllMovies(list){
+    console.log(list);
     let createContainer = $('#createContainer');
     let listElement = $('#movieList');
     let results = list.results;
@@ -353,7 +378,6 @@ function displayAllMovies(list){
                 </div>
             </li>`
         );
-        
     }
     
     $('#currentPage').html(list.pagination.currentPage);
@@ -381,17 +405,16 @@ function displayAllMovies(list){
         postMovie(formInputs).then(() => {
             listElement.html('');
             getMoviesList();
-        })
-     
+        });
     });
 }
 
 
-function displayNextMovies(list){
+function displayMoviesPagination(list){
     let createContainer = $('#createContainer');
     let listElement = $('#movieList');
     let results = list.results;
-    listElement.empty();
+    listElement.children().remove();
     //Goes through each inividual movie and appends it to the listElement
     for (let i=0; i<results.length; i++){
         let movie = new MovieListView(results[i]);
@@ -439,13 +462,13 @@ function displayNextMovies(list){
     });
 }
 
-
-function displayNextMovies(list){
+function displayPrevMovies(list){
     let createContainer = $('#createContainer');
     let listElement = $('#movieList');
     let results = list.results;
-    listElement.empty();
+    listElement.children().remove();
     //Goes through each inividual movie and appends it to the listElement
+    $('#currentPage').html(list.pagination.currentPage);
     for (let i=0; i<results.length; i++){
         let movie = new MovieListView(results[i]);
         listElement.append(
@@ -462,7 +485,7 @@ function displayNextMovies(list){
         );
     }
     
-    $('#currentPage').html(list.pagination.currentPage);
+    // $('#currentPage').html(list.pagination.currentPage);
     //Below are the event listeners for the delete, add, cancel and approve buttons
     
     $('.del').on('click', (event) => {
