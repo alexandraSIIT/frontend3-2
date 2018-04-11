@@ -10,11 +10,11 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../models/Movie.js"></script>
     <script type="text/javascript" src="../models/Auth.js"></script>
-    <script type="text/javascript" src="../views/movieDetails.js"></script>
     <script type="text/javascript" src="../views/home.js"></script>
+    <script type="text/javascript" src="../views/movieDetails.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
 
-    <title>Movie Roll - Details</title>
+    <title id="movie-title">Movie Roll - Details</title>
 </head>
 <body>
     <header class="shadow-bottom">
@@ -44,7 +44,7 @@
     
     <div id="registerForm" class="hide">
         <button id="x"><i class="fas fa-times"></i></button>
-       <form class=" logInForm pull-left shadow" name="myForm" >
+       <form id="logInForm" class="pull-left shadow" name="myForm" >
            <h3>Register</h3>
            <br>
            <span id="messageUsername"></span>
