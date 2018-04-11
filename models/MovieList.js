@@ -78,7 +78,7 @@ function searchMovie(baseURL, userOption, valueToSearch) {
     });
 }
 
-function getNextMovies(link) {
+function getNextMovies(link, number,) {
     return $.getJSON(link)
     .then(displayNextMovies);
 }

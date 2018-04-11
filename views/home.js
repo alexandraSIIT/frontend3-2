@@ -110,7 +110,7 @@ $(document).ready(function(){
     }
     
     $('#nextPage').on('click', () => {
-    let number;
+    let number = $('#currentPage').html;
     let link = "http://ancient-caverns-16784.herokuapp.com/movies?take=10&skip=" + number + "0";
     getNextMovies(link);
 });
