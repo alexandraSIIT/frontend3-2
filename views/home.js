@@ -19,8 +19,7 @@ $(document).ready(function(){
     const logInSubmit = $('#logIn-submit');
     logInSubmit.click(LogInSubmitClick);
     
-    
-    const loginForm = $('#login');
+
     
     function LogInSubmitClick(event){
     const username = $("#LogInForm [ name=Username]");
