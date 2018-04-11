@@ -34,10 +34,7 @@ class MovieListView {
 }
 
 
-
-
-// This function is a simple ajax call to delete a movie from the API
-function deleteMovie(id){
+MovieListView.prototype.deleteMovie = function(id) {
     return $.ajax({
             url: 'https://ancient-caverns-16784.herokuapp.com/movies/' + id,
             headers: {
@@ -47,9 +44,21 @@ function deleteMovie(id){
     });
 }
 
-// This function is a ajax call to post a new movie to the API
-function postMovie(formInputs) {
-     return $.ajax({
+
+// This function is a simple ajax call to delete a movie from the API
+// function deleteMovie(id){
+//     return $.ajax({
+//             url: 'https://ancient-caverns-16784.herokuapp.com/movies/' + id,
+//             headers: {
+//                 'X-Auth-Token': getCookiesAsObject()
+//             },
+//             method: 'DELETE'
+//     });
+// }
+
+
+MovieListView.prototype.postMovie = function(formInputs) {
+    return $.ajax({
             url: 'https://ancient-caverns-16784.herokuapp.com/movies',
             type: 'POST',
             headers: {
@@ -68,6 +77,29 @@ function postMovie(formInputs) {
             }
      })
 }
+
+
+// This function is a ajax call to post a new movie to the API
+// function postMovie(formInputs) {
+//      return $.ajax({
+//             url: 'https://ancient-caverns-16784.herokuapp.com/movies',
+//             type: 'POST',
+//             headers: {
+//                 'X-Auth-Token': getCookiesAsObject(),
+//                 'Content-Type': 'application/x-www-form-urlencoded'
+//             },
+//             data: $('.form-add-movie').serialize(),
+//             succes: function (response) {
+//                 console.log(response);
+//             },
+//             error: function (response) {
+//                 console.log(response)
+//             },
+//             failed: function (response) {
+//                 console.log(response);
+//             }
+//      })
+// }
 
 // Search: This function is an AJAX call to bring the desired movie
 function searchMovie(baseURL, userOption, valueToSearch) {

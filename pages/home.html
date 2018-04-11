@@ -93,50 +93,63 @@
     
     <button class="add">Add Movie</button>
     <div id="createContainer" style="display: none">
+        <!--<img class ='add-movie-image' src='data:image/jpeg;base64,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'>-->
         <form method='POST' class='form-add-movie'>
             <div class="labels-edit">
-            <label for='Title'>Title</label>
+            <label for='Title' class='labels-text'>Title</label>
             <input type='text' name='Title'>
             </div>
             <div class="labels-edit">
-            <label for='Year'>Year</label>
+            <label for='Year' class='labels-text'>Year</label>
             <input type='number' name='Year'>
             </div>
             <div class="labels-edit">
-            <label for='Runtime'>Runtime</label>
+            <label for='Runtime' class='labels-text'>Runtime</label>
             <input type='text' name='Runtime'>
             </div>
             <div class="labels-edit">
-            <label for='Genre'>Genre</label>
+            <label for='Genre' class='labels-text'>Genre</label>
             <input type='text' name='Genre'>
             </div>
             <div class="labels-edit">
-            <label for='Language'>Language</label>
+            <label for='Language' class='labels-text'>Language</label>
             <input type='text' name='Language'>
             </div>
             <div class="labels-edit">
-            <label for='Country'>Country</label>
+            <label for='Country' class='labels-text'>Country</label>
             <input type='text' name='Country'>
             </div>
             <div class="labels-edit">
-            <label for='Poster'>Poster</label>
+            <label for='Poster' class='labels-text'>Poster</label>
             <input type='text' name='Poster'>
             </div>
             <div class="labels-edit">
-            <label for='imdbRating'>imdbRating</label>
+            <label for='imdbRating' class='labels-text'>imdbRating</label>
             <input type='number' name='imdbRating'>
             </div>
             <div class="labels-edit">
-            <label for='imdbVotes'>imdbVotes</label>
+            <label for='imdbVotes' class='labels-text'>imdbVotes</label>
             <input type='number' name='imdbVotes'>
             </div>
             <div class="labels-edit">
-            <label for='imdbID'>imdbID</label>
+            <label for='imdbID' class='labels-text'>imdbID</label>
             <input type='text' name='imdbID'>
             </div>
             <div class="labels-edit">
-            <label for='Type'>Type</label>
+            <label for='Type' class='labels-text'>Type</label>
             <input type='text' name='Type'>
+            </div>
+            <div class="labels-edit">
+            <label for='Director' class='labels-text'>Director</label>
+            <input type='text' name='Director'>
+            </div>
+            <div class="labels-edit">
+            <label for='Actors' class='labels-text'>Actors</label>
+            <input type='text' name='Actors'>
+            </div>
+            <div class="labels-edit">
+            <label for='Description' class='labels-text'>Description</label>
+            <input type='text' name='Description'>
             </div>
         </form>
         <button id="approve">OK</button>

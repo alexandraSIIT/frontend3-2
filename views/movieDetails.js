@@ -25,11 +25,11 @@ $(document).ready(function(){
                 <li class="separator">${movie.genre}</li>
                 <li>${movie.country} (${movie.year})</li>
             </ul>
-            <img src="${movie.poster}" alt="${movie.title}" class="poster"></img>
+            <img src="${movie.poster}"  class="poster"></img>
             <p id="description" class="left">${movie.description}</p>
             <p class="left"><span class="crew">Director: </span><span class="stars">${movie.director}</span></p>
             <p class="left"><span class="crew">Actors: </span><span class="stars">${movie.actors}</span></p>
-            <button id="edit hide">Edit Article</button>
+            <button id="edit">Edit Article</button>
         `);
                          
         $('#edit').on('click', function(){
@@ -42,8 +42,9 @@ $(document).ready(function(){
         });
         
         $('#approve').unbind('click').bind('click', function(){
-            var formInputs = $('#editContainer').children('input, textarea');
-            console.log(movie);
+            var formInputs = $('#editContainer');
+            // console.log('this is formInputs', formInputs[0].children);
+            // console.log(movie);
             movie.updateMovie(formInputs).then(function(){
                 container.html('');
                 movie.getMovieDetails().then(displayPage);
@@ -55,7 +56,6 @@ $(document).ready(function(){
 
 function deleteFormContents() {
     $('#editContainer')
-        .children('input, textarea')
         .each(function(){
             this.value = '';
         });

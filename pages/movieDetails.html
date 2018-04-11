@@ -82,18 +82,48 @@
     
     <div id="container"></div>
     <div id="editContainer" style="display: none">
-        Title:</br>
-        <input type="text"></br>
-        Publisher:</br>
-        <input type="text"></br>
-        Release Date:</br>
-        <input type="text"></br>
-        Image:</br>
-        <input type="text"></br>
-        Genre:</br>
-        <input type="text"></br>
-        Description:</br>
-        <textarea style="resize: none"></textarea></br>
+        <form method='PUT' class='form-edit-movie'>
+            <div class="labels-edit">
+            <label for='Title' class='labels-text'>Title</label>
+            <input type='text' name='Title'>
+            </div>
+            <div class="labels-edit">
+            <label for='Year' class='labels-text'>Year</label>
+            <input type='number' name='Year'>
+            </div>
+            <div class="labels-edit">
+            <label for='Runtime' class='labels-text'>Runtime</label>
+            <input type='text' name='Runtime'>
+            </div>
+            <div class="labels-edit">
+            <label for='Genre' class='labels-text'>Genre</label>
+            <input type='text' name='Genre'>
+            </div>
+            <div class="labels-edit">
+            <label for='Country' class='labels-text'>Country</label>
+            <input type='text' name='Country'>
+            </div>
+            <div class="labels-edit">
+            <label for='Poster' class='labels-text'>Poster</label>
+            <input type='text' name='Poster'>
+            </div>
+            <div class="labels-edit">
+            <label for='imdbRating' class='labels-text'>imdbRating</label>
+            <input type='number' name='imdbRating'>
+            </div>
+            <div class="labels-edit">
+            <label for='Director' class='labels-text'>Director</label>
+            <input type='text' name='Director'>
+            </div>
+            <div class="labels-edit">
+            <label for='Actors' class='labels-text'>Actors</label>
+            <input type='text' name='Actors'>
+            </div>
+            <div class="labels-edit">
+            <label for='Description' class='labels-text'>Description</label>
+            <input type='text' name='Description'>
+            </div>
+        </form>
         <button id="approve">OK</button>
         <button id="cancel">CANCEL</button>
     </div>
