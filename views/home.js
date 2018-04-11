@@ -310,25 +310,30 @@ function getCookiesAsObject() {
 } 
 
 function displaySearchResult(list) {
-    console.log(list);
     let createContainer = $('#createContainer');
     let listElement = $('#movieList');
-    listElement.children().remove();
     let results = list.results;
-    console.log(list.results);
-        for (let i=0; i<results.length; i++){
+    listElement.children().remove();
+    //Goes through each inividual movie and appends it to the listElement
+    for (let i=0; i<results.length; i++){
         let movie = new MovieListView(results[i]);
         listElement.append(
-            `<li data-idcode="${movie.id}">
+            `<li class="movie-list-item clearfix" data-idcode="${movie.id}">
                 <img class="poster-small" src="${movie.imageUrl}" alt="${movie.title}"></img></br>
-                <h3><a target="_blank" href="/frontend3-2/pages/movieDetails.html?movieId=${movie.id}">${movie.title} (${movie.year})</a></h3>
-                <div>Type: ${movie.type}</div>
-                <div>${movie.runtime} - ${movie.genre}</div>
-                <div>Rating: ${movie.rating} / 10 - (${movie.votes} votes)</div>
-                <button class="del hide" id="${movie.id}">Delete Movie</button>
-            </li></br>`
+                <div class="movie-info">
+                    <h3><a target="_self" href="/frontend3-2/pages/movieDetails.html?movieId=${movie.id}">${movie.title} (${movie.year})</a></h3>
+                    <div>Type: ${movie.type}</div>
+                    <div>${movie.runtime} - ${movie.genre}</div>
+                    <div>Rating: ${movie.rating} / 10 - (${movie.votes} votes)</div>
+                    <button class="del" id="${movie.id}">Delete Movie</button>
+                </div>
+            </li>`
         );
     }
+    
+    $('#currentPage').html(list.pagination.currentPage);
+    //Below are the event listeners for the delete, add, cancel and approve buttons
+    
     $('.del').on('click', (event) => {
         deleteMovie($(event.currentTarget).attr('id')).then(() => {
             listElement.html('');
@@ -351,7 +356,8 @@ function displaySearchResult(list) {
         postMovie(formInputs).then(() => {
             listElement.html('');
             getMoviesList();
-        });
+        })
+     
     });
 }
 
