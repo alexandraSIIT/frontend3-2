@@ -8,9 +8,8 @@ $(document).ready(function(){
     const registerLogIn = $('#register-logIn');
     SyncHtmlPages(registerLogIn,logOutBtn);
     const registerBtn = $('#register');
-    
+    const registerForm = $('#registerFormCont');
     registerBtn.click(function registerFormAppear(){
-        const registerForm = $('#registerFormCont');
         registerForm.addClass('show').removeClass('hide');
         showingPassword();
         exitRegisterForm(registerForm);
@@ -106,10 +105,7 @@ $(document).ready(function(){
             }
         return user;
     }
-
-    // This function recalls the getCookiesAsObject for the const authToken to have the 
-    // current token value saved in the cookies.
-    // Also calls logOutRequest function
+    
     function onClickLogOut(){
         const authToken = getCookiesAsObject();
         logOutBtn.addClass('hide').removeClass('show');
@@ -117,7 +113,6 @@ $(document).ready(function(){
         logOutRequest(baseURL,authToken);
         deleteToken();
         disappearBtn();
-        
     }
 
    
