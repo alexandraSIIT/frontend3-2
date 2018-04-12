@@ -7,7 +7,6 @@ $(document).ready(function(){
     var movie = new GetMovie();
     movie.id = getUrlParameter('movieId');
     movie.getMovieDetails().then(displayPage);
-    
     function getUrlParameter(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
         var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -32,7 +31,7 @@ $(document).ready(function(){
             <p class="left"><span class="crew">Actors: </span><span class="stars">${movie.actors}</span></p>
             <button id="edit">Edit Article</button>
         `);
-                         
+        
         $('#edit').on('click', function(){
             editContainer.css('display', 'block');
         });

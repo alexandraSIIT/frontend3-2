@@ -3,17 +3,30 @@
 
 $(document).ready(function(){
     const baseURL = "https://ancient-caverns-16784.herokuapp.com/";
-    const allowedChr = /^[a-zA-Z0-9]+$/;
+    var allowedChr = /[^a-z0-9]/gi;
     const logOutBtn = $('#log-out');
     const registerLogIn = $('#register-logIn');
     SyncHtmlPages(registerLogIn,logOutBtn);
-    
     const registerBtn = $('#register');
     const registerForm = $('#registerForm');
     registerBtn.click(function registerFormAppear(){
-       registerForm.addClass('show').removeClass('hide');
-       exitFormBtn();
-    });
+        registerForm.addClass('show').removeClass('hide');
+        exitFormBtn();
+        const confPassword = $("[name=ConfirmPassword]");
+        const password = $("#logInForm [name=Password]");
+        
+        //This function makes the password visible when checking the "show password checkbox"
+        $('#check').on("change", function (){ 
+            if(this.checked){
+                password.attr('type','text');
+                confPassword.attr('type','text');
+            }
+            else{
+                password.attr('type', 'password');
+                confPassword.attr('type','password');
+            }
+        });   
+        });
     const logInBtn = $('#log-in');
     logInBtn.click(LogInForm);
     const logInSubmit = $('#logIn-submit');
@@ -33,8 +46,11 @@ $(document).ready(function(){
         loginForm.addClass('hide').removeClass('show');
         const accessToken = response.accessToken; 
         document.cookie = "token=" + accessToken; //setting the token as a cookie
-        }).catch(function(e){
-            $('#messageUsername').html("This User does not exist! Please use the Register form first.");
+        appearBtn();
+        
+    }).catch(function(e){
+        console.log(e);
+            $('#messageUser').html(e.responseJSON.message);
         });
        
         
@@ -47,17 +63,6 @@ $(document).ready(function(){
 
     const showPassword = $('#check');
     
-    //This function makes the password visible when checking the "show password checkbox"
-    $('#check').on("change", function (){ 
-        if(this.checked){
-            password.attr('type','text');
-            confPassword.attr('type','text');
-        }
-        else{
-            password.attr('type', 'password');
-            confPassword.attr('type','password');
-        }
-    });   
       
     // Search Event - Results are displayed in the console
     
@@ -110,9 +115,8 @@ function onClickLogOut(){
     registerLogIn.addClass('show').removeClass('hide');
     logOutRequest(baseURL,authToken);
     deleteToken();
-    deleteBtn.addClass('hide').removeClass('show');
-    addBtn.addClass('hide').removeClass('show');
-    editBtn.addClass('hide').removeClass('show');
+    disappearBtn();
+    
 }
 
 function exitFormBtn(){
@@ -141,6 +145,7 @@ function registerSubmitClick(event){
     const password = $("#logInForm [name=Password]");
     if (validateName(firstName,lastName) && validateEmail(emailAdress) && validateUsername(allowedChr,username) && validatePassword(allowedChr,password) && confirmPassword(password,confPassword) ){
     Registering(baseURL, username, password).then(function(response){
+        appearBtn();
         logOutBtn.addClass('show').removeClass('hide');
         registerLogIn.addClass('hide').removeClass('show');
         registerForm.addClass('hide').removeClass('show');
@@ -149,7 +154,7 @@ function registerSubmitClick(event){
         resetForm();
     }).catch(function(e){
             $('#messageUsername').html("This username already exists. Please enter another username.");
-        });
+    });
        
         
       }
@@ -162,21 +167,28 @@ function resetForm(){
 function validateName(firstName,lastName){
     if (firstName.val() === ''){
         $('#messages1').html('This field is required.');
-        onkeypress(firstName);
+        firstName.keypress(function(){
+            $('#messages1').html('');
+        });
         return false;
     }    
     if (lastName.val() === ''){
         $('#messages2').html('This field is required.');
-        onkeypress(lastName);
+        lastName.keypress(function(){
+            $('#messages2').html('');
+        });
         return false;
     } 
     else return true;
 }
 
 function validateUsername(allowedChr, username){
-     if (username.val() === '' || !allowedChr.test(username.val().length)){
+     if (allowedChr.test(username.val())){
         $('#messages4').html('This field is required. Only digits and letters are allowed.');
-        onkeypress(username);
+        username.keypress(function(){
+            $('#messages4').html('');
+            $('#messageUsername').html('');
+        });
         return false;
     } else return true;
 }
@@ -188,7 +200,9 @@ function validateEmail(emailAdress){
     const messageCont3 = $("#messages3");
     if (text === "" || arpos < 1 || dotpos < arpos + 2 || dotpos + 2 > text.length){
         messageCont3.html("Please enter a valid email adress!");
-        onkeypress(emailAdress);
+        emailAdress.keypress(function(){
+            $('#messages3').html('');
+        });
         return false;
     }else return true;
 }
@@ -196,9 +210,11 @@ function validateEmail(emailAdress){
 function validatePassword(allowedChr, password){
     const passValue = password.val();
     const messageCont5 = $("#messages5");
-    if(!allowedChr.test(passValue) || (passValue.length === 0)){
+    if(allowedChr.test(passValue) || (passValue.length === 0)){
         messageCont5.html("The password is required and must contain only digits and letters");
-        onkeypress(password);
+        password.keypress(function(){
+            $('#messages5').html('');
+        });
         return false;
     }  
     return true;
@@ -208,46 +224,41 @@ function confirmPassword(password,confPassword){
     messageCont6 = $("#messages6");
     if (confPassword.val() !== password.val()){
         messageCont6.html("The passwords does not match. Please enter it again.");
-        onkeypress(confPassword);
+        confPassword.keypress(function(){
+            $('#messages6').html('');
+        });
         return false;
     }else return true;
 }
 
-//This function hides the warning when the user starts typing in the field.
-function onkeypress(){
-  firstName.keypress(function(){
-    $('#messages1').html('');
-  });
+// //This function hides the warning when the user starts typing in the field.
+// function onkeypress(firstName,lastName,emailAdress,password,confPassword,username){
+//   firstName.keypress(function(){
+//     $('#messages1').html('');
+//   });
   
-  lastName.keypress(function(){
-    $('#messages2').html('');
-  });
+//   lastName.keypress(function(){
+//     $('#messages2').html('');
+//   });
   
-  emailAdress.keypress(function(){
-    $('#messages3').html('');
-  });
+//   emailAdress.keypress(function(){
+//     $('#messages3').html('');
+//   });
 
-  password.keypress(function(){
-    $('#messages5').html('');
-  });
+//   password.keypress(function(){
+//     $('#messages5').html('');
+//   });
 
-  confPassword.keypress(function(){
-    $('#messages6').html('');
-  });
+//   confPassword.keypress(function(){
+//     $('#messages6').html('');
+//   });
 
-  username.keypress(function(){
-    $('#messages4').html('');
-    $('#messageUsername').html('');
-  });
+//   username.keypress(function(){
+//     $('#messages4').html('');
+//     $('#messageUsername').html('');
+//   });
+// }
 
-   firstName.keypress(function(){
-    $('#messages1').html('');
-  });
-  
-   lastName.keypress(function(){
-    $('#messages2').html('');
-  });
-};
 
 });
 
@@ -259,9 +270,11 @@ function SyncHtmlPages(registerLogIn,logOutBtn){
         if(!authToken){
             registerLogIn.addClass('show').removeClass('hide');
             logOutBtn.addClass('hide').removeClass('show');
+            // disappearBtn();
         } else {
             logOutBtn.addClass('show').removeClass('hide');
             registerLogIn.addClass('hide').removeClass('show');
+            // appearBtn();
         }   
     }
 
@@ -300,7 +313,7 @@ function displaySearchResult(list) {
                 <div>Type: ${movie.type}</div>
                 <div>${movie.runtime} - ${movie.genre}</div>
                 <div>Rating: ${movie.rating} / 10 - (${movie.votes} votes)</div>
-                <button class="del hide" id="${movie.id}">Delete Movie</button>
+                <button class="del" id="${movie.id}">Delete Movie</button>
             </li></br>`
         );
     }
@@ -331,6 +344,22 @@ function displaySearchResult(list) {
     });
 }
 
+function appearBtn(){
+    const addBtn = $(".add");
+    addBtn.show();
+    const deleteBtn = $(".del");
+    deleteBtn.show();
+    const editBtn = $("#edit")
+    editBtn.show();
+}
+function disappearBtn(){
+    const addBtn = $(".add");
+    addBtn.hide();
+    const deleteBtn = $(".del");
+    deleteBtn.hide();
+    const editBtn = $("#edit");
+    editBtn.hide();
+}
 //Function below renders the movie list "list" in a user friendly format
 //Then it attaches some event listeners for interface buttons
 function displayAllMovies(list){
@@ -352,8 +381,9 @@ function displayAllMovies(list){
                     <button class="del" id="${movie.id}">Delete Movie</button>
                 </div>
             </li>`
-        );
-        
+        );     
+    // const deleteBtn = $(".del");
+    // deleteBtn.hide();
     }
     
     $('#currentPage').html(list.pagination.currentPage);
@@ -366,7 +396,7 @@ function displayAllMovies(list){
         });
     });
 
-    $('#add').on('click', () => {
+    $('.add').on('click', () => {
         createContainer.css('display', 'block');
     });
     
