@@ -21,25 +21,27 @@
         <a href="home.html">
             <img class="logo" height="80" width="207" src="../resources/img/logo.svg"/>
         </a>
-        <div id="register-logIn" class="show"><a id="log-in" href="#">LogIn</a><span> / </span><a id="register" href="#registerForm">Register</a></div> 
+        <div id="register-logIn" class="login-button show"><a id="log-in" href="#">LogIn</a><span> / </span><a id="register" href="#registerForm">Register</a></div> 
         <a id="log-out" class="hide">LogOut</a>
     </header>
     
     <!--Will link the LogIn button to the LogIn form-->
       
-    <div class="hide" id="log-in">
- 
-    <p>Username:
-    <input type="text" size="15" name="username" id="username" />
+    <div class="hide" id="login">
+    <button id="exit" style="font-size:24px"><i class="fa fa-times-circle"></i></button>
+    <form id="LogInForm" class = "pull-right">
+     <span id="messageUser"></span>
+    Username:
+    <input class="logIntextInput" id="username" type="text" size="15" name="Username" placeholder="Type username" />
  
     <br />
     Password:
-    <input type="password" size="15" name="password" id="password" />
+    <input class="logIntextInput" id="password" type="password" size="15" name="Password" placeholder = "Type password"  />
  
     <br />
-    <input type="submit" class="button" id="logIn-submit" name="login" value="Login" />
+    <input class="logInButton" type="submit" class="button" id="logIn-submit" name="login" value="Login" />
  
-    </p>
+    </form>
     </div>
     
     <div id="registerForm" class="hide">
