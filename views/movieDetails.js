@@ -13,7 +13,8 @@ $(document).ready(function(){
         var results = regex.exec(location.search);
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     }
-    
+   
+        
     function displayPage(){
         // var date = new Date(movie.year);
         $('#movie-title').text(`${movie.title} - Movie Roll`);
@@ -29,8 +30,9 @@ $(document).ready(function(){
             <p id="description" class="left">${movie.description}</p>
             <p class="left"><span class="crew">Director: </span><span class="stars">${movie.director}</span></p>
             <p class="left"><span class="crew">Actors: </span><span class="stars">${movie.actors}</span></p>
-            <button id="edit">Edit Article</button>
+            <button id="edit" class="hide">Edit Article</button>
         `);
+        makeEditBtnAppear();
         
         $('#edit').on('click', function(){
             editContainer.css('display', 'block');
@@ -60,3 +62,10 @@ function deleteFormContents() {
             this.value = '';
         });
 }
+ function makeEditBtnAppear(){
+        const value = verifyCookieStatus();
+        const editBtn = $('#edit');
+        if (value){
+            editBtn.show();
+        };
+    };    

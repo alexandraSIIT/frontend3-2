@@ -1,6 +1,6 @@
 /*Register form style*/
 
-#registerForm {
+#registerFormCont {
     width: 100vw;
     height: 100vh;
     opacity: 0.95;
@@ -17,7 +17,7 @@
     /*background-color: rgba(0,0,0,0);*/
     font-size: 24px;
 }
-#logInForm{
+#RegisterForm{
     position: relative;
     background-color: #660000;
     width: 500px;
@@ -30,14 +30,14 @@
 
 
 
-#logInForm h3{
+#RegisterForm h3{
     color: #cccccc;
     font-size: 40px;
     border-bottom-color: #232429;
     text-align: center;
 }
 
-#logInForm input:not([type=checkbox]){
+#RegisterForm input:not([type=checkbox]){
     position: absolute;
     left: 160px;
     width: 65%;

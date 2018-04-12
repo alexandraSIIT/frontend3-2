@@ -3,68 +3,30 @@
 
 $(document).ready(function(){
     const baseURL = "https://ancient-caverns-16784.herokuapp.com/";
-    var allowedChr = /[^a-z0-9]/gi;
     const logOutBtn = $('#log-out');
+    
     const registerLogIn = $('#register-logIn');
     SyncHtmlPages(registerLogIn,logOutBtn);
     const registerBtn = $('#register');
-    const registerForm = $('#registerForm');
+    const registerForm = $('#registerFormCont');
     registerBtn.click(function registerFormAppear(){
         registerForm.addClass('show').removeClass('hide');
-        exitFormBtn();
-        const confPassword = $("[name=ConfirmPassword]");
-        const password = $("#logInForm [name=Password]");
+        showingPassword();
+        exitFormBtn(registerForm);
+    });
         
-        //This function makes the password visible when checking the "show password checkbox"
-        $('#check').on("change", function (){ 
-            if(this.checked){
-                password.attr('type','text');
-                confPassword.attr('type','text');
-            }
-            else{
-                password.attr('type', 'password');
-                confPassword.attr('type','password');
-            }
-        });   
-        });
     const logInBtn = $('#log-in');
     logInBtn.click(LogInForm);
     const logInSubmit = $('#logIn-submit');
     logInSubmit.click(LogInSubmitClick);
     
-
-    
-    function LogInSubmitClick(event){
-    const username = $("#LogInForm [ name=Username]");
-    const password = $("#LogInForm [ name=Password]");
-    event.preventDefault();
-    if (validateUsername(allowedChr, username) && validatePassword(allowedChr,password)){
-    loggingIn(baseURL, username, password).then(function(response){
-        logOutBtn.addClass('show').removeClass('hide');
-        registerLogIn.addClass('hide').removeClass('show');
-        loginForm.addClass('hide').removeClass('show');
-        const accessToken = response.accessToken; 
-        document.cookie = "token=" + accessToken; //setting the token as a cookie
-        appearBtn();
-        
-    }).catch(function(e){
-        console.log(e);
-            $('#messageUser').html(e.responseJSON.message);
-        });
-       
-        
-      }
-}
     const registerSubmitBtn = $('#register-submit');
     registerSubmitBtn.click(registerSubmitClick);
 
     logOutBtn.click(onClickLogOut);
-
-    const showPassword = $('#check');
     
-      
     // Search Event - Results are displayed in the console
-    
+
     const valueInput = $('#search');
     const userOption = $('option');
 
@@ -98,60 +60,112 @@ $(document).ready(function(){
         return user;
     }
 
-// This function recalls the getCookiesAsObject for the const authToken to have the 
-// current token value saved in the cookies.
-// Also calls logOutRequest function
-function onClickLogOut(){
-    const authToken = getCookiesAsObject();
-    logOutBtn.addClass('hide').removeClass('show');
-    registerLogIn.addClass('show').removeClass('hide');
-    logOutRequest(baseURL,authToken);
-    deleteToken();
-    disappearBtn();
+    // This function recalls the getCookiesAsObject for the const authToken to have the 
+    // current token value saved in the cookies.
+    // Also calls logOutRequest function
+    function onClickLogOut(){
+        const authToken = getCookiesAsObject();
+        logOutBtn.addClass('hide').removeClass('show');
+        registerLogIn.addClass('show').removeClass('hide');
+        logOutRequest(baseURL,authToken);
+        deleteToken();
+        disappearBtn();
+        
+    }
     
-}
+   
+    // This function is called when clicking the submit button
+    function registerSubmitClick(event){
+        const baseURL = "https://ancient-caverns-16784.herokuapp.com/";
+        event.preventDefault();
+        actionOnRegisterSubmit(baseURL,logOutBtn,registerLogIn,registerForm);
+    }
 
-function exitFormBtn(){
+});
+
+    //This function makes the password visible when checking the "show password checkbox"
+    function showingPassword(){ 
+        const confPassword = $("[name=ConfirmPassword]");
+        const password = $("#RegisterForm [name=Password]");
+        $('#check').on("change", function (){ 
+            if(this.checked){
+                password.attr('type','text');
+                confPassword.attr('type','text');
+            }
+            else{
+                password.attr('type', 'password');
+                confPassword.attr('type','password');
+            }
+        });   
+    };
+
+    function LogInSubmitClick(event,logOutBtn,loginForm,registerLogIn){
+        const username = $("#LogInForm [ name=Username]");
+        const password = $("#LogInForm [ name=Password]");
+        var allowedChr = /[^a-z0-9]/gi;
+        event.preventDefault();
+        if (validateUsername(allowedChr, username) && validatePassword(allowedChr,password)){
+        loggingIn(baseURL, username, password).then(function(response){
+            logOutBtn.addClass('show').removeClass('hide');
+            registerLogIn.addClass('hide').removeClass('show');
+            loginForm.addClass('hide').removeClass('show');
+            const accessToken = response.accessToken; 
+            document.cookie = "token=" + accessToken; //setting the token as a cookie
+            appearBtn();
+        }).catch(function(e){
+            console.log(e);
+                $('#messageUser').html(e.responseJSON.message);
+            });
+           
+            
+        }
+    }
+
+function exitFormBtn(registerForm){
     const xBtn = $('#x');
     xBtn.click(function(){
         registerForm.addClass('hide').removeClass('show');
-    })
+    });
+    
 }
-
+    
 // This function deletes the token from cookie
-    function deleteToken() {
+function deleteToken() {
     document.cookie = "token" + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
-// This function is called when clicking the submit button
-function registerSubmitClick(event){
-    event.preventDefault();
+function actionOnRegisterSubmit(baseURL, logOutBtn, registerLogIn, registerForm){
     const firstName = $("[name=FirstName]");
     const lastName = $("[name=LastName]");
     const emailAdress = $("[name=EmailAdress]");
     const confPassword = $("[name=ConfirmPassword]");
-    const username = $("#logInForm [name=Username]");
-    const password = $("#logInForm [name=Password]");
+    const username = $("#RegisterForm [name=Username]");
+    const password = $("#RegisterForm [name=Password]");
+    var allowedChr = /[^a-z0-9]/gi;
     if (validateName(firstName,lastName) && validateEmail(emailAdress) && validateUsername(allowedChr,username) && validatePassword(allowedChr,password) && confirmPassword(password,confPassword) ){
-    Registering(baseURL, username, password).then(function(response){
-        appearBtn();
-        logOutBtn.addClass('show').removeClass('hide');
-        registerLogIn.addClass('hide').removeClass('show');
-        registerForm.addClass('hide').removeClass('show');
-        const accessToken = response.accessToken; 
-        document.cookie = "token=" + accessToken; //setting the token as a cookie
-        resetForm();
-    }).catch(function(e){
+        Registering(baseURL, username, password).then(function(response){
+            appearBtn();
+            resetForm();
+            logOutBtn.addClass('show').removeClass('hide');
+            registerLogIn.addClass('hide').removeClass('show');
+            registerForm.addClass('hide').removeClass('show');
+            const accessToken = response.accessToken; 
+            document.cookie = "token=" + accessToken; //setting the token as a cookie
+        }).catch(function(e){
             $('#messageUsername').html("This username already exists. Please enter another username.");
         });
-       
-        
-      }
-
+    };
+};
+function LogInForm() {
+    const login = $('#login');
+    login.addClass('show').removeClass('hide');
 }
-
-function resetForm(){
-    $(".logInForm").trigger("reset");
+    
+function onClickLogIn(){
+    let auth = response.authenticated;
+    let authenticatedToken = response.authToken;
+    console.log(auth);
+    appearBtn();
 }
 
 function validateName(firstName,lastName){
@@ -173,7 +187,8 @@ function validateName(firstName,lastName){
 }
 
 function validateUsername(allowedChr, username){
-     if (allowedChr.test(username.val())){
+    const usernameVal = username.val();
+     if (allowedChr.test(usernameVal) || (usernameVal==="")){
         $('#messages4').html('This field is required. Only digits and letters are allowed.');
         username.keypress(function(){
             $('#messages4').html('');
@@ -200,7 +215,7 @@ function validateEmail(emailAdress){
 function validatePassword(allowedChr, password){
     const passValue = password.val();
     const messageCont5 = $("#messages5");
-    if(allowedChr.test(passValue) || (passValue.length === 0)){
+    if(allowedChr.test(passValue) || (passValue==="")){
         messageCont5.html("The password is required and must contain only digits and letters");
         password.keypress(function(){
             $('#messages5').html('');
@@ -211,7 +226,7 @@ function validatePassword(allowedChr, password){
 }
 
 function confirmPassword(password,confPassword){
-    messageCont6 = $("#messages6");
+    const messageCont6 = $("#messages6");
     if (confPassword.val() !== password.val()){
         messageCont6.html("The passwords does not match. Please enter it again.");
         confPassword.keypress(function(){
@@ -222,7 +237,9 @@ function confirmPassword(password,confPassword){
     return true;
 }
 
-});
+function resetForm(){
+    $("#RegisterForm").trigger("reset");
+}
 
 // This function checks for the token in cookie. Therefore it syncronizes both HTML
 // pages so that when the registration has been done at home page it is applied on
@@ -257,6 +274,43 @@ function getCookiesAsObject() {
         }
 } 
 
+function verifyCookieStatus(){
+    const authToken = getCookiesAsObject();
+    if (!authToken){
+        return false;
+    }else {
+        return true;
+    }
+}
+
+function appearBtn(){
+    const addBtn = $(".add");
+    addBtn.show();
+    const deleteBtn = $(".del");
+    deleteBtn.show();
+    const editBtn = $("#edit")
+    editBtn.show();
+}
+function disappearBtn(){
+    const addBtn = $(".add");
+    addBtn.hide();
+    const deleteBtn = $(".del");
+    deleteBtn.hide();
+    const editBtn = $("#edit");
+    editBtn.hide();
+}
+
+function makeDelBtnAppear(deleteBtn){
+    const value = verifyCookieStatus();
+    const addBtn = $(".add");
+    if (value){
+        deleteBtn.show();
+        addBtn.show();
+    };
+    
+};
+
+
 function displaySearchResult(list) {
     let createContainer = $('#createContainer');
     let listElement = $('#movieList');
@@ -281,10 +335,10 @@ function displaySearchResult(list) {
                     <div>Type: ${movie.type}</div>
                     <div>${movie.runtime} - ${movie.genre}</div>
                     <div>Rating: ${movie.rating} / 10 - (${movie.votes} votes)</div>
-                    <button class="del" id="${movie.id}">Delete Movie</button>
                 </div>
             </li>`
         );
+        makeDelBtnAppear(listElement, movie);
     }
     // Pagination Stuff
     let pagination = list.pagination;
@@ -333,22 +387,6 @@ function displaySearchResult(list) {
     });
 }
 
-function appearBtn(){
-    const addBtn = $(".add");
-    addBtn.show();
-    const deleteBtn = $(".del");
-    deleteBtn.show();
-    const editBtn = $("#edit")
-    editBtn.show();
-}
-function disappearBtn(){
-    const addBtn = $(".add");
-    addBtn.hide();
-    const deleteBtn = $(".del");
-    deleteBtn.hide();
-    const editBtn = $("#edit");
-    editBtn.hide();
-}
 //Function below renders the movie list "list" in a user friendly format
 //Then it attaches some event listeners for interface buttons
 function displayAllMovies(list){
@@ -368,11 +406,13 @@ function displayAllMovies(list){
                     <div>Type: ${movie.type}</div>
                     <div>${movie.runtime} - ${movie.genre}</div>
                     <div>Rating: ${movie.rating} / 10 - (${movie.votes} votes)</div>
-                    <button class="del" id="${movie.id}">Delete Movie</button>
                 </div>
+                <button class="del hide" id="${movie.id}">Delete Movie</button>
             </li>`
 
         );
+        const deleteBtn = $('.del');
+        makeDelBtnAppear(deleteBtn);
     }
     
     // Pagination Stuff
@@ -441,10 +481,12 @@ function displayMoviesPagination(list){
                     <div>Type: ${movie.type}</div>
                     <div>${movie.runtime} - ${movie.genre}</div>
                     <div>Rating: ${movie.rating} / 10 - (${movie.votes} votes)</div>
-                    <button class="del" id="${movie.id}">Delete Movie</button>
                 </div>
+                <button class="del hide" id="${movie.id}">Delete Movie</button>
             </li>`
         );
+        const deleteBtn = $('.del');
+        makeDelBtnAppear(deleteBtn);
     }
     
     // Pagination Stuff
@@ -510,10 +552,13 @@ function displayPrevMovies(list){
                     <div>Type: ${movie.type}</div>
                     <div>${movie.runtime} - ${movie.genre}</div>
                     <div>Rating: ${movie.rating} / 10 - (${movie.votes} votes)</div>
-                    <button class="del" id="${movie.id}">Delete Movie</button>
                 </div>
+                <button class="del hide" id="${movie.id}">Delete Movie</button>
             </li>`
         );
+        // makeDelBtnAppear(listElement, movie);
+        const deleteBtn = $('.del');
+        makeDelBtnAppear(deleteBtn);
     }
     
     // $('#currentPage').html(list.pagination.currentPage);
@@ -555,19 +600,7 @@ function deleteFormContents() {
         });
 }
 
-// This function calls getCookiesAsObject for the
-// const authToken in order to login
 
-function LogInForm() {
-    const login = $('#login');
-    login.addClass('show').removeClass('hide');
-}
-    
-function onClickLogIn(){
-    let auth = response.authenticated;
-    let authenticatedToken = response.authToken;
-    console.log(auth);
-}
 
 
 

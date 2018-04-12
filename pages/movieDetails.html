@@ -27,51 +27,53 @@
     
     <!--Will link the LogIn button to the LogIn form-->
       
-    <div class="hide" id="log-in">
- 
-    <p>Username:
-    <input type="text" size="15" name="username" id="username" />
+    <div class="hide" id="login">
+    <button id="exit" style="font-size:24px"><i class="fa fa-times-circle"></i></button>
+    <form id="LogInForm" class = "pull-right">
+     <span id="messageUser"></span>
+    Username:
+    <input class="logIntextInput" id="username" type="text" size="15" name="Username" placeholder="Type username" />
  
     <br />
     Password:
-    <input type="password" size="15" name="password" id="password" />
+    <input class="logIntextInput" id="password" type="password" size="15" name="Password" placeholder = "Type password"  />
  
     <br />
-    <input type="submit" class="button" id="logIn-submit" name="login" value="Login" />
+    <input class="logInButton" type="submit" class="button" id="logIn-submit" name="login" value="Login" />
  
-    </p>
+    </form>
     </div>
     
-    <div id="registerForm" class="hide">
+   <div id="registerFormCont" class="hide">
         <button id="x"><i class="fas fa-times"></i></button>
-       <form id="logInForm" class="pull-left shadow" name="myForm" >
+       <form id="RegisterForm" class="pull-left shadow" name="myForm" >
            <h3>Register</h3>
            <br>
-           <span id="messageUsername"></span>
+           <div id="messageUsername"></div>
            <br>
-           <input class="textInput shadow" type="text" name="FirstName" placeholder="First Name"/>
+           First Name: <input class="textInput shadow" type="text" name="FirstName" placeholder="First Name"/>
            <br>
            <span id="messages1" class="message"></span>
            <br>
-           <input class="textInput shadow" type="text" name="LastName" placeholder="Last Name"/>
+           Last Name: <input class="textInput shadow" type="text" name="LastName" placeholder="Last Name"/>
            <br>
            <span id="messages2" class="message"></span>
            <br>
-           <input class="textInput shadow" type="text" name="EmailAdress" placeholder="Email adress"/>
+           Email: <input class="textInput shadow" type="text" name="EmailAdress" placeholder="Email adress"/>
            <br>
            <span id="messages3" class="message"></span>
            <br>
-           <input class="textInput shadow" type="text" name="Username" placeholder="Username"/>
+           Username: <input class="textInput shadow" type="text" name="Username" placeholder="Username"/>
            <br>
            <span id="messages4" class="message"></span>
            <br>
-           <input class="textInput shadow" type="password" name="Password" placeholder="Password"/>
+           Password: <input class="textInput shadow" type="password" name="Password" placeholder="Password"/>
            <br>
            <span id="messages5" class="message"></span>
            <br>
            <input type="checkbox" id="check" /> Show Password
            <br>
-           <input class="textInput shadow" type="password" name="ConfirmPassword" placeholder="Confirm password"/>
+           Confirm Password: <input class="textInput shadow" type="password" name="ConfirmPassword" placeholder="Confirm password"/>
            <br>
            <span id="messages6" class="message"></span>
            <br>
