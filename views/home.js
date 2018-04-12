@@ -14,18 +14,6 @@ $(document).ready(function(){
         showingPassword();
         exitRegisterForm(registerForm);
     });
-        
-        //This function makes the password visible when checking the "show password checkbox"
-        $('#check').on("change", function (){ 
-            if(this.checked){
-                password.attr('type','text');
-                confPassword.attr('type','text');
-            }
-            else{
-                password.attr('type', 'password');
-                confPassword.attr('type','password');
-            }
-        });   
     
     const logInBtn = $('#log-in');
     logInBtn.click(function LogInForm(){
