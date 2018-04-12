@@ -30,7 +30,7 @@ $(document).ready(function(){
                 confPassword.attr('type','password');
             }
         });   
-    });
+    
     const logInBtn = $('#log-in');
     logInBtn.click(LogInForm);
     const logInSubmit = $('#logIn-submit');
@@ -72,15 +72,15 @@ $(document).ready(function(){
                 $('#messageUser').html(e.responseJSON.message);
             });
        
-        
-      }
-}
+        }
+    }
+
 
     const registerSubmitBtn = $('#register-submit');
     registerSubmitBtn.click(registerSubmitClick);
 
     logOutBtn.click(onClickLogOut);
-    
+});
     // Search Event - Results are displayed in the console
 
     const valueInput = $('#search');
@@ -140,7 +140,7 @@ $(document).ready(function(){
         actionOnRegisterSubmit(baseURL,logOutBtn,registerLogIn,registerForm);
     }
 
-});
+
 
     //This function makes the password visible when checking the "show password checkbox"
     function showingPassword(){ 
@@ -156,7 +156,7 @@ $(document).ready(function(){
                 confPassword.attr('type','password');
             }
         });   
-    };
+    }
 
 
 function exitFormBtn(registerForm){
@@ -292,7 +292,7 @@ function SyncHtmlPages(registerLogIn,logOutBtn){
             logOutBtn.addClass('show').removeClass('hide');
             registerLogIn.addClass('hide').removeClass('show');
         }   
-    }
+}
 
 // This function takes the token that was previously saved in cookies
 function getCookiesAsObject() {
@@ -330,6 +330,7 @@ function appearBtn(){
     const editBtn = $("#edit")
     editBtn.show();
 }
+
 function disappearBtn(){
     const addBtn = $(".add");
     addBtn.hide();
