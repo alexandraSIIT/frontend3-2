@@ -198,16 +198,18 @@ button, input, .shadow-bottom {
 
 .pagination a {
     color: white;
-    padding: 8px 10px;
+    padding: 6px 10px;
     text-decoration: none;
     transition: background-color .3s;
     border: 1px solid #ddd;
+    border-radius: 2px;
     margin: 15px 5px;
 }
 
 .pagination a:hover {
     border: 1px solid #4CAF50;
     color: black;
+    cursor: pointer;
 }
 
 .pagination a:hover:not(.active) {
@@ -221,4 +223,5 @@ button, input, .shadow-bottom {
 
 #currentPage:hover {
     border-color: #ddd;
+    cursor: no-drop;
 }
