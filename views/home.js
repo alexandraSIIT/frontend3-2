@@ -36,15 +36,16 @@ $(document).ready(function(){
     logInSubmit.click(LogInSubmitClick);
     
     
+    
     function LogInForm() {
-    const login = $('#login');
+    const login = $("#login");
     login.addClass('show').removeClass('hide');
     exitLogInForm(login);
     }
     
     
     function exitLogInForm(login){
-    const xBtn = $('#exit');
+    const xBtn = $("#exit");
     xBtn.click(function(){
         login.addClass('hide').removeClass('show');
     })
@@ -55,13 +56,13 @@ $(document).ready(function(){
     function LogInSubmitClick(event){
     const username = $("#LogInForm [ name=Username]");
     const password = $("#LogInForm [ name=Password]");
+    const logInbtn = $("#login");
     event.preventDefault();
     if (validateUsername(allowedChr, username) && validatePassword(allowedChr,password)){
     loggingIn(baseURL, username, password).then(function(response){
         logOutBtn.addClass('show').removeClass('hide');
         registerLogIn.addClass('hide').removeClass('show');
-        loginForm.addClass('hide').removeClass('show');
-        login.addClass('hide').removeClass('show');
+        logInbtn.addClass('hide').removeClass('show');
         const accessToken = response.accessToken; 
         document.cookie = "token=" + accessToken; //setting the token as a cookie
         appearBtn();
