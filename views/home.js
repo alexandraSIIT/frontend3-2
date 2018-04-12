@@ -62,7 +62,6 @@ $(document).ready(function(){
 
     const showPassword = $('#check');
     
-      
     // Search Event - Results are displayed in the console
     
     const valueInput = $('#search');
@@ -75,7 +74,10 @@ $(document).ready(function(){
             console.log(valueInput.val());
             
             let valueToSearch = valueInput.val();
-
+            valueToSearch = valueToSearch.toLowerCase().replace(/\b[a-z]/g, (letter) => {
+                return letter.toUpperCase();
+            });
+            console.log(valueToSearch);
             userChoice();
             searchMovie(baseURL, user, valueToSearch);
         }
@@ -325,7 +327,6 @@ function displaySearchResult(list) {
     
     $('#approve').unbind('click').bind('click', () => {
         var formInputs = $('#createContainer');
-        
         postMovie(formInputs).then(() => {
             listElement.html('');
             getMoviesList();
@@ -355,8 +356,20 @@ function displayAllMovies(list){
     console.log(list);
     let createContainer = $('#createContainer');
     let listElement = $('#movieList');
+    
     let results = list.results;
-    const authToken = getCookiesAsObject();
+    // const authToken = getCookiesAsObject();
+    let movie = new MovieListView(results);
+    movie.id = getUrlParameter('movieId');
+    
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+    
+
     //Goes through each inividual movie and appends it to the listElement
     for (let i=0; i<results.length; i++){
         let movie = new MovieListView(results[i]);
@@ -374,6 +387,7 @@ function displayAllMovies(list){
 
         );
     }
+
     
     // Pagination Stuff
     let pagination = list.pagination;
@@ -399,7 +413,7 @@ function displayAllMovies(list){
     //Below are the event listeners for the delete, add, cancel and approve buttons
     
     $('.del').on('click', (event) => {
-        deleteMovie($(event.currentTarget).attr('id')).then(() => {
+        movie.deleteMovie($(event.currentTarget).attr('id')).then(() => {
             listElement.html('');
             getMoviesList();
         });
@@ -417,7 +431,7 @@ function displayAllMovies(list){
     $('#approve').unbind('click').bind('click', () => {
         var formInputs = $('#createContainer');
         
-        postMovie(formInputs).then(() => {
+        movie.postMovie(formInputs).then(() => {
             listElement.html('');
             getMoviesList();
         });
@@ -468,13 +482,13 @@ function displayMoviesPagination(list){
     //Below are the event listeners for the delete, add, cancel and approve buttons
     
     $('.del').on('click', (event) => {
-        deleteMovie($(event.currentTarget).attr('id')).then(() => {
+        movie.deleteMovie($(event.currentTarget).attr('id')).then(() => {
             listElement.html('');
             getMoviesList();
         });
     });
 
-    $('#add').on('click', () => {
+    $('.add').on('click', () => {
         createContainer.css('display', 'block');
     });
     
@@ -486,7 +500,7 @@ function displayMoviesPagination(list){
     $('#approve').unbind('click').bind('click', () => {
         var formInputs = $('#createContainer');
         
-        postMovie(formInputs).then(() => {
+        movie.postMovie(formInputs).then(() => {
             listElement.html('');
             getMoviesList();
         })
@@ -520,13 +534,13 @@ function displayPrevMovies(list){
     //Below are the event listeners for the delete, add, cancel and approve buttons
     
     $('.del').on('click', (event) => {
-        deleteMovie($(event.currentTarget).attr('id')).then(() => {
+        movie.deleteMovie($(event.currentTarget).attr('id')).then(() => {
             listElement.html('');
             getMoviesList();
         });
     });
 
-    $('#add').on('click', () => {
+    $('.add').on('click', () => {
         createContainer.css('display', 'block');
     });
     
@@ -537,8 +551,7 @@ function displayPrevMovies(list){
     
     $('#approve').unbind('click').bind('click', () => {
         var formInputs = $('#createContainer');
-        
-        postMovie(formInputs).then(() => {
+        movie.postMovie(formInputs).then(() => {
             listElement.html('');
             getMoviesList();
         })
@@ -549,7 +562,6 @@ function displayPrevMovies(list){
 //This function resets the add movie form
 function deleteFormContents() {
     $('#createContainer')
-        .children('input, textarea')
         .each(() => {
             this.value = '';
         });
