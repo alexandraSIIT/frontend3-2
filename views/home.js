@@ -231,35 +231,6 @@ function confirmPassword(password,confPassword){
     }else return true;
 }
 
-// //This function hides the warning when the user starts typing in the field.
-// function onkeypress(firstName,lastName,emailAdress,password,confPassword,username){
-//   firstName.keypress(function(){
-//     $('#messages1').html('');
-//   });
-  
-//   lastName.keypress(function(){
-//     $('#messages2').html('');
-//   });
-  
-//   emailAdress.keypress(function(){
-//     $('#messages3').html('');
-//   });
-
-//   password.keypress(function(){
-//     $('#messages5').html('');
-//   });
-
-//   confPassword.keypress(function(){
-//     $('#messages6').html('');
-//   });
-
-//   username.keypress(function(){
-//     $('#messages4').html('');
-//     $('#messageUsername').html('');
-//   });
-// }
-
-
 });
 
 // This function checks for the token in cookie. Therefore it syncronizes both HTML
