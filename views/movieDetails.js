@@ -15,6 +15,7 @@ $(document).ready(function(){
     }
     
     function displayPage(){
+        console.log(movie);
         $('#movie-title').text(`${movie.title} - Movie Roll`);
         container.append(`
 
