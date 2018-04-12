@@ -26,9 +26,11 @@ $(document).ready(function(){
                 <li>${movie.country} (${movie.year})</li>
             </ul>
             <img src="${movie.poster}" alt="${movie.title}" class="poster"></img>
-            <p id="description" class="left">${movie.description}</p>
-            <p class="left"><span class="crew">Director: </span><span class="stars">${movie.director}</span></p>
-            <p class="left"><span class="crew">Actors: </span><span class="stars">${movie.actors}</span></p>
+            <div id="secondary-container">
+                <p id="description" class="left">${movie.description}</p>
+                <p class="left"><span class="crew">Director: </span><span class="stars">${movie.director}</span></p>
+                <p class="left"><span class="crew">Actors: </span><span class="stars">${movie.actors}</span></p>
+            </div>
             <button id="edit">Edit Article</button>
         `);
         
