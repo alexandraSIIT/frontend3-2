@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed');
 /*this will be the css file with rulles common to all pages*/
 /*Global Whitespace Reset*/
 *{margin:0; padding:0;}
@@ -13,7 +14,7 @@ body {
     color: #C1BFB1;
     background: no-repeat fixed url(https://www.youtube.com/s/tv/html5/f4ebe109/img/default_bg.png);
     background-size: cover;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 a {
@@ -165,6 +166,12 @@ button, input, .shadow-bottom {
     left: 142px;
     right: 10px;
     bottom: 10px;
+}
+
+.movie-info h3 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 .del {
