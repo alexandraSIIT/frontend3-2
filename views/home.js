@@ -193,14 +193,14 @@ function onClickLogIn(){
 function validateName(firstName,lastName){
     if (firstName.val() === ''){
         $('#messages1').html('This field is required.');
-        firstName.keypress(function(){
+        firstName.keydown(function(){
             $('#messages1').html('');
         });
         return false;
     }    
     if (lastName.val() === ''){
         $('#messages2').html('This field is required.');
-        lastName.keypress(function(){
+        lastName.keydown(function(){
             $('#messages2').html('');
         });
         return false;
@@ -212,7 +212,7 @@ function validateUsername(allowedChr, username){
     const usernameVal = username.val();
      if (allowedChr.test(usernameVal) || (usernameVal==="")){
         $('#messages4').html('This field is required. Only digits and letters are allowed.');
-        username.keypress(function(){
+        username.keydown(function(){
             $('#messages4').html('');
             $('#messageUsername').html('');
         });
@@ -227,7 +227,7 @@ function validateEmail(emailAdress){
     const messageCont3 = $("#messages3");
     if (text === "" || arpos < 1 || dotpos < arpos + 2 || dotpos + 2 > text.length){
         messageCont3.html("Please enter a valid email adress!");
-        emailAdress.keypress(function(){
+        emailAdress.keydown(function(){
             $('#messages3').html('');
         });
         return false;
@@ -239,7 +239,7 @@ function validatePassword(allowedChr, password){
     const messageCont5 = $("#messages5");
     if(allowedChr.test(passValue) || (passValue==="")){
         messageCont5.html("The password is required and must contain only digits and letters");
-        password.keypress(function(){
+        password.keydown(function(){
             $('#messages5').html('');
         });
         return false;
@@ -251,7 +251,7 @@ function confirmPassword(password,confPassword){
     const messageCont6 = $("#messages6");
     if (confPassword.val() !== password.val()){
         messageCont6.html("The passwords does not match. Please enter it again.");
-        confPassword.keypress(function(){
+        confPassword.keydown(function(){
             $('#messages6').html('');
         });
         return false;
