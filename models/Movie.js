@@ -1,4 +1,4 @@
- /*global $*/
+ /*global getCookiesAsObject $*/
 
 function GetMovie(){
     this.id = null;
@@ -28,25 +28,32 @@ GetMovie.prototype.getMovieDetails = function() {
         this.language = movieDetails.Language;
         this.ratings = movieDetails.Ratings;
         this.imdbRating = movieDetails.imdbRating;
+        console.log(movieDetails);
     });
 };
 
 GetMovie.prototype.updateMovie = function(formInputs) {
-    console.log(this);
     return $.ajax({
             url: 'https://ancient-caverns-16784.herokuapp.com/movies/' + this.id,
             method: 'PUT',
             headers: {
-                'X-Auth-Token': '40c8Oq4jvRVp7LLVp6G_SU2bcLh8rA_x',
+                'X-Auth-Token': getCookiesAsObject(),
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             data: {
-                "Title": formInputs[0].value || this.title,
-                "Year": formInputs[2].value || this.year,
-                "Genre": formInputs[4].value || this.genre,
-                "Country": formInputs[1].value || this.country,
-                "Poster": formInputs[3].value || this.poster,
-                "Description": formInputs[5].value || this.description
+                "Title": formInputs[0].children[0][0].value || this.title,
+                "Year": formInputs[0].children[0][1].value || this.year,
+                "Runtime": formInputs[0].children[0][2].value || this.runtime,
+                "Genre": formInputs[0].children[0][3].value || this.genre,
+                "Country": formInputs[0].children[0][4].value || this.country,
+                "Poster": formInputs[0].children[0][5].value || this.poster,
+                "imdbRating": formInputs[0].children[0][6].value|| this.imdbRating,
+                "Director": formInputs[0].children[0][7].value || this.director,
+                "Actors": formInputs[0].children[0][8].value || this.actors,
+                "Description": formInputs[0].children[0][9].value || this.description
             }
         });
 };
+
+
+
