@@ -1,4 +1,4 @@
-/*global $, MovieListView, login deleteMovie, getMoviesList, exitLogInForm, postMovie, searchMovie, response, LoggingIn, baseURL, userName, passWord, getCookieAsObject, getNextMovies,getPrevMovies,PaginationView*/
+/*global $, MovieListView, login deleteMovie, getMoviesList, postMovie, searchMovie, response, LoggingIn, baseURL, userName, passWord, getCookieAsObject, getNextMovies,getPrevMovies,PaginationView*/
 
 
 $(document).ready(function(){
@@ -15,9 +15,24 @@ $(document).ready(function(){
         exitFormBtn(registerForm);
     });
         
+        exitFormBtn();
+        const confPassword = $("[name=ConfirmPassword]");
+        const password = $("#logInForm [name=Password]");
+        
+        //This function makes the password visible when checking the "show password checkbox"
+        $('#check').on("change", function (){ 
+            if(this.checked){
+                password.attr('type','text');
+                confPassword.attr('type','text');
+            }
+            else{
+                password.attr('type', 'password');
+                confPassword.attr('type','password');
+            }
+        });   
+    
     const logInBtn = $('#log-in');
     logInBtn.click(LogInForm);
-    
     const logInSubmit = $('#logIn-submit');
     logInSubmit.click(LogInSubmitClick);
     
@@ -34,6 +49,7 @@ $(document).ready(function(){
             login.addClass('hide').removeClass('show');
         })
     }
+
     
     function LogInSubmitClick(event){
         const username = $("#LogInForm [ name=Username]");
@@ -56,15 +72,15 @@ $(document).ready(function(){
                 $('#messageUser').html(e.responseJSON.message);
             });
        
-        
-      }
-}
+        }
+    }
+
 
     const registerSubmitBtn = $('#register-submit');
     registerSubmitBtn.click(registerSubmitClick);
 
     logOutBtn.click(onClickLogOut);
-    
+
     // Search Event - Results are displayed in the console
 
     const valueInput = $('#search');
@@ -115,7 +131,7 @@ $(document).ready(function(){
         disappearBtn();
         
     }
-    
+
    
     // This function is called when clicking the submit button
     function registerSubmitClick(event){
@@ -124,7 +140,7 @@ $(document).ready(function(){
         actionOnRegisterSubmit(baseURL,logOutBtn,registerLogIn,registerForm);
     }
 
-});
+
 
     //This function makes the password visible when checking the "show password checkbox"
     function showingPassword(){ 
@@ -140,7 +156,7 @@ $(document).ready(function(){
                 confPassword.attr('type','password');
             }
         });   
-    };
+    }
 
 
 function exitFormBtn(registerForm){
@@ -276,8 +292,8 @@ function SyncHtmlPages(registerLogIn,logOutBtn){
             logOutBtn.addClass('show').removeClass('hide');
             registerLogIn.addClass('hide').removeClass('show');
         }   
-    }
-
+}
+}); 
 // This function takes the token that was previously saved in cookies
 function getCookiesAsObject() {
     const cookiesString = document.cookie;
@@ -314,6 +330,7 @@ function appearBtn(){
     const editBtn = $("#edit")
     editBtn.show();
 }
+
 function disappearBtn(){
     const addBtn = $(".add");
     addBtn.hide();
@@ -420,7 +437,7 @@ function displayAllMovies(list){
     
     let results = list.results;
     // const authToken = getCookiesAsObject();
-    let movie = new MovieListView(results);
+    let movie = new MovieListView();
     movie.id = getUrlParameter('movieId');
     
     function getUrlParameter(name) {
@@ -564,7 +581,6 @@ function displayMoviesPagination(list){
     
     $('#approve').unbind('click').bind('click', () => {
         var formInputs = $('#createContainer');
-        
         movie.postMovie(formInputs).then(() => {
             listElement.html('');
             getMoviesList();
@@ -623,9 +639,8 @@ function displayPrevMovies(list){
         movie.postMovie(formInputs).then(() => {
             listElement.html('');
             getMoviesList();
-        })
-     
-    });
+        });
+     });
 }
 
 //This function resets the add movie form
@@ -636,13 +651,16 @@ function deleteFormContents() {
         });
 }
 
-
-
-
-
-
+function LogInForm() {
+    const login = $('#login');
+    login.addClass('show').removeClass('hide');
+}
     
-    
+function onClickLogIn(){
+    let auth = response.authenticated;
+    let authenticatedToken = response.authToken;
+    console.log(auth);
+}
 
 
 

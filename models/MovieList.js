@@ -33,8 +33,6 @@ class MovieListView {
     }
 }
 
-
-
 MovieListView.prototype.deleteMovie = function(id) {
     return $.ajax({
             url: 'https://ancient-caverns-16784.herokuapp.com/movies/' + id,
@@ -46,25 +44,32 @@ MovieListView.prototype.deleteMovie = function(id) {
 }
 
 MovieListView.prototype.postMovie = function(formInputs) {
-    return $.ajax({
+    let empty = 0;
+    const element = formInputs[0].children[0];
+    for (let i=0; i<element.length; i++) {
+        if (formInputs[0].children[0][i].value == '') {
+            empty ++;
+        }
+    }
+    if (empty==0) {
+        return $.ajax({
             url: 'https://ancient-caverns-16784.herokuapp.com/movies',
             type: 'POST',
             headers: {
                 'X-Auth-Token': getCookiesAsObject(),
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            data: $('.form-add-movie').serialize(),
-            succes: function (response) {
-                console.log(response);
-            },
-            error: function (response) {
-                console.log(response)
-            },
-            failed: function (response) {
-                console.log(response);
-            }
+            data: $('.form-add-movie').serialize()
         });
+    }
+    else 
+        {
+            alert('Please fill in all fields.');
+        }
+    
 }
+
+
 
 class PaginationView {
     constructor(obj) {

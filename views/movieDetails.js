@@ -36,6 +36,16 @@ $(document).ready(function(){
         
         $('#edit').on('click', function(){
             editContainer.css('display', 'block');
+            $('.labels-edit input[name=Title]').val(movie.title);
+            $('.labels-edit input[name=Year]').val(movie.year); 
+            $('.labels-edit input[name=Runtime]').val(movie.runtime); 
+            $('.labels-edit input[name=Genre]').val(movie.genre); 
+            $('.labels-edit input[name=Country]').val(movie.country); 
+            $('.labels-edit input[name=Poster]').val(movie.poster); 
+            $('.labels-edit input[name=imdbRating]').val(movie.imdbRating); 
+            $('.labels-edit input[name=Director]').val(movie.director); 
+            $('.labels-edit input[name=Actors]').val(movie.actors); 
+            $('.labels-edit input[name=Description]').val(movie.description); 
         });
         
         $('#cancel').on('click', function(){
