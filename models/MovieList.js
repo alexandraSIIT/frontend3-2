@@ -33,6 +33,9 @@ class MovieListView {
     }
 }
 
+
+
+MovieListView.prototype.deleteMovie = function(id) {
 class PaginationView {
     constructor(obj) {
         obj = obj || {};
@@ -41,6 +44,7 @@ class PaginationView {
         this.prevPage = obj.links.prev || null;
         this.selfPage = obj.links.self || null;
     }
+}
 }
 
 // This function is a simple ajax call to delete a movie from the API
@@ -54,9 +58,8 @@ function deleteMovie(id){
     });
 }
 
-// This function is a ajax call to post a new movie to the API
-function postMovie(formInputs) {
-     return $.ajax({
+MovieListView.prototype.postMovie = function(formInputs) {
+    return $.ajax({
             url: 'https://ancient-caverns-16784.herokuapp.com/movies',
             type: 'POST',
             headers: {
@@ -73,7 +76,7 @@ function postMovie(formInputs) {
             failed: function (response) {
                 console.log(response);
             }
-     })
+     });
 }
 
 // Search: This function is an AJAX call to bring the desired movie
@@ -91,3 +94,4 @@ function getPrevMovies(url) {
     return $.getJSON(url)
     .then(displayMoviesPagination);
 }
+
