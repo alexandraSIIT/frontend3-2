@@ -19,6 +19,7 @@
 }
 #RegisterForm{
     position: relative;
+    top:14%;
     background-color: #660000;
     width: 500px;
     height: 430px;
@@ -43,6 +44,7 @@
     width: 65%;
     padding-left: 5px;
     color: white;
+    margin-bottom: 15%;
 }
 
 [type=checkbox]{
@@ -135,6 +137,14 @@ form input#password {
     left: 230px;
     background-color: #8E7117;
 }
+@media (max-width: 568px) {
+    #RegisterForm {
+        width: 300px;
+    } 
+    #RegisterForm input:not([type=checkbox]){
+        width: 45%;
 
+    }
+}
 
 
