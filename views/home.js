@@ -276,7 +276,15 @@ function displaySearchResult(list) {
     let createContainer = $('#createContainer');
     let listElement = $('#movieList');
     let results = list.results;
+    console.log(list.results.length);
     listElement.children().remove();
+    
+    if (list.results.length == 0) {
+        console.log("no movies to show");
+        listElement.append(
+            `<h3 id="not-found">No movies found.</h3>`
+        );
+    }
     //Goes through each inividual movie and appends it to the listElement
     for (let i=0; i<results.length; i++){
         let movie = new MovieListView(results[i]);
@@ -293,7 +301,6 @@ function displaySearchResult(list) {
             </li>`
         );
     }
-    
     // Pagination Stuff
     let pagination = list.pagination;
     let pag = new PaginationView(list.pagination);

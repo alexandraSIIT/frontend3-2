@@ -225,3 +225,8 @@ button, input, .shadow-bottom {
     border-color: #ddd;
     cursor: no-drop;
 }
+
+#not-found {
+    text-align: center;
+    margin: 40px auto;
+}
