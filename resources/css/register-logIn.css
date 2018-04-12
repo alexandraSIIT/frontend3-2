@@ -1,6 +1,6 @@
 /*Register form style*/
 
-#registerForm {
+#registerFormCont {
     width: 100vw;
     height: 100vh;
     opacity: 0.95;
@@ -17,7 +17,7 @@
     /*background-color: rgba(0,0,0,0);*/
     font-size: 24px;
 }
-#logInForm{
+#RegisterForm{
     position: relative;
     background-color: #660000;
     width: 500px;
@@ -30,14 +30,14 @@
 
 
 
-#logInForm h3{
+#RegisterForm h3{
     color: #cccccc;
     font-size: 40px;
     border-bottom-color: #232429;
     text-align: center;
 }
 
-#logInForm input:not([type=checkbox]){
+#RegisterForm input:not([type=checkbox]){
     position: absolute;
     left: 160px;
     width: 65%;
@@ -93,14 +93,14 @@
 
 form input#username {
     bottom: 10px;
-    position: relative;
-    right: -6px;
+    position: absolute;
+    top: 70px;
 }
 
 form input#password {
     top: 1-px;
-    position: relative;
-    right: -10px;
+    position: absolute;
+    top: 126px;
 }
 
 #exit{
@@ -118,14 +118,23 @@ form input#password {
 }
 
 .logInButton {
-    width: 50%;
+    width: 80%;
     background-color: #C1BFB2;
     padding-left: 5%;
     border-bottom:5px solid #8E7117; 
     border-radius: 5px;
     cursor: pointer;
     position: relative;
-    top: 30px;
+    top: 40px;
     left: 90px;
 }
+
+#messageUser {
+    position: absolute;
+    top: 165px;
+    left: 230px;
+    background-color: #8E7117;
+}
+
+
 
