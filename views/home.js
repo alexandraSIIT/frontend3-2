@@ -361,7 +361,7 @@ function displayAllMovies(list){
     for (let i=0; i<results.length; i++){
         let movie = new MovieListView(results[i]);
         listElement.append(
-            `<li class="movie-list-item clearfix" data-idcode="${movie.id}">
+            `<li class="movie-list-item" data-idcode="${movie.id}">
                 <img class="poster-small" src="${movie.imageUrl}" alt="${movie.title}"></img></br>
                 <div class="movie-info">
                     <h3><a target="_self" href="/frontend3-2/pages/movieDetails.html?movieId=${movie.id}">${movie.title} (${movie.year})</a></h3>
