@@ -8,16 +8,13 @@ $(document).ready(function(){
     const registerLogIn = $('#register-logIn');
     SyncHtmlPages(registerLogIn,logOutBtn);
     const registerBtn = $('#register');
-    const registerForm = $('#registerFormCont');
+    
     registerBtn.click(function registerFormAppear(){
+        const registerForm = $('#registerFormCont');
         registerForm.addClass('show').removeClass('hide');
         showingPassword();
-        exitFormBtn(registerForm);
+        exitRegisterForm(registerForm);
     });
-        
-        exitFormBtn();
-        const confPassword = $("[name=ConfirmPassword]");
-        const password = $("#logInForm [name=Password]");
         
         //This function makes the password visible when checking the "show password checkbox"
         $('#check').on("change", function (){ 
@@ -32,23 +29,14 @@ $(document).ready(function(){
         });   
     
     const logInBtn = $('#log-in');
-    logInBtn.click(LogInForm);
+    logInBtn.click(function LogInForm(){
+        const loginForm = $("#login");
+        loginForm.addClass('show').removeClass('hide');
+        exitLogInForm(loginForm);
+    });
+    
     const logInSubmit = $('#logIn-submit');
     logInSubmit.click(LogInSubmitClick);
-    
-    function LogInForm() {
-        const login = $("#login");
-        login.addClass('show').removeClass('hide');
-        exitLogInForm(login);
-    }
-    
-    
-    function exitLogInForm(login){
-        const xBtn = $("#exit");
-        xBtn.click(function(){
-            login.addClass('hide').removeClass('show');
-        })
-    }
 
     
     function LogInSubmitClick(event){
@@ -158,10 +146,16 @@ $(document).ready(function(){
         });   
     }
 
+function exitLogInForm(loginForm){
+        const xBtnLogIn = $("#exit");
+        xBtnLogIn.click(function(){
+            loginForm.addClass('hide').removeClass('show');
+        });
+    }
 
-function exitFormBtn(registerForm){
-    const xBtn = $('#x');
-    xBtn.click(function(){
+function exitRegisterForm(registerForm){
+    const xBtnRegister = $('#x');
+    xBtnRegister.click(function(){
         registerForm.addClass('hide').removeClass('show');
     });
     

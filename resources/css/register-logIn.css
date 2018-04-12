@@ -146,5 +146,23 @@ form input#password {
 
     }
 }
+#log-out {
+    position: absolute;
+    right: 7%;
+    top: 40%;
+}
+#register-logIn {
+    position: absolute;
+    right: 5%;
+    top: 40%;
+}
 
-
+@media (max-width: 950px) {
+    #register-logIn{
+        top: 23%;
+    }
+    #log-out {
+        top:23%;
+        right: 5%;
+    }
+}
