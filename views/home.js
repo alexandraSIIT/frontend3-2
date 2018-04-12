@@ -1,4 +1,4 @@
-/*global $, MovieListView, login deleteMovie, getMoviesList, exitLogInForm, postMovie, searchMovie, response, LoggingIn, baseURL, userName, passWord, getCookieAsObject, getNextMovies,getPrevMovies,PaginationView*/
+/*global $, MovieListView, login deleteMovie, getMoviesList, postMovie, searchMovie, response, LoggingIn, baseURL, userName, passWord, getCookieAsObject, getNextMovies,getPrevMovies,PaginationView*/
 
 
 $(document).ready(function(){
@@ -27,30 +27,12 @@ $(document).ready(function(){
             }
         });   
         });
-        
-        
     const logInBtn = $('#log-in');
     logInBtn.click(LogInForm);
-    
     const logInSubmit = $('#logIn-submit');
     logInSubmit.click(LogInSubmitClick);
     
-    
-    function LogInForm() {
-    const login = $('#login');
-    login.addClass('show').removeClass('hide');
-    exitLogInForm(login);
-    }
-    
-    
-    function exitLogInForm(login){
-    const xBtn = $('#exit');
-    xBtn.click(function(){
-        login.addClass('hide').removeClass('show');
-    })
-    }
 
-    
     
     function LogInSubmitClick(event){
     const username = $("#LogInForm [ name=Username]");
@@ -378,7 +360,7 @@ function displayAllMovies(list){
     
     let results = list.results;
     // const authToken = getCookiesAsObject();
-    let movie = new MovieListView(results);
+    let movie = new MovieListView();
     movie.id = getUrlParameter('movieId');
     
     function getUrlParameter(name) {
@@ -518,7 +500,6 @@ function displayMoviesPagination(list){
     
     $('#approve').unbind('click').bind('click', () => {
         var formInputs = $('#createContainer');
-        
         movie.postMovie(formInputs).then(() => {
             listElement.html('');
             getMoviesList();
@@ -574,9 +555,8 @@ function displayPrevMovies(list){
         movie.postMovie(formInputs).then(() => {
             listElement.html('');
             getMoviesList();
-        })
-     
-    });
+        });
+     });
 }
 
 //This function resets the add movie form
@@ -590,17 +570,16 @@ function deleteFormContents() {
 // This function calls getCookiesAsObject for the
 // const authToken in order to login
 
-
+function LogInForm() {
+    const login = $('#login');
+    login.addClass('show').removeClass('hide');
+}
     
 function onClickLogIn(){
     let auth = response.authenticated;
     let authenticatedToken = response.authToken;
     console.log(auth);
 }
-
-
-    
-    
 
 
 
