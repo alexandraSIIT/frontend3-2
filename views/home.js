@@ -62,7 +62,6 @@ $(document).ready(function(){
 
     const showPassword = $('#check');
     
-      
     // Search Event - Results are displayed in the console
     
     const valueInput = $('#search');
@@ -75,7 +74,10 @@ $(document).ready(function(){
             console.log(valueInput.val());
             
             let valueToSearch = valueInput.val();
-
+            valueToSearch = valueToSearch.toLowerCase().replace(/\b[a-z]/g, (letter) => {
+                return letter.toUpperCase();
+            });
+            console.log(valueToSearch);
             userChoice();
             searchMovie(baseURL, user, valueToSearch);
         }
