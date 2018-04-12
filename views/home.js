@@ -1,4 +1,4 @@
-/*global $, MovieListView, login deleteMovie, getMoviesList, postMovie, searchMovie, response, LoggingIn, baseURL, userName, passWord, getCookieAsObject, getNextMovies,getPrevMovies,PaginationView*/
+/*global $, MovieListView, login deleteMovie, getMoviesList, exitLogInForm, postMovie, searchMovie, response, LoggingIn, baseURL, userName, passWord, getCookieAsObject, getNextMovies,getPrevMovies,PaginationView*/
 
 
 $(document).ready(function(){
@@ -27,12 +27,30 @@ $(document).ready(function(){
             }
         });   
         });
+        
+        
     const logInBtn = $('#log-in');
     logInBtn.click(LogInForm);
+    
     const logInSubmit = $('#logIn-submit');
     logInSubmit.click(LogInSubmitClick);
     
+    
+    function LogInForm() {
+    const login = $('#login');
+    login.addClass('show').removeClass('hide');
+    exitLogInForm(login);
+    }
+    
+    
+    function exitLogInForm(login){
+    const xBtn = $('#exit');
+    xBtn.click(function(){
+        login.addClass('hide').removeClass('show');
+    })
+    }
 
+    
     
     function LogInSubmitClick(event){
     const username = $("#LogInForm [ name=Username]");
@@ -572,16 +590,17 @@ function deleteFormContents() {
 // This function calls getCookiesAsObject for the
 // const authToken in order to login
 
-function LogInForm() {
-    const login = $('#login');
-    login.addClass('show').removeClass('hide');
-}
+
     
 function onClickLogIn(){
     let auth = response.authenticated;
     let authenticatedToken = response.authToken;
     console.log(auth);
 }
+
+
+    
+    
 
 
 

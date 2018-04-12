@@ -15,7 +15,7 @@ $(document).ready(function(){
     }
     
     function displayPage(){
-        // var date = new Date(movie.year);
+        console.log(movie);
         $('#movie-title').text(`${movie.title} - Movie Roll`);
         container.append(`
 
