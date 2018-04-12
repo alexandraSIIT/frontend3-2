@@ -11,7 +11,6 @@
     <script type="text/javascript" src="../models/MovieList.js"></script>
     <script type="text/javascript" src="../models/Movie.js"></script>
     <script type="text/javascript" src="../models/Auth.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
 
 
@@ -41,15 +40,15 @@
     <!--Will link the LogIn button to the LogIn form-->
       
     <div class="hide" id="login">
-    
-    <form id="LogInForm">
-     <span id="messageUsername"></span>
+    <button id="exit" style="font-size:24px"><i class="fa fa-times-circle"></i></button>
+    <form id="LogInForm" class = "pull-right">
+     <span id="messageUser"></span>
     Username:
-    <input class="logIntextInput" type="text" size="15" name="Username" id="username" />
+    <input class="logIntextInput" id="username" type="text" size="15" name="Username" placeholder="Type username" />
  
     <br />
     Password:
-    <input class="logIntextInput" type="password" size="15" name="Password" id="password" />
+    <input class="logIntextInput" id="password" type="password" size="15" name="Password" placeholder = "Type password"  />
  
     <br />
     <input class="logInButton" type="submit" class="button" id="logIn-submit" name="login" value="Login" />
@@ -163,11 +162,6 @@
     <div class="movieList-wrapper">
         <ul id="movieList">
         </ul>
-        <div class="pagination">
-            <a id="prevPage">Prev</a>
-            <a id="currentPage"></a>
-            <a id="nextPage">Next</a>
-        </div>
     </div>
 
 </body>
