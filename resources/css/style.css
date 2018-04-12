@@ -169,9 +169,14 @@ button, input, .shadow-bottom {
 }
 
 .movie-info h3 {
-    font-size: 24px;
+    font-size: 26px;
     margin-bottom: 30px;
-    font-family: 'Roboto Condensed', sans-serif;
+    /*font-family: 'Roboto Condensed', sans-serif;*/
+    font-family: 'Arial', sans-serif;
+}
+
+.star {
+    color: yellow;
 }
 
 .del {

@@ -280,7 +280,7 @@ function displaySearchResult(list) {
                     <h3><a target="_self" href="/frontend3-2/pages/movieDetails.html?movieId=${movie.id}">${movie.title} (${movie.year})</a></h3>
                     <div>Type: ${movie.type}</div>
                     <div>${movie.runtime} - ${movie.genre}</div>
-                    <div>Rating: ${movie.rating} / 10 - (${movie.votes} votes)</div>
+                    <div>Rating: <span class="star">&bigstar;</span> ${movie.rating} / 10 - (${movie.votes} votes)</div>
                     <button class="del" id="${movie.id}">Delete Movie</button>
                 </div>
             </li>`
@@ -367,7 +367,7 @@ function displayAllMovies(list){
                     <h3><a target="_self" href="/frontend3-2/pages/movieDetails.html?movieId=${movie.id}">${movie.title} (${movie.year})</a></h3>
                     <div>Type: ${movie.type}</div>
                     <div>${movie.runtime} - ${movie.genre}</div>
-                    <div>Rating: ${movie.rating} / 10 - (${movie.votes} votes)</div>
+                    <div>Rating: <span class="star">&bigstar;</span> ${movie.rating} / 10 - (${movie.votes} votes)</div>
                     <button class="del" id="${movie.id}">Delete Movie</button>
                 </div>
             </li>`
@@ -440,7 +440,7 @@ function displayMoviesPagination(list){
                     <h3><a target="_self" href="/frontend3-2/pages/movieDetails.html?movieId=${movie.id}">${movie.title} (${movie.year})</a></h3>
                     <div>Type: ${movie.type}</div>
                     <div>${movie.runtime} - ${movie.genre}</div>
-                    <div>Rating: ${movie.rating} / 10 - (${movie.votes} votes)</div>
+                    <div>Rating: <span class="star">&bigstar;</span> ${movie.rating} / 10 - (${movie.votes} votes)</div>
                     <button class="del" id="${movie.id}">Delete Movie</button>
                 </div>
             </li>`
@@ -509,7 +509,7 @@ function displayPrevMovies(list){
                     <h3><a target="_self" href="/frontend3-2/pages/movieDetails.html?movieId=${movie.id}">${movie.title} (${movie.year})</a></h3>
                     <div>Type: ${movie.type}</div>
                     <div>${movie.runtime} - ${movie.genre}</div>
-                    <div>Rating: ${movie.rating} / 10 - (${movie.votes} votes)</div>
+                    <div>Rating: <span class="star">&bigstar;</span> ${movie.rating} / 10 - (${movie.votes} votes)</div>
                     <button class="del" id="${movie.id}">Delete Movie</button>
                 </div>
             </li>`
