@@ -67,25 +67,64 @@
 
 /*Log In form style*/
 
+#login {
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.95;
+    top: 0;
+    background-color: rgb(30, 30, 30);
+    position: fixed;
+    z-index: 1;
+}
+
 #LogInForm {
-    width: 80%;
-    height: 100%;
-    opacity: 0.5;
+    left: 50%;
+    top: 50%;
+    margin-left: -20%;
+    margin-top: -20%;
+    opacity: 1;
     background-color: #272727;
     padding: 5% 10%;
+    position: absolute;
+    z-index: 1; 
+    border: 5px solid #8E7117;
+    border-radius: 5px;
+}
+
+form input#username {
+    bottom: 10px;
     position: relative;
+    right: -6px;
+}
+
+form input#password {
+    top: 1-px;
+    position: relative;
+    right: -10px;
+}
+
+#exit{
+    position: absolute;
+    top:2%;
+    right: 2%;
+    font-size: 24px;
 }
 
 .logIntextInput {
     background-color: #C1BFB2;
     padding-left: 5%;
-    border-bottom:5px solid #F0DF64; 
+    border-bottom:5px solid #8E7117; 
     border-radius: 5px;
 }
 
 .logInButton {
+    width: 50%;
     background-color: #C1BFB2;
     padding-left: 5%;
-    border-bottom:5px solid #F0DF64; 
+    border-bottom:5px solid #8E7117; 
     border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    top: 30px;
+    left: 90px;
 }
