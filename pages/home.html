@@ -41,16 +41,15 @@
     <!--Will link the LogIn button to the LogIn form-->
       
     <div class="hide" id="login">
-    
-    <form id="LogInForm">
-        <button id="X"><i class="fas fa-times"></i></button>
+    <button id="exit" style="font-size:24px"><i class="fa fa-times-circle"></i></button>
+    <form id="LogInForm" class = "pull-right">
      <span id="messageUser"></span>
     Username:
-    <input class="logIntextInput" type="text" size="15" name="Username" id="username" />
+    <input class="logIntextInput" id="username" type="text" size="15" name="Username" placeholder="Type username" />
  
     <br />
     Password:
-    <input class="logIntextInput" type="password" size="15" name="Password" id="password" />
+    <input class="logIntextInput" id="password" type="password" size="15" name="Password" placeholder = "Type password"  />
  
     <br />
     <input class="logInButton" type="submit" class="button" id="logIn-submit" name="login" value="Login" />
@@ -151,11 +150,6 @@
     <div class="movieList-wrapper">
         <ul id="movieList">
         </ul>
-        <div class="pagination">
-            <a href="#" id="prevPage">Prev</a>
-            <a href="#" id="currentPage"></a>
-            <a href="#" id="nextPage">Next</a>
-        </div>
     </div>
 
 </body>

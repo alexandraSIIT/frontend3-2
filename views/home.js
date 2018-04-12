@@ -1,4 +1,4 @@
-/*global $, MovieListView, login deleteMovie, getMoviesList, postMovie, searchMovie, response, LoggingIn, baseURL, userName, passWord, getCookieAsObject*/
+/*global $, MovieListView, login deleteMovie, getMoviesList, postMovie, searchMovie, response, LoggingIn, baseURL, userName, passWord, getCookieAsObject, getNextMovies,getPrevMovies,PaginationView*/
 
 
 $(document).ready(function(){
@@ -32,8 +32,7 @@ $(document).ready(function(){
     const logInSubmit = $('#logIn-submit');
     logInSubmit.click(LogInSubmitClick);
     
-    
-    const loginForm = $('#login');
+
     
     function LogInSubmitClick(event){
     const username = $("#LogInForm [ name=Username]");
@@ -78,8 +77,7 @@ $(document).ready(function(){
             let valueToSearch = valueInput.val();
 
             userChoice();
-            searchMovie(baseURL, user, valueToSearch)
-            .catch(console.log);
+            searchMovie(baseURL, user, valueToSearch);
         }
     });
     
@@ -99,12 +97,6 @@ $(document).ready(function(){
             }
         return user;
     }
-    
-    $('#nextPage').on('click', () => {
-    let number;
-    let link = "http://ancient-caverns-16784.herokuapp.com/movies?take=10&skip=" + number + "0";
-    getNextMovies(link);
-});
 
 // This function recalls the getCookiesAsObject for the const authToken to have the 
 // current token value saved in the cookies.
@@ -126,13 +118,10 @@ function exitFormBtn(){
     })
 }
 
-
 // This function deletes the token from cookie
     function deleteToken() {
     document.cookie = "token" + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-
 }
-
 
 // This function is called when clicking the submit button
 function registerSubmitClick(event){
@@ -154,10 +143,11 @@ function registerSubmitClick(event){
         resetForm();
     }).catch(function(e){
             $('#messageUsername').html("This username already exists. Please enter another username.");
-    });
+        });
        
         
       }
+
 }
 
 function resetForm(){
@@ -228,7 +218,8 @@ function confirmPassword(password,confPassword){
             $('#messages6').html('');
         });
         return false;
-    }else return true;
+    } else 
+    return true;
 }
 
 });
@@ -241,11 +232,9 @@ function SyncHtmlPages(registerLogIn,logOutBtn){
         if(!authToken){
             registerLogIn.addClass('show').removeClass('hide');
             logOutBtn.addClass('hide').removeClass('show');
-            // disappearBtn();
         } else {
             logOutBtn.addClass('show').removeClass('hide');
             registerLogIn.addClass('hide').removeClass('show');
-            // appearBtn();
         }   
     }
 
@@ -269,26 +258,56 @@ function getCookiesAsObject() {
 } 
 
 function displaySearchResult(list) {
-    console.log(list);
     let createContainer = $('#createContainer');
     let listElement = $('#movieList');
-    listElement.empty();
     let results = list.results;
-    console.log(list.results);
-        for (let i=0; i<results.length; i++){
-        let movie = new MovieListView(results[i]);
+    console.log(list.results.length);
+    listElement.children().remove();
+    
+    if (list.results.length == 0) {
+        console.log("no movies to show");
         listElement.append(
-            `<li data-idcode="${movie.id}">
-                <img class="poster-small" src="${movie.imageUrl}" alt="${movie.title}"></img></br>
-                <h3><a target="_blank" href="/frontend3-2/pages/movieDetails.html?movieId=${movie.id}">${movie.title} (${movie.year})</a></h3>
-                <div>Type: ${movie.type}</div>
-                <div>${movie.runtime} - ${movie.genre}</div>
-                <div>Rating: ${movie.rating} / 10 - (${movie.votes} votes)</div>
-                <button class="del" id="${movie.id}">Delete Movie</button>
-            </li></br>`
+            `<h3 id="not-found">No movies found.</h3>`
         );
     }
-        $('.del').on('click', (event) => {
+    //Goes through each inividual movie and appends it to the listElement
+    for (let i=0; i<results.length; i++){
+        let movie = new MovieListView(results[i]);
+        listElement.append(
+            `<li class="movie-list-item clearfix" data-idcode="${movie.id}">
+                <img class="poster-small" src="${movie.imageUrl}" alt="${movie.title}"></img></br>
+                <div class="movie-info">
+                    <h3><a target="_self" href="/frontend3-2/pages/movieDetails.html?movieId=${movie.id}">${movie.title} (${movie.year})</a></h3>
+                    <div>Type: ${movie.type}</div>
+                    <div>${movie.runtime} - ${movie.genre}</div>
+                    <div>Rating: ${movie.rating} / 10 - (${movie.votes} votes)</div>
+                    <button class="del" id="${movie.id}">Delete Movie</button>
+                </div>
+            </li>`
+        );
+    }
+    // Pagination Stuff
+    let pagination = list.pagination;
+    let pag = new PaginationView(list.pagination);
+    listElement.append(
+    `   <div class="pagination">
+            <a id="prevPage">Prev</a>
+            <a id="currentPage">${pag.currentPage}</a>
+            <a id="nextPage">Next</a>
+        </div>`
+    );
+
+    $('#nextPage').on('click', (event) =>{
+        getNextMovies(pag.nextPage);
+    });
+    
+    $('#prevPage').on('click', (event) =>{
+        getPrevMovies(pag.prevPage);
+    });
+    
+    //Below are the event listeners for the delete, add, cancel and approve buttons
+    
+    $('.del').on('click', (event) => {
         deleteMovie($(event.currentTarget).attr('id')).then(() => {
             listElement.html('');
             getMoviesList();
@@ -311,7 +330,6 @@ function displaySearchResult(list) {
             listElement.html('');
             getMoviesList();
         })
-     
     });
 }
 
@@ -334,6 +352,7 @@ function disappearBtn(){
 //Function below renders the movie list "list" in a user friendly format
 //Then it attaches some event listeners for interface buttons
 function displayAllMovies(list){
+    console.log(list);
     let createContainer = $('#createContainer');
     let listElement = $('#movieList');
     let results = list.results;
@@ -352,12 +371,31 @@ function displayAllMovies(list){
                     <button class="del" id="${movie.id}">Delete Movie</button>
                 </div>
             </li>`
-        );     
-    // const deleteBtn = $(".del");
-    // deleteBtn.hide();
+
+        );
     }
     
-    $('#currentPage').html(list.pagination.currentPage);
+    // Pagination Stuff
+    let pagination = list.pagination;
+    let pag = new PaginationView(list.pagination);
+    listElement.append(
+    `   <div class="pagination">
+            <a id="prevPage">Prev</a>
+            <a id="currentPage">${pag.currentPage}</a>
+            <a id="nextPage">Next</a>
+        </div>`
+    );
+
+    $('#nextPage').on('click', (event) =>{
+        getNextMovies(pag.nextPage);
+    });
+    $('#prevPage').on('click', (event) =>{
+        event.preventDefault();
+    });
+    
+    
+    
+    
     //Below are the event listeners for the delete, add, cancel and approve buttons
     
     $('.del').on('click', (event) => {
@@ -382,17 +420,16 @@ function displayAllMovies(list){
         postMovie(formInputs).then(() => {
             listElement.html('');
             getMoviesList();
-        })
-     
+        });
     });
 }
 
 
-function displayNextMovies(list){
+function displayMoviesPagination(list){
     let createContainer = $('#createContainer');
     let listElement = $('#movieList');
     let results = list.results;
-    listElement.empty();
+    listElement.children().remove();
     //Goes through each inividual movie and appends it to the listElement
     for (let i=0; i<results.length; i++){
         let movie = new MovieListView(results[i]);
@@ -410,7 +447,24 @@ function displayNextMovies(list){
         );
     }
     
-    $('#currentPage').html(list.pagination.currentPage);
+    // Pagination Stuff
+    let pagination = list.pagination;
+    let pag = new PaginationView(list.pagination);
+    listElement.append(
+    `   <div class="pagination">
+            <a id="prevPage">Prev</a>
+            <a id="currentPage">${pag.currentPage}</a>
+            <a id="nextPage">Next</a>
+        </div>`
+    );
+
+    $('#nextPage').on('click', (event) =>{
+        getNextMovies(pag.nextPage);
+    });
+    $('#prevPage').on('click', (event) =>{
+        getPrevMovies(pag.prevPage);
+    });
+   
     //Below are the event listeners for the delete, add, cancel and approve buttons
     
     $('.del').on('click', (event) => {
@@ -436,17 +490,16 @@ function displayNextMovies(list){
             listElement.html('');
             getMoviesList();
         })
-     
     });
 }
 
-
-function displayNextMovies(list){
+function displayPrevMovies(list){
     let createContainer = $('#createContainer');
     let listElement = $('#movieList');
     let results = list.results;
-    listElement.empty();
+    listElement.children().remove();
     //Goes through each inividual movie and appends it to the listElement
+    $('#currentPage').html(list.pagination.currentPage);
     for (let i=0; i<results.length; i++){
         let movie = new MovieListView(results[i]);
         listElement.append(
@@ -463,7 +516,7 @@ function displayNextMovies(list){
         );
     }
     
-    $('#currentPage').html(list.pagination.currentPage);
+    // $('#currentPage').html(list.pagination.currentPage);
     //Below are the event listeners for the delete, add, cancel and approve buttons
     
     $('.del').on('click', (event) => {

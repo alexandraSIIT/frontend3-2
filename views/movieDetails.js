@@ -16,7 +16,7 @@ $(document).ready(function(){
     
     function displayPage(){
         // var date = new Date(movie.year);
-        
+        $('#movie-title').text(`${movie.title} - Movie Roll`);
         container.append(`
 
             <h1>${movie.title}</h1><h2><span id="star">&bigstar;</span>${movie.imdbRating}/10</h2></br>

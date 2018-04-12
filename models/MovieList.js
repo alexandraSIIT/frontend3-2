@@ -1,4 +1,4 @@
-/*global $, displayAllMovies, getTokenFromCookie,getCookiesAsObject, displaySearchResult*/
+/*global $, displayAllMovies, getTokenFromCookie,getCookiesAsObject, displaySearchResult, displayMoviesPagination*/
 
 
 $(onHtmlLoaded);
@@ -33,8 +33,15 @@ class MovieListView {
     }
 }
 
-
-
+class PaginationView {
+    constructor(obj) {
+        obj = obj || {};
+        this.currentPage = obj.currentPage || null;
+        this.nextPage = obj.links.next || null;
+        this.prevPage = obj.links.prev || null;
+        this.selfPage = obj.links.self || null;
+    }
+}
 
 // This function is a simple ajax call to delete a movie from the API
 function deleteMovie(id){
@@ -72,13 +79,15 @@ function postMovie(formInputs) {
 // Search: This function is an AJAX call to bring the desired movie
 function searchMovie(baseURL, userOption, valueToSearch) {
     return $.getJSON(baseUrl+ "/movies" + userOption + valueToSearch)
-    .then(displaySearchResult)
-    .then((e) => {
-        console.log(e);
-    });
+    .then(displaySearchResult);
 }
 
-function getNextMovies(link) {
-    return $.getJSON(link)
-    .then(displayNextMovies);
+function getNextMovies(url) {
+    return $.getJSON(url)
+    .then(displayMoviesPagination);
+}
+
+function getPrevMovies(url) {
+    return $.getJSON(url)
+    .then(displayMoviesPagination);
 }
