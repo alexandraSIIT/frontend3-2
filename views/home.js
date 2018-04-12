@@ -261,6 +261,7 @@ function displaySearchResult(list) {
     let createContainer = $('#createContainer');
     let listElement = $('#movieList');
     let results = list.results;
+    let movie = new MovieListView();
     console.log(list.results.length);
     listElement.children().remove();
     
@@ -308,7 +309,7 @@ function displaySearchResult(list) {
     //Below are the event listeners for the delete, add, cancel and approve buttons
     
     $('.del').on('click', (event) => {
-        deleteMovie($(event.currentTarget).attr('id')).then(() => {
+        movie.deleteMovie($(event.currentTarget).attr('id')).then(() => {
             listElement.html('');
             getMoviesList();
         });
@@ -325,7 +326,7 @@ function displaySearchResult(list) {
     
     $('#approve').unbind('click').bind('click', () => {
         var formInputs = $('#createContainer');
-        postMovie(formInputs).then(() => {
+        movie.postMovie(formInputs).then(() => {
             listElement.html('');
             getMoviesList();
         })
@@ -428,7 +429,6 @@ function displayAllMovies(list){
     
     $('#approve').unbind('click').bind('click', () => {
         var formInputs = $('#createContainer');
-        
         movie.postMovie(formInputs).then(() => {
             listElement.html('');
             getMoviesList();
@@ -442,6 +442,7 @@ function displayMoviesPagination(list){
     let listElement = $('#movieList');
     let results = list.results;
     listElement.children().remove();
+    let movie = new MovieListView();
     //Goes through each inividual movie and appends it to the listElement
     for (let i=0; i<results.length; i++){
         let movie = new MovieListView(results[i]);
@@ -509,6 +510,7 @@ function displayPrevMovies(list){
     let createContainer = $('#createContainer');
     let listElement = $('#movieList');
     let results = list.results;
+    let movie = new MovieListView();
     listElement.children().remove();
     //Goes through each inividual movie and appends it to the listElement
     $('#currentPage').html(list.pagination.currentPage);
