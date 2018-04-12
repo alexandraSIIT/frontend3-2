@@ -1,4 +1,4 @@
-/*global $, MovieListView, login deleteMovie, getMoviesList, postMovie, searchMovie, response, LoggingIn, baseURL, userName, passWord, getCookieAsObject, getNextMovies,getPrevMovies*/
+/*global $, MovieListView, login deleteMovie, getMoviesList, postMovie, searchMovie, response, LoggingIn, baseURL, userName, passWord, getCookieAsObject, getNextMovies,getPrevMovies,PaginationView*/
 
 
 $(document).ready(function(){
@@ -93,42 +93,6 @@ $(document).ready(function(){
             }
         return user;
     }
-        
-    
-    $('#nextPage').on('click', () => {
-        let currentPage = $('#currentPage').text(); 
-        let url = 'https://ancient-caverns-16784.herokuapp.com/movies?take=10&skip=' + currentPage + "0";
-        console.log(url);
-        getNextMovies(url);
-});
-
-    let pivotNumber;
-    let number;
-    
-    $('#prevPage').on('click', () => {
-        let url = 'https://ancient-caverns-16784.herokuapp.com/movies?take=10&skip=' + pivotNumber + number;
-        console.log(url);
-        let currentPage = $('#currentPage').text();
-        console.log(jQuery.type(currentPage));
-        let currentPageNumber = parseInt(currentPage);
-        console.log(jQuery.type(currentPageNumber));
-        
-        if (currentPageNumber === 1) {
-            pivotNumber = null;
-            number = "";
-        }
-        else if (currentPageNumber === 2) {
-            pivotNumber = 0;
-            number = "";
-            getPrevMovies(url);
-        }
-        else {
-            pivotNumber = currentPageNumber - 2;
-            number = 0;
-            getPrevMovies(url);
-        }
-        console.log(url);
-    });
 
 // This function recalls the getCookiesAsObject for the const authToken to have the 
 // current token value saved in the cookies.
@@ -331,7 +295,25 @@ function displaySearchResult(list) {
         );
     }
     
-    $('#currentPage').html(list.pagination.currentPage);
+    // Pagination Stuff
+    let pagination = list.pagination;
+    let pag = new PaginationView(list.pagination);
+    listElement.append(
+    `   <div class="pagination">
+            <a id="prevPage">Prev</a>
+            <a id="currentPage">${pag.currentPage}</a>
+            <a id="nextPage">Next</a>
+        </div>`
+    );
+
+    $('#nextPage').on('click', (event) =>{
+        getNextMovies(pag.nextPage);
+    });
+    
+    $('#prevPage').on('click', (event) =>{
+        getPrevMovies(pag.prevPage);
+    });
+    
     //Below are the event listeners for the delete, add, cancel and approve buttons
     
     $('.del').on('click', (event) => {
@@ -357,7 +339,6 @@ function displaySearchResult(list) {
             listElement.html('');
             getMoviesList();
         })
-     
     });
 }
 
@@ -386,7 +367,27 @@ function displayAllMovies(list){
         );
     }
     
-    $('#currentPage').html(list.pagination.currentPage);
+    // Pagination Stuff
+    let pagination = list.pagination;
+    let pag = new PaginationView(list.pagination);
+    listElement.append(
+    `   <div class="pagination">
+            <a id="prevPage">Prev</a>
+            <a id="currentPage">${pag.currentPage}</a>
+            <a id="nextPage">Next</a>
+        </div>`
+    );
+
+    $('#nextPage').on('click', (event) =>{
+        getNextMovies(pag.nextPage);
+    });
+    $('#prevPage').on('click', (event) =>{
+        event.preventDefault();
+    });
+    
+    
+    
+    
     //Below are the event listeners for the delete, add, cancel and approve buttons
     
     $('.del').on('click', (event) => {
@@ -438,7 +439,24 @@ function displayMoviesPagination(list){
         );
     }
     
-    $('#currentPage').html(list.pagination.currentPage);
+    // Pagination Stuff
+    let pagination = list.pagination;
+    let pag = new PaginationView(list.pagination);
+    listElement.append(
+    `   <div class="pagination">
+            <a id="prevPage">Prev</a>
+            <a id="currentPage">${pag.currentPage}</a>
+            <a id="nextPage">Next</a>
+        </div>`
+    );
+
+    $('#nextPage').on('click', (event) =>{
+        getNextMovies(pag.nextPage);
+    });
+    $('#prevPage').on('click', (event) =>{
+        getPrevMovies(pag.prevPage);
+    });
+   
     //Below are the event listeners for the delete, add, cancel and approve buttons
     
     $('.del').on('click', (event) => {
@@ -464,7 +482,6 @@ function displayMoviesPagination(list){
             listElement.html('');
             getMoviesList();
         })
-     
     });
 }
 
