@@ -80,7 +80,7 @@ $(document).ready(function(){
     registerSubmitBtn.click(registerSubmitClick);
 
     logOutBtn.click(onClickLogOut);
-});
+
     // Search Event - Results are displayed in the console
 
     const valueInput = $('#search');
@@ -131,7 +131,7 @@ $(document).ready(function(){
         disappearBtn();
         
     }
-    
+
    
     // This function is called when clicking the submit button
     function registerSubmitClick(event){
@@ -293,7 +293,7 @@ function SyncHtmlPages(registerLogIn,logOutBtn){
             registerLogIn.addClass('hide').removeClass('show');
         }   
 }
-
+}); 
 // This function takes the token that was previously saved in cookies
 function getCookiesAsObject() {
     const cookiesString = document.cookie;
