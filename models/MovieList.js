@@ -1,4 +1,4 @@
-/*global $, displayAllMovies, getTokenFromCookie,getCookiesAsObject, displaySearchResult*/
+/*global $, displayAllMovies, getTokenFromCookie,getCookiesAsObject, displaySearchResult, displayMoviesPagination*/
 
 
 $(onHtmlLoaded);
@@ -44,19 +44,6 @@ MovieListView.prototype.deleteMovie = function(id) {
     });
 }
 
-
-// This function is a simple ajax call to delete a movie from the API
-// function deleteMovie(id){
-//     return $.ajax({
-//             url: 'https://ancient-caverns-16784.herokuapp.com/movies/' + id,
-//             headers: {
-//                 'X-Auth-Token': getCookiesAsObject()
-//             },
-//             method: 'DELETE'
-//     });
-// }
-
-
 MovieListView.prototype.postMovie = function(formInputs) {
     return $.ajax({
             url: 'https://ancient-caverns-16784.herokuapp.com/movies',
@@ -78,35 +65,18 @@ MovieListView.prototype.postMovie = function(formInputs) {
      })
 }
 
-
-// This function is a ajax call to post a new movie to the API
-// function postMovie(formInputs) {
-//      return $.ajax({
-//             url: 'https://ancient-caverns-16784.herokuapp.com/movies',
-//             type: 'POST',
-//             headers: {
-//                 'X-Auth-Token': getCookiesAsObject(),
-//                 'Content-Type': 'application/x-www-form-urlencoded'
-//             },
-//             data: $('.form-add-movie').serialize(),
-//             succes: function (response) {
-//                 console.log(response);
-//             },
-//             error: function (response) {
-//                 console.log(response)
-//             },
-//             failed: function (response) {
-//                 console.log(response);
-//             }
-//      })
-// }
-
 // Search: This function is an AJAX call to bring the desired movie
 function searchMovie(baseURL, userOption, valueToSearch) {
     return $.getJSON(baseUrl+ "/movies" + userOption + valueToSearch)
-    .then(displaySearchResult)
-    .then((e) => {
-        console.log(e);
-    });
-  
+    .then(displaySearchResult);
+}
+
+function getNextMovies(url) {
+    return $.getJSON(url)
+    .then(displayMoviesPagination);
+}
+
+function getPrevMovies(url) {
+    return $.getJSON(url)
+    .then(displayMoviesPagination);
 }

@@ -11,6 +11,7 @@
     <script type="text/javascript" src="../models/MovieList.js"></script>
     <script type="text/javascript" src="../models/Movie.js"></script>
     <script type="text/javascript" src="../models/Auth.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
 
 
@@ -18,7 +19,9 @@
 </head>
 <body>
     <header class="shadow-bottom">
-        <object class="logo" height="80" width="207" data="../resources/img/logo.svg" type="image/svg+xml"></object>
+        <a href="home.html">
+            <img class="logo" height="80" width="207" src="../resources/img/logo.svg"/>
+        </a>
         <!-- Search Field -->
         <div class="top-search-inputwrapper">
             <div class="search-wrapper">
@@ -38,50 +41,52 @@
     <!--Will link the LogIn button to the LogIn form-->
       
     <div class="hide" id="login">
+    
+    <form id="LogInForm">
      <span id="messageUsername"></span>
     Username:
-    <input type="text" size="15" name="Username" id="username" />
+    <input class="logIntextInput" type="text" size="15" name="Username" id="username" />
  
     <br />
     Password:
-    <input type="password" size="15" name="Password" id="password" />
+    <input class="logIntextInput" type="password" size="15" name="Password" id="password" />
  
     <br />
-    <input type="submit" class="button" id="logIn-submit" name="login" value="Login" />
+    <input class="logInButton" type="submit" class="button" id="logIn-submit" name="login" value="Login" />
  
-    
+    </form>
     </div>
     
     <div id="registerForm" class="hide">
         <button id="x"><i class="fas fa-times"></i></button>
-       <form class=" logInForm pull-left shadow" name="myForm" >
+       <form id="logInForm" class="pull-left shadow" name="myForm" >
            <h3>Register</h3>
            <br>
            <div id="messageUsername"></div>
            <br>
-           <input class="textInput shadow" type="text" name="FirstName" placeholder="First Name"/>
+           First Name: <input class="textInput shadow" type="text" name="FirstName" placeholder="First Name"/>
            <br>
            <span id="messages1" class="message"></span>
            <br>
-           <input class="textInput shadow" type="text" name="LastName" placeholder="Last Name"/>
+           Last Name: <input class="textInput shadow" type="text" name="LastName" placeholder="Last Name"/>
            <br>
            <span id="messages2" class="message"></span>
            <br>
-           <input class="textInput shadow" type="text" name="EmailAdress" placeholder="Email adress"/>
+           Email: <input class="textInput shadow" type="text" name="EmailAdress" placeholder="Email adress"/>
            <br>
            <span id="messages3" class="message"></span>
            <br>
-           <input class="textInput shadow" type="text" name="Username" placeholder="Username"/>
+           Username: <input class="textInput shadow" type="text" name="Username" placeholder="Username"/>
            <br>
            <span id="messages4" class="message"></span>
            <br>
-           <input class="textInput shadow" type="password" name="Password" placeholder="Password"/>
+           Password: <input class="textInput shadow" type="password" name="Password" placeholder="Password"/>
            <br>
            <span id="messages5" class="message"></span>
            <br>
            <input type="checkbox" id="check" /> Show Password
            <br>
-           <input class="textInput shadow" type="password" name="ConfirmPassword" placeholder="Confirm password"/>
+           Confirm Password: <input class="textInput shadow" type="password" name="ConfirmPassword" placeholder="Confirm password"/>
            <br>
            <span id="messages6" class="message"></span>
            <br>
@@ -158,6 +163,12 @@
     <div class="movieList-wrapper">
         <ul id="movieList">
         </ul>
+        <div class="pagination">
+            <a id="prevPage">Prev</a>
+            <a id="currentPage"></a>
+            <a id="nextPage">Next</a>
+        </div>
     </div>
+
 </body>
 </html>

@@ -34,7 +34,6 @@ function logOutRequest(baseURL, authToken){
 }
 
 
-
 //This function logs in the user when cliked
 function loggingIn(baseURL, username, password) {
     return $.ajax({

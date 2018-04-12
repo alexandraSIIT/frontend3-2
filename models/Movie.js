@@ -55,21 +55,4 @@ GetMovie.prototype.updateMovie = function(formInputs) {
 };
 
 
-// GetMovie.prototype.updateMovie = function() {
-//     console.log(this);
-//     return $.ajax({
-//             url: 'https://ancient-caverns-16784.herokuapp.com/movies/' + this.id,
-//             method: 'PUT',
-//             headers: {
-//                 'X-Auth-Token': getCookiesAsObject(),
-//                 'Content-Type': 'application/x-www-form-urlencoded'
-//             },
-//             data: $('.form-edit-movie').serialize(),
-//             succes: function (response) {
-//                 console.log(response);
-//             }
-//         });
-// };
-
-
 
