@@ -61,6 +61,7 @@ $(document).ready(function(){
         logOutBtn.addClass('show').removeClass('hide');
         registerLogIn.addClass('hide').removeClass('show');
         loginForm.addClass('hide').removeClass('show');
+        login.addClass('hide').removeClass('show');
         const accessToken = response.accessToken; 
         document.cookie = "token=" + accessToken; //setting the token as a cookie
         appearBtn();
