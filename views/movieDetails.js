@@ -55,8 +55,7 @@ $(document).ready(function(){
         
         $('#approve').unbind('click').bind('click', function(){
             var formInputs = $('#editContainer');
-            // console.log('this is formInputs', formInputs[0].children);
-            // console.log(movie);
+            console.log(movie);
             movie.updateMovie(formInputs).then(function(){
                 container.html('');
                 movie.getMovieDetails().then(displayPage);

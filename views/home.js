@@ -493,10 +493,24 @@ function displayAllMovies(list){
     
     $('#approve').unbind('click').bind('click', () => {
         var formInputs = $('#createContainer');
-        movie.postMovie(formInputs).then(() => {
+        let x = formInputs[0].children[0];
+        let empty = 0;
+        for (let i=0; i<x.length; i++) {
+            if (x[i].value == '') {
+                empty++;
+                if (empty == 1) {
+                    break;
+                }
+            }
+        }
+        if (!empty) {
+            movie.postMovie(formInputs).then(() => {
             listElement.html('');
             getMoviesList();
-        });
+            });
+        }else {
+            alert('Please fill in all fields.');
+        }
     });
 }
 
