@@ -351,3 +351,6 @@ button, input, .shadow-bottom {
         margin-bottom: -20px;
     }
 }
+.border{
+    border: solid 1px red;
+}

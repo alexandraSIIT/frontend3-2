@@ -133,6 +133,7 @@ function exitLogInForm(loginForm){
         const xBtnLogIn = $("#exit");
         xBtnLogIn.click(function(){
             loginForm.addClass('hide').removeClass('show');
+            resetForm();
         });
     }
 
@@ -140,6 +141,7 @@ function exitRegisterForm(registerForm){
     const xBtnRegister = $('#x');
     xBtnRegister.click(function(){
         registerForm.addClass('hide').removeClass('show');
+        resetForm();
     });
     
 }
@@ -254,6 +256,10 @@ function confirmPassword(password,confPassword){
 
 function resetForm(){
     $("#RegisterForm").trigger("reset");
+    const messageFormVal = $(".message").val();
+    $(".message").html(function() {
+    return  messageFormVal.replace(messageFormVal, "");
+});
     $("#LogInForm").trigger("reset");
 }
 
