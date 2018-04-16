@@ -68,7 +68,9 @@
 
 
 /*Log In form style*/
-
+.textInput{
+    margin-bottom: 10%;
+}
 #login {
     width: 100vw;
     height: 100vh;
@@ -91,18 +93,11 @@
     z-index: 1; 
     border: 5px solid #8E7117;
     border-radius: 5px;
+    width: 20%;
 }
-
-form input#username {
-    bottom: 10px;
-    position: absolute;
-    top: 70px;
-}
-
-form input#password {
-    top: 1-px;
-    position: absolute;
-    top: 126px;
+#LogInForm p{
+    margin-left: 33%;
+    margin-top: 8%;
 }
 
 #exit{
@@ -117,10 +112,12 @@ form input#password {
     padding-left: 5%;
     border-bottom:5px solid #8E7117; 
     border-radius: 5px;
+    margin: 5%;
+    width: 90%;
 }
 
 .logInButton {
-    width: 80%;
+    width: 39%;
     background-color: #C1BFB2;
     padding-left: 5%;
     border-bottom:5px solid #8E7117; 
@@ -128,13 +125,13 @@ form input#password {
     cursor: pointer;
     position: relative;
     top: 40px;
-    left: 90px;
+    left: 33%;
 }
 
 #messageUser {
     position: absolute;
-    top: 165px;
-    left: 230px;
+    top: 10%;
+    left: 35%;
     background-color: #8E7117;
 }
 @media (max-width: 568px) {
@@ -145,7 +142,19 @@ form input#password {
         width: 45%;
 
     }
+    #LogInForm {
+        left: 35.5%;
+        width: 45%;
+    }   
+    .logInButton {
+        top: 10px;
+    }
+    #LogInForm p {
+        margin-left: 30%;
+    }
 }
+    
+    
 #log-out {
     position: absolute;
     right: 7%;
@@ -164,5 +173,12 @@ form input#password {
     #log-out {
         top:23%;
         right: 5%;
+    }
+    #LogInForm {
+        left: 45%;
+        width: 30%;
+    }
+    .logInButton {
+        top: 20px;
     }
 }

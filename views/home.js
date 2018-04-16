@@ -258,11 +258,23 @@ function resetForm(){
     $("#RegisterForm").trigger("reset");
     const messageFormVal = $(".message").val();
     $(".message").html(function() {
-    return  messageFormVal.replace(messageFormVal, "");
-});
+        return messageFormVal.replace(messageFormVal, "");
+    });
+    const messageLogIn = $("#messageUsername").val();
+    $("#messageUsername").html(function() {
+        return messageLogIn.replace(messageLogIn, "")
+    })
+    
     $("#LogInForm").trigger("reset");
+    const messageReg = $("#messageUser").val();
+    $("#messageUser").html(function() {
+        return messageReg.replace(messageReg, "")
+    })
 }
 
+function emptyFormFields(){
+    
+}
 // This function checks for the token in cookie. Therefore it syncronizes both HTML
 // pages so that when the registration has been done at home page it is applied on
 // details page too.
