@@ -14,16 +14,17 @@
     position: absolute;
     top:2%;
     right: 2%;
-    /*background-color: rgba(0,0,0,0);*/
     font-size: 24px;
 }
+
 #RegisterForm{
     position: relative;
     top:14%;
-    background-color: #660000;
+    background-color: #272727;
     width: 500px;
-    height: 430px;
-    border:2px solid #ff4d4d;
+    height: 450px;
+    border: 5px solid #8E7117;
+    border-radius: 5px;
     opacity: 1;
     margin: 0 auto;
     padding: 20px;
@@ -38,13 +39,17 @@
     text-align: center;
 }
 
+.field-wrapper {
+    margin-bottom: 20px;
+}
+
 #RegisterForm input:not([type=checkbox]){
     position: absolute;
     left: 160px;
     width: 65%;
     padding-left: 5px;
     color: white;
-    margin-bottom: 15%;
+    margin-bottom: 30px;
 }
 
 [type=checkbox]{
@@ -57,8 +62,9 @@
 }
 
 .message{
-    color:#545559;
-    
+    color:#e22;
+    position: relative;
+    bottom: 10px;
 }
 .shadow {
    -moz-box-shadow:    inset 0 0 10px #1a0000;

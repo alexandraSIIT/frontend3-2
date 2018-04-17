@@ -93,7 +93,7 @@ input {
     height: 25px;
 }
 
-button, input, .shadow-bottom {
+button, input:not([type=checkbox]), .shadow-bottom {
     box-shadow: 0px 4px 8px black;
 }
 
