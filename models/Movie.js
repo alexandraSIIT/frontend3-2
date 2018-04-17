@@ -15,7 +15,7 @@ GetMovie.prototype.getMovieDetails = function() {
     // var that = this;
     // console.log(this);
     return $.getJSON('https://ancient-caverns-16784.herokuapp.com/movies/' + this.id, (movieDetails) => {
-        this.description = movieDetails.Plot;
+        this.description = movieDetails.Description;
         this.genre = movieDetails.Genre;
         this.poster = movieDetails.Poster;
         this.country = movieDetails.Country;

@@ -15,6 +15,7 @@
 
 
     <title>Movie Roll - Home</title>
+    <link rel="icon" href="img/logo.svg">
 </head>
 <body>
     <header class="shadow-bottom">
@@ -43,13 +44,12 @@
     <button id="exit" style="font-size:24px"><i class="fa fa-times-circle"></i></button>
     <form id="LogInForm" class = "pull-right">
      <span id="messageUser"></span>
-    Username:
+    <p>Username:</p>
+    <br>
     <input class="logIntextInput" id="username" type="text" size="15" name="Username" placeholder="Type username" />
- 
-    <br />
-    <br />
-    <br />
-    Password:
+    <br>
+    <p>Password:</p>
+    <br>
     <input class="logIntextInput" id="password" type="password" size="15" name="Password" placeholder = "Type password"  />
  
     <br />
@@ -65,34 +65,34 @@
            <br>
            <div id="messageUsername"></div>
            <br>
-           First Name: <input class="textInput shadow" type="text" name="FirstName" placeholder="First Name"/>
-           <br>
+           <div class="field-wrapper">
+               First Name: <input class="textInput shadow" type="text" name="FirstName" placeholder="First Name"/>
+           </div>
            <span id="messages1" class="message"></span>
-           <br>
-           Last Name: <input class="textInput shadow" type="text" name="LastName" placeholder="Last Name"/>
-           <br>
+           <div class="field-wrapper">
+               Last Name: <input class="textInput shadow" type="text" name="LastName" placeholder="Last Name"/>
+           </div>
            <span id="messages2" class="message"></span>
-           <br>
-           Email: <input class="textInput shadow" type="text" name="EmailAdress" placeholder="Email adress"/>
-           <br>
+           <div class="field-wrapper">
+               Email: <input class="textInput shadow" type="text" name="EmailAdress" placeholder="Email adress"/>
+           </div>
            <span id="messages3" class="message"></span>
-           <br>
-           Username: <input class="textInput shadow" type="text" name="Username" placeholder="Username"/>
-           <br>
+           <div class="field-wrapper">
+               Username: <input class="textInput shadow" type="text" name="Username" placeholder="Username"/>
+           </div>
            <span id="messages4" class="message"></span>
-           <br>
-           Password: <input class="textInput shadow" type="password" name="Password" placeholder="Password"/>
-           <br>
+           <div class="field-wrapper">
+               Password: <input class="textInput shadow" type="password" name="Password" placeholder="Password"/>
+           </div>
            <span id="messages5" class="message"></span>
-           <br>
-           <input type="checkbox" id="check" /> Show Password
-           <br>
-           Confirm Password: <input class="textInput shadow" type="password" name="ConfirmPassword" placeholder="Confirm password"/>
-           <br>
+           <div class="field-wrapper">
+               Show Password <input type="checkbox" id="check" />
+           </div>
+           <div class="field-wrapper">
+               Confirm Password: <input class="textInput shadow" type="password" name="ConfirmPassword" placeholder="Confirm password"/>
+           </div>
            <span id="messages6" class="message"></span>
-           <br>
            <p>All fields are required.</p>
-           <br>
            <button class="btn" type="submit"  id="register-submit">Submit</button>   
        </form>
     </div>

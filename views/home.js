@@ -258,11 +258,23 @@ function resetForm(){
     $("#RegisterForm").trigger("reset");
     const messageFormVal = $(".message").val();
     $(".message").html(function() {
-    return  messageFormVal.replace(messageFormVal, "");
-});
+        return messageFormVal.replace(messageFormVal, "");
+    });
+    const messageLogIn = $("#messageUsername").val();
+    $("#messageUsername").html(function() {
+        return messageLogIn.replace(messageLogIn, "")
+    })
+    
     $("#LogInForm").trigger("reset");
+    const messageReg = $("#messageUser").val();
+    $("#messageUser").html(function() {
+        return messageReg.replace(messageReg, "")
+    })
 }
 
+function emptyFormFields(){
+    
+}
 // This function checks for the token in cookie. Therefore it syncronizes both HTML
 // pages so that when the registration has been done at home page it is applied on
 // details page too.
@@ -493,10 +505,24 @@ function displayAllMovies(list){
     
     $('#approve').unbind('click').bind('click', () => {
         var formInputs = $('#createContainer');
-        movie.postMovie(formInputs).then(() => {
+        let x = formInputs[0].children[0];
+        let empty = 0;
+        for (let i=0; i<x.length; i++) {
+            if (x[i].value == '') {
+                empty++;
+                if (empty == 1) {
+                    break;
+                }
+            }
+        }
+        if (!empty) {
+            movie.postMovie(formInputs).then(() => {
             listElement.html('');
             getMoviesList();
-        });
+            });
+        }else {
+            alert('Please fill in all fields.');
+        }
     });
 }
 
