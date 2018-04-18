@@ -272,9 +272,6 @@ function resetForm(){
     })
 }
 
-function emptyFormFields(){
-    
-}
 // This function checks for the token in cookie. Therefore it syncronizes both HTML
 // pages so that when the registration has been done at home page it is applied on
 // details page too.
@@ -375,8 +372,10 @@ function displaySearchResult(list) {
                 </div>
             </li>`
         );
+        const deleteBtn = $(".del");
         makeDelBtnAppear(deleteBtn);
     }
+    
     // Pagination Stuff
     let pagination = list.pagination;
     let pag = new PaginationView(list.pagination);

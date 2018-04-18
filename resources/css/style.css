@@ -344,7 +344,7 @@ button, input:not([type=checkbox]), .shadow-bottom {
         display: block;
     }
     .del {
-        display: block;
+        /*display: block;*/
         position: static;
         margin: 0 auto;
         margin-top: 20px;
